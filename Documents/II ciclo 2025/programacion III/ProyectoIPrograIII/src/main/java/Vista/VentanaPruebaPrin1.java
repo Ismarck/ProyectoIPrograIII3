@@ -57,7 +57,7 @@ public class VentanaPruebaPrin1 extends javax.swing.JFrame {
     }*/
    
      private void ShowPanel(JPanel p){
-        p.setSize(1200, 722);
+        p.setSize(1300, 722);
         p.setLocation(0, 0);
         Desarrollo.removeAll();
         Desarrollo.add(p, BorderLayout.CENTER );
