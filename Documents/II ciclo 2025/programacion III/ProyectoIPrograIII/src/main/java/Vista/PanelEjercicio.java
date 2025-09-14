@@ -18,7 +18,7 @@ public class PanelEjercicio extends javax.swing.JPanel {
      */
     public PanelEjercicio() {
         initComponents();
-        RegistroCliente p1 = new RegistroCliente();
+        //RegistroCliente p1 = new RegistroCliente();
         //ShowPanel(p1);
     }
 /*
