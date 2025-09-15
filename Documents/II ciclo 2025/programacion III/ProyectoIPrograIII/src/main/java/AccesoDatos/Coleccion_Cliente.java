@@ -62,8 +62,18 @@ public class Coleccion_Cliente {
         }
         return null;
     }
+    
+    // Buscar Cliente por cédula
+    public Cliente buscarpornombre(String Nombre) {
+        for (Cliente cli : lista) {
+            if (cli.getNombre() == Nombre) {
+                return cli;
+            }
+        }
+        return null;
+    }
 
-    //public Cliente SucursalAsociada(){
+    
     
     //}
     

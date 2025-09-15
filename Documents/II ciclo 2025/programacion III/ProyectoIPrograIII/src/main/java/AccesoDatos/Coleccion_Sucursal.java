@@ -62,6 +62,15 @@ public class Coleccion_Sucursal {
         return null;
     }
     
+    // En Coleccion_Sucursal
+public Sucursal buscarPorProvincia(String provincia) {
+    for (Sucursal s : lista) {
+        if (s.getProvincia().equalsIgnoreCase(provincia)) {
+            return s;
+        }
+    }
+    return null; // Si no se encuentra
+}    
     
     //Listar Instructor
     public List<Sucursal> Listar_Sucursal(){

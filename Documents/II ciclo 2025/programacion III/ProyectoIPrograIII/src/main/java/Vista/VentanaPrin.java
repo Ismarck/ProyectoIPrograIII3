@@ -7,7 +7,7 @@ package Vista;
 import AccesoDatos.Coleccion_Cliente;
 import AccesoDatos.Coleccion_Instructor;
 import AccesoDatos.Coleccion_Sucursal;
-//import Controlador.Controlador_Cliente;
+import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -28,6 +28,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Coleccion_Cliente coleccionCliente;
     private Coleccion_Instructor coleccionInstructor;
     private Coleccion_Sucursal coleccionSucursal;
+    private Controlador_Cliente controladorcliente;
     
 
     
@@ -42,11 +43,14 @@ public class VentanaPrin extends javax.swing.JFrame {
         this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
         this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
         
+        //this.controladorcliente = new Controlador_Cliente();
+        
         // Mostrar panel de bienvenida una sola vez
         PanelBienvenida p1 = new PanelBienvenida();
         ShowPanel(p1);
 
     }
+    
     
     
     
@@ -354,8 +358,11 @@ public class VentanaPrin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
-        PanelUsuario p1 = new PanelUsuario();
-        ShowPanel(p1);
+        //PanelReportes p1 = new PanelReportes(this.);
+        //ShowPanel(p1);
+    Controlador_Cliente controladorCliente = new Controlador_Cliente(this.coleccionCliente);
+    PanelReportes p1 = new PanelReportes(controladorCliente);
+    ShowPanel(p1);
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed

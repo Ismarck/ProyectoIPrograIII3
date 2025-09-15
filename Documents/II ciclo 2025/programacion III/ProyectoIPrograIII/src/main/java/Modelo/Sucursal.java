@@ -53,11 +53,17 @@ public class Sucursal {
     public void setCodigo(int Codigo) {
         this.Codigo = Codigo;
     }
-
+/*
     @Override
     public String toString() {
         return "Sucursal{" + "Provincia=" + Provincia + ", Canton=" + Canton + ", Codigo=" + Codigo + "Instructor= "+ instructor +'}';
+    }*/
+    
+    @Override
+    public String toString() {
+        return Provincia + " - " + Canton + " (" + Codigo + ")";
     }
+
     
 
     

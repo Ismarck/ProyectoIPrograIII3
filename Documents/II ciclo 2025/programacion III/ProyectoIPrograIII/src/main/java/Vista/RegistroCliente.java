@@ -48,7 +48,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         FechaInscripcion = new javax.swing.JLabel();
         Sucursal = new javax.swing.JLabel();
         TextoFechaNAcimiento = new javax.swing.JTextField();
-        TextoInicio = new javax.swing.JTextField();
+        TxtCelular = new javax.swing.JTextField();
         CombxSucursal = new javax.swing.JComboBox<>();
         CombxInstructor = new javax.swing.JComboBox<>();
 
@@ -78,7 +78,7 @@ public class RegistroCliente extends javax.swing.JPanel {
 
         Cedula.setText("Cedula:");
 
-        FechaInscripcion.setText("Fecha Inscripcion:");
+        FechaInscripcion.setText("Celular");
 
         Sucursal.setText("Sucursal:");
 
@@ -88,9 +88,9 @@ public class RegistroCliente extends javax.swing.JPanel {
             }
         });
 
-        TextoInicio.addActionListener(new java.awt.event.ActionListener() {
+        TxtCelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextoInicioActionPerformed(evt);
+                TxtCelularActionPerformed(evt);
             }
         });
 
@@ -127,7 +127,7 @@ public class RegistroCliente extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TextoFechaNAcimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextoFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(FechaInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -161,7 +161,7 @@ public class RegistroCliente extends javax.swing.JPanel {
                     .addComponent(Instructor, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CombxInstructor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CombxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -202,14 +202,14 @@ public class RegistroCliente extends javax.swing.JPanel {
             String Nombre = TextoNombre.getText();
             String Fecha_Nacimiento = TextoFechaNAcimiento.getText();
             String Correo = TextoCorreo.getText();
-            String Numero_Celular = TextoNombre.getText();
-            String Fecha_Inscripcion = TextoInicio.getText();
+            int  numeroCelular = Integer.parseInt(TxtCelular.getText());
+            //String Fecha_Inscripcion = TxtCelular.getText();
             //String InstructorAsinado = TextoCont.getText();
             int cedula = Integer.parseInt(TextoCedula.getText());
 
             // Otros datos que tu constructor pide
             String fechaInscripcion = java.time.LocalDate.now().toString(); // hoy
-            int numeroCelular = 0; // de momento fijo, lo puedes pedir en otro campo
+            //int numeroCelular = 0; // de momento fijo, lo puedes pedir en otro campo
             char sexo = 'M'; // o 'F', según quieras implementarlo
             
              Instructor instructor1 = new Instructor(
@@ -261,9 +261,9 @@ public class RegistroCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextoCedulaActionPerformed
 
-    private void TextoInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoInicioActionPerformed
+    private void TxtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtCelularActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextoInicioActionPerformed
+    }//GEN-LAST:event_TxtCelularActionPerformed
 
     private void TextoFechaNAcimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoFechaNAcimientoActionPerformed
         // TODO add your handling code here:
@@ -281,8 +281,8 @@ public class RegistroCliente extends javax.swing.JPanel {
     private javax.swing.JTextField TextoCorreo;
     private javax.swing.JLabel TextoFechaN;
     private javax.swing.JTextField TextoFechaNAcimiento;
-    private javax.swing.JTextField TextoInicio;
     private javax.swing.JTextField TextoNombre;
+    private javax.swing.JTextField TxtCelular;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

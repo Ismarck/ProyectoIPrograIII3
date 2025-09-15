@@ -9,6 +9,7 @@ import Modelo.Cliente;
 import Modelo.Instructor;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,14 +34,86 @@ public class Controlador_Cliente {
     public Cliente buscar(int Cedula) {
         return coleccionCliente.buscar(Cedula);
     }
+    
+    public Cliente buscarporNombre(String Nombre) {
+        return coleccionCliente.buscarpornombre(Nombre);
+    }
 
     public boolean modificar(Cliente c) {
         return coleccionCliente.Modificar(c);
     }
+    
 
     public java.util.List<Cliente> listar() {
         return coleccionCliente.Listar();
     }
+    /*
+    public DefaultTableModel obtenerTablaClientes() {
+
+    List<Cliente> clientes = coleccionCliente.Listar();
+
+    DefaultTableModel modelo = new DefaultTableModel(
+
+        new Object[]{"Cedula", "Nombre", "Sexo", "Nacimiento", "Instructor", "Sucursal", "Correo", "Celular", "Inscripcion"}, 0);
+
+    
+
+    for (Cliente c : clientes) {
+
+        modelo.addRow(new Object[]{
+
+            c.getCedula(),
+
+            c.getNombre(),
+
+            c.getSexo(),
+
+            c.getFecha_Nacimiento(),
+
+            c.getCorreo(),
+
+            c.getNumero_Celular(),
+
+            c.getFecha_Inscripcion(),
+
+            (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+
+            (c.getSucursal() != null) ? c.getSucursal().getProvincia() : "No asociada"
+
+        });
+
+    }
+
+    return modelo;
+
+}*/
+    public DefaultTableModel obtenerTablaClientesPorNombre(String nombre) {
+    List<Cliente> clientes = coleccionCliente.Listar();
+
+    DefaultTableModel modelo = new DefaultTableModel(
+        new Object[]{"Cedula", "Nombre", "Sexo", "Nacimiento", "Correo", "Celular", "Inscripcion", "Instructor", "Sucursal"}, 0
+    );
+
+    for (Cliente c : clientes) {
+        // Aquí filtra: si el nombre contiene el texto buscado (ignora mayúsculas/minúsculas)
+        if (c.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+            modelo.addRow(new Object[]{
+                c.getCedula(),
+                c.getNombre(),
+                c.getSexo(),
+                c.getFecha_Nacimiento(),
+                c.getCorreo(),
+                c.getNumero_Celular(),
+                c.getFecha_Inscripcion(),
+                (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+                (c.getSucursal() != null) ? c.getSucursal().getProvincia() : "No asociada"
+            });
+        }
+    }
+
+    return modelo;
+}
+
     
     /**/
 }

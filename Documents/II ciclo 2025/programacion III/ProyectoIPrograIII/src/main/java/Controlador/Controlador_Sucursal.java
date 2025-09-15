@@ -31,6 +31,10 @@ public class Controlador_Sucursal {
         return coleccionSucursal.Buscar_Sucursal(Codigo);
     }
 
+    public Sucursal buscarPorProvincia(String provincia) {
+        return coleccionSucursal.buscarPorProvincia(provincia);
+    }
+    
     public boolean modificar(Sucursal c) {
         return coleccionSucursal.Modificar_Sucursal(c);
     }
