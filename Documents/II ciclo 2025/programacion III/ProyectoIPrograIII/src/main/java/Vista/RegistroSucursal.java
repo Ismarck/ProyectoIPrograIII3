@@ -7,6 +7,7 @@ import AccesoDatos.Coleccion_Sucursal;
 import Modelo.Instructor;
 import Modelo.Sucursal;
 
+
 /**
  *
  * @author marcosisaacarayaabarca
@@ -14,12 +15,22 @@ import Modelo.Sucursal;
 public class RegistroSucursal extends javax.swing.JPanel {
 
     private Coleccion_Sucursal Coleccionsuc;
+    
+    //
+    private RegistroCliente registroCliente;
+    
+    private javax.swing.JComboBox<String> comboSucursales;
+    
+
+    //
     /**
      * Creates new form RegistroInstructor
      */
-    public RegistroSucursal(Coleccion_Sucursal coleccionsuc) {
+    public RegistroSucursal(Coleccion_Sucursal coleccionsuc,RegistroCliente registroCliente) {
         initComponents();
         this.Coleccionsuc = coleccionsuc;
+        //
+        this.registroCliente = registroCliente;
     }
 
     
@@ -179,7 +190,7 @@ public class RegistroSucursal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+        /*try {
 
             String Provincia = TextProvincia.getText();
             String Canton = TextCanton.getText();
@@ -218,7 +229,47 @@ public class RegistroSucursal extends javax.swing.JPanel {
 
         ) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }*/
+        try {
+            String Provincia = TextProvincia.getText();
+            String Canton = TextCanton.getText();
+            int Codigo = Integer.parseInt(Textcodigo.getText());
+
+            Instructor instructor1 = new Instructor(
+                    "CrossFit",
+                    "Benji",
+                    "2000-12-07",
+                    "benjacol@gmail.com",
+                    88776655,
+                    123456789,
+                    'M'
+            );
+
+            Sucursal nuevo = new Sucursal(
+                    Provincia,
+                    Canton,
+                    Codigo,
+                    instructor1
+            );
+
+            if (Coleccionsuc.Insertar_Sucursal(nuevo)) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Sucursal registrada con éxito");
+
+                // 🔹 Actualizar el ComboBox después de insertar
+                if (registroCliente != null) {
+            registroCliente.actualizarComboSucursales();
+            }
+
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "La Sucursal ya existe");
+            }
+
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El Código de Sucursal debe ser numérico.");
+        } catch (Exception ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TextProvincia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextProvincia1ActionPerformed

@@ -5,6 +5,7 @@
 package Vista;
 
 import AccesoDatos.Coleccion_Cliente;
+import AccesoDatos.Coleccion_Sucursal;
 import Modelo.Cliente;
 import Modelo.Instructor;
 import Modelo.Sucursal;
@@ -16,13 +17,30 @@ import javax.swing.JOptionPane;
 public class RegistroCliente extends javax.swing.JPanel {
     
      private Coleccion_Cliente Coleccion;
+     //prueba combobox
+     private Coleccion_Sucursal coleccionSucursales;
+     private javax.swing.JComboBox<String> comboSucursales;
     /**
      * Creates new form RegistroInstructor
      */
-    public RegistroCliente(Coleccion_Cliente Coleccion) {
+    public RegistroCliente(Coleccion_Cliente Coleccion,Coleccion_Sucursal coleccionSucursales) {
         initComponents();
         this.Coleccion = Coleccion;
+        //
+         this.coleccionSucursales = coleccionSucursales;
+        actualizarComboSucursales();  
+        comboSucursales = new javax.swing.JComboBox<>();
+    this.add(comboSucursales);
     }
+    public void actualizarComboSucursales() {
+        if (CombxSucursal != null) {  // 🔹 Usa el JComboBox del formulario
+            CombxSucursal.removeAllItems();
+            for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
+                CombxSucursal.addItem(s.getProvincia() + " - " + s.getCanton());
+            }
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,6 +113,11 @@ public class RegistroCliente extends javax.swing.JPanel {
         });
 
         CombxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CombxSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombxSucursalActionPerformed(evt);
+            }
+        });
 
         CombxInstructor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -268,6 +291,10 @@ public class RegistroCliente extends javax.swing.JPanel {
     private void TextoFechaNAcimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoFechaNAcimientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextoFechaNAcimientoActionPerformed
+
+    private void CombxSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombxSucursalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombxSucursalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
