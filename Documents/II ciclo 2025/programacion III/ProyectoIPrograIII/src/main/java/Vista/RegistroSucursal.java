@@ -243,7 +243,13 @@ public class RegistroSucursal extends javax.swing.JPanel {
                     88776655,
                     123456789,
                     'M'
-            );
+            );/*
+            Instructor instructor1 = new Instructor(
+            Especialidad,
+            Nombre,
+            
+            );*/
+
 
             Sucursal nuevo = new Sucursal(
                     Provincia,

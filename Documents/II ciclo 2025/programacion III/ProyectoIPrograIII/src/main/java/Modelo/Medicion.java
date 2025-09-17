@@ -1,121 +1,155 @@
 package Modelo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author marcosisaacarayaabarca
  */
 public class Medicion {
 
-    private float Peso;
-    private float Estatura;
-    private float Grasa;
-    private float Musculo;
-    private float EdadMetabolica;
-    private float Cintura;
-    private float Cadera;
-    private float Pecho;
-    private float Muslo;
-    private float IMC; 
+    private Cliente cliente;
+    private Instructor instructor;
+    private LocalDate fecha;
+    private double peso;
+    private double estatura;
+    private double porcentajeGrasa;
+    private double porcentajeMusculo;
+    private int edadMetabolica;
+    private double grasaVisceral;
+    private double cintura;
+    private double cadera;
+    private double pecho;
+    private double muslo;
+
     public Medicion() {
     }
 
-    public Medicion(float Peso, float Estatura, float Grasa, float Musculo, float EdadMetabolica, float Cintura, float Cadera, float Pecho, float Muslo, float IMC) {
-        this.Peso = Peso;
-        this.Estatura = Estatura;
-        this.Grasa = Grasa;
-        this.Musculo = Musculo;
-        this.EdadMetabolica = EdadMetabolica;
-        this.Cintura = Cintura;
-        this.Cadera = Cadera;
-        this.Pecho = Pecho;
-        this.Muslo = Muslo;
-        this.IMC = IMC;
+    public Medicion(Cliente cliente, Instructor instructor, LocalDate fecha, double peso, double estatura, double porcentajeGrasa, double porcentajeMusculo, int edadMetabolica, double grasaVisceral, double cintura, double cadera, double pecho, double muslo) {
+        this.cliente = cliente;
+        this.instructor = instructor;
+        this.fecha = fecha;
+        this.peso = peso;
+        this.estatura = estatura;
+        this.porcentajeGrasa = porcentajeGrasa;
+        this.porcentajeMusculo = porcentajeMusculo;
+        this.edadMetabolica = edadMetabolica;
+        this.grasaVisceral = grasaVisceral;
+        this.cintura = cintura;
+        this.cadera = cadera;
+        this.pecho = pecho;
+        this.muslo = muslo;
     }
 
-    public float getPeso() {
-        return Peso;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setPeso(float Peso) {
-        this.Peso = Peso;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public float getEstatura() {
-        return Estatura;
+    public Instructor getInstructor() {
+        return instructor;
     }
 
-    public void setEstatura(float Estatura) {
-        this.Estatura = Estatura;
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
-    public float getGrasa() {
-        return Grasa;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setGrasa(float Grasa) {
-        this.Grasa = Grasa;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
-    public float getMusculo() {
-        return Musculo;
+    public double getPeso() {
+        return peso;
     }
 
-    public void setMusculo(float Musculo) {
-        this.Musculo = Musculo;
+    public void setPeso(double peso) {
+        this.peso = peso;
     }
 
-    public float getEdadMetabolica() {
-        return EdadMetabolica;
+    public double getEstatura() {
+        return estatura;
     }
 
-    public void setEdadMetabolica(float EdadMetabolica) {
-        this.EdadMetabolica = EdadMetabolica;
+    public void setEstatura(double estatura) {
+        this.estatura = estatura;
     }
 
-    public float getCintura() {
-        return Cintura;
+    public double getPorcentajeGrasa() {
+        return porcentajeGrasa;
     }
 
-    public void setCintura(float Cintura) {
-        this.Cintura = Cintura;
+    public void setPorcentajeGrasa(double porcentajeGrasa) {
+        this.porcentajeGrasa = porcentajeGrasa;
     }
 
-    public float getCadera() {
-        return Cadera;
+    public double getPorcentajeMusculo() {
+        return porcentajeMusculo;
     }
 
-    public void setCadera(float Cadera) {
-        this.Cadera = Cadera;
+    public void setPorcentajeMusculo(double porcentajeMusculo) {
+        this.porcentajeMusculo = porcentajeMusculo;
     }
 
-    public float getPecho() {
-        return Pecho;
+    public int getEdadMetabolica() {
+        return edadMetabolica;
     }
 
-    public void setPecho(float Pecho) {
-        this.Pecho = Pecho;
+    public void setEdadMetabolica(int edadMetabolica) {
+        this.edadMetabolica = edadMetabolica;
     }
 
-    public float getMuslo() {
-        return Muslo;
+    public double getGrasaVisceral() {
+        return grasaVisceral;
     }
 
-    public void setMuslo(float Muslo) {
-        this.Muslo = Muslo;
+    public void setGrasaVisceral(double grasaVisceral) {
+        this.grasaVisceral = grasaVisceral;
     }
 
-    public float getIMC() {
-        return IMC;
+    public double getCintura() {
+        return cintura;
     }
 
-    public void setIMC(float IMC) {
-        this.IMC = IMC;
+    public void setCintura(double cintura) {
+        this.cintura = cintura;
+    }
+
+    public double getCadera() {
+        return cadera;
+    }
+
+    public void setCadera(double cadera) {
+        this.cadera = cadera;
+    }
+
+    public double getPecho() {
+        return pecho;
+    }
+
+    public void setPecho(double pecho) {
+        this.pecho = pecho;
+    }
+
+    public double getMuslo() {
+        return muslo;
+    }
+
+    public void setMuslo(double muslo) {
+        this.muslo = muslo;
     }
 
     @Override
     public String toString() {
-        return "Medicion{" + "Peso=" + Peso + ", Estatura=" + Estatura + ", Grasa=" + Grasa + ", Musculo=" + Musculo + ", EdadMetabolica=" + EdadMetabolica + ", Cintura=" + Cintura + ", Cadera=" + Cadera + ", Pecho=" + Pecho + ", Muslo=" + Muslo + ", IMC=" + IMC + '}';
+        return "Medicion{" + "cliente=" + cliente + ", instructor=" + instructor + ", fecha=" + fecha + ", peso=" + peso + ", estatura=" + estatura + ", porcentajeGrasa=" + porcentajeGrasa + ", porcentajeMusculo=" + porcentajeMusculo + ", edadMetabolica=" + edadMetabolica + ", grasaVisceral=" + grasaVisceral + ", cintura=" + cintura + ", cadera=" + cadera + ", pecho=" + pecho + ", muslo=" + muslo + '}';
     }
- 
+    
+    
     
 }

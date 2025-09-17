@@ -105,8 +105,10 @@ public class Controlador_Cliente {
                 c.getCorreo(),
                 c.getNumero_Celular(),
                 c.getFecha_Inscripcion(),
+                //(c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+                //(c.getSucursal() != null) ? c.getSucursal().getProvincia() : "No asociada"
                 (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
-                (c.getSucursal() != null) ? c.getSucursal().getProvincia() : "No asociada"
+                (c.getSucursal() != null) ? c.getSucursal().getProvincia() + " - " + c.getSucursal().getCanton() : "No asociada",
             });
         }
     }

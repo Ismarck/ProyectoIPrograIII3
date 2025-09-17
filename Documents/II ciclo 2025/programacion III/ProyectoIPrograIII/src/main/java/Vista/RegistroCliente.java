@@ -9,6 +9,8 @@ import AccesoDatos.Coleccion_Sucursal;
 import Modelo.Cliente;
 import Modelo.Instructor;
 import Modelo.Sucursal;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 /**
  *
@@ -19,7 +21,10 @@ public class RegistroCliente extends javax.swing.JPanel {
      private Coleccion_Cliente Coleccion;
      //prueba combobox
      private Coleccion_Sucursal coleccionSucursales;
-     private javax.swing.JComboBox<String> comboSucursales;
+     private Map<String, Sucursal> mapaSucursales = new HashMap<>();
+     //private javax.swing.JComboBox<String> comboSucursales;
+    // private javax.swing.JComboBox<Sucursal> CombxSucursal;
+
     /**
      * Creates new form RegistroInstructor
      */
@@ -27,19 +32,37 @@ public class RegistroCliente extends javax.swing.JPanel {
         initComponents();
         this.Coleccion = Coleccion;
         //
-         this.coleccionSucursales = coleccionSucursales;
+        
+        this.coleccionSucursales = coleccionSucursales;
         actualizarComboSucursales();  
-        comboSucursales = new javax.swing.JComboBox<>();
-    this.add(comboSucursales);
+        //comboSucursales = new javax.swing.JComboBox<>();
+        //CombxSucursal = new javax.swing.JComboBox<>();
+        //this.add(CombxSucursal);
+    
     }
     public void actualizarComboSucursales() {
-        if (CombxSucursal != null) {  // 🔹 Usa el JComboBox del formulario
-            CombxSucursal.removeAllItems();
-            for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
-                CombxSucursal.addItem(s.getProvincia() + " - " + s.getCanton());
-            }
-        }
+    CombxSucursal.removeAllItems();
+    mapaSucursales.clear();
+
+    for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
+        String clave = s.getProvincia() + " - " + s.getCanton();
+        CombxSucursal.addItem(clave);
+        mapaSucursales.put(clave, s);
     }
+}
+    
+    
+    //public void actualizarComboSucursales() {
+       // if (CombxSucursal != null) {  // 🔹 Usa el JComboBox del formulario
+          //  CombxSucursal.removeAllItems();
+           // for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
+           // CombxSucursal.addItem(s);  // 👈 ahora agregas el objeto completo
+           // }
+            /*for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
+                CombxSucursal.addItem(s.getProvincia() + " - " + s.getCanton());
+            }*/
+       // }
+    //}
 
 
     /**
@@ -120,6 +143,11 @@ public class RegistroCliente extends javax.swing.JPanel {
         });
 
         CombxInstructor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CombxInstructor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombxInstructorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -224,6 +252,10 @@ public class RegistroCliente extends javax.swing.JPanel {
         try {
             String Nombre = TextoNombre.getText();
             String Fecha_Nacimiento = TextoFechaNAcimiento.getText();
+            //Sucursal sucursalSeleccionada = (Sucursal) CombxSucursal.getSelectedItem();
+            String clave = (String) CombxSucursal.getSelectedItem();
+            Sucursal sucursalSeleccionada = mapaSucursales.get(clave);
+            //String Instructor = CombxInstructor.getSelectedItem().toString();
             String Correo = TextoCorreo.getText();
             int  numeroCelular = Integer.parseInt(TxtCelular.getText());
             //String Fecha_Inscripcion = TxtCelular.getText();
@@ -244,14 +276,26 @@ public class RegistroCliente extends javax.swing.JPanel {
             123456789,
             'M'
             );
-            
+            /*
             Sucursal sucursal1 = new Sucursal(
                 "Alajuela",
                 "City Mall",
                 20101,
                 instructor1
+            );8*/
+            
+            /*Instructor instructor1 = new Instructor(
+               especialidad,
+               Nombre,
+               Fecha_Nacimiento,
+               Correo,
+               Numero_Celular,
+               Cedula,
+               Sexo
             );
-
+            
+            Sucursal sucursal1 = new Sucursal(
+            );*/
           
             // Crear el objeto Cliente
             Cliente nuevo = new Cliente(
@@ -263,7 +307,7 @@ public class RegistroCliente extends javax.swing.JPanel {
                     cedula,
                     sexo,
                     instructor1,
-                    sucursal1
+                    sucursalSeleccionada
             );
 
             // Insertar con el controlador
@@ -295,6 +339,10 @@ public class RegistroCliente extends javax.swing.JPanel {
     private void CombxSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombxSucursalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CombxSucursalActionPerformed
+
+    private void CombxInstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombxInstructorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombxInstructorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -65,7 +65,7 @@ public class Cliente extends Persona {
             ", Sucursal Asociada = '"+ sucursal.toString() + '\'' +
            '}';
     }
-    
+    /*
     public static void main(String[] args) {
         
         Instructor instructor1 = new Instructor(
@@ -78,7 +78,7 @@ public class Cliente extends Persona {
         'M'
         );
         
-        Sucursal sucursal1 = new Sucursal(
+        /*Sucursal sucursal1 = new Sucursal(
                 "Alajuela",
                 "City Mall",
                 20101,
@@ -101,7 +101,7 @@ public class Cliente extends Persona {
         );
 
         System.out.println(cliente1.Datos());
-    }
+    }*/
     
 }
 
