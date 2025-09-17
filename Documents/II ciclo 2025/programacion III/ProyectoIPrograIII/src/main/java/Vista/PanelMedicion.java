@@ -67,9 +67,10 @@ public class PanelMedicion extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
 
         jLabel3.setText("jLabel3");
 
@@ -97,14 +98,16 @@ public class PanelMedicion extends javax.swing.JPanel {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 610, 420));
-
         jLabel5.setText("Informe IMC");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, -1, 20));
 
         jButton2.setText("Ingresar");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setViewportView(jPanel2);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 590, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -134,6 +137,7 @@ public class PanelMedicion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
