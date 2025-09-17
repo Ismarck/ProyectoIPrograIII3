@@ -7,6 +7,7 @@ package Vista;
 import AccesoDatos.Coleccion_Cliente;
 import AccesoDatos.Coleccion_Instructor;
 import AccesoDatos.Coleccion_Sucursal;
+import AccesoDatos.Coleccion_Medicion;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
 import java.awt.BorderLayout;
@@ -29,6 +30,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Coleccion_Instructor coleccionInstructor;
     private Coleccion_Sucursal coleccionSucursal;
     private Controlador_Cliente controladorcliente;
+     private Coleccion_Medicion coleccionMedicion;
     
 
     
@@ -42,6 +44,7 @@ public class VentanaPrin extends javax.swing.JFrame {
         this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
         this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
         this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
+        this.coleccionMedicion = new Coleccion_Medicion(new ArrayList<>());
         
         //this.controladorcliente = new Controlador_Cliente();
         
@@ -380,7 +383,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     }//GEN-LAST:event_SalidaActionPerformed
 
     private void MedicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedicionActionPerformed
-        PanelMedicion p1 = new PanelMedicion();
+        PanelMedicion p1 = new PanelMedicion(coleccionMedicion);
         ShowPanel(p1);
     }//GEN-LAST:event_MedicionActionPerformed
 

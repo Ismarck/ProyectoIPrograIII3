@@ -6,6 +6,10 @@ package Vista;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import AccesoDatos.Coleccion_Medicion;
+import AccesoDatos.Coleccion_Sucursal;
+import Vista.PanelPruebaMedicion;
+
 
 /**
  *
@@ -13,15 +17,28 @@ import javax.swing.JPanel;
  */
 public class PanelMedicion extends javax.swing.JPanel {
 
+    private Coleccion_Medicion coleccionMedicion;
+    
     /**
      * Creates new form PanelRegistro
      */
-    public PanelMedicion() {
+    public PanelMedicion(Coleccion_Medicion coleccionMedicion) {
         initComponents();
         //RegistroCliente p1 = new RegistroCliente();
         //ShowPanel(p1);
+        this.coleccionMedicion = coleccionMedicion;
     }
-/*
+
+    
+    private void ShowPanel(JPanel p) {
+    p.setSize(600, 600);
+    p.setLocation(0, 0);
+    jPanel2.removeAll();
+    jPanel2.add(p, BorderLayout.CENTER);
+    jPanel2.revalidate();
+    jPanel2.repaint();
+}/*
+
     private void ShowPanel(JPanel p) {
         p.setSize(600, 600);
         p.setLocation(0, 0);
@@ -48,12 +65,13 @@ public class PanelMedicion extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
-
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -68,32 +86,54 @@ public class PanelMedicion extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 73, 519, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jLabel4.setText("Nombre Usuario:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 530, 190));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 610, 420));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 1560, 710));
+        jLabel5.setText("Informe IMC");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, -1, 20));
+
+        jButton2.setText("Ingresar");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PanelPruebaMedicion p1 = new PanelPruebaMedicion(coleccionMedicion);
+        ShowPanel(p1);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
