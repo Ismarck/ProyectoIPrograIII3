@@ -26,20 +26,24 @@ public class PanelMedicion extends javax.swing.JPanel {
     public PanelMedicion(Controlador_Medicion controladorMedicion) {
         initComponents();
         this.controladorMedicion = controladorMedicion;
-        //PanelIMC p1 = new PanelIMC();
+        //PanelIMC p1 = new PanelContenido();
         //ShowPanel(p1);
         
     }
 
     
-    private void ShowPanel(JPanel p) {
-    p.setSize(600, 600);
+   private void ShowPanel(JPanel p) {
+    p.setSize(jPanel2.getWidth(), jPanel2.getHeight());
     p.setLocation(0, 0);
+
     jPanel2.removeAll();
+    jPanel2.setLayout(new BorderLayout());
     jPanel2.add(p, BorderLayout.CENTER);
+
     jPanel2.revalidate();
     jPanel2.repaint();
 }
+
     
     
 
@@ -57,10 +61,8 @@ public class PanelMedicion extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
 
@@ -79,32 +81,21 @@ public class PanelMedicion extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 73, 519, -1));
 
-        jLabel4.setText("Nombre Usuario:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
-
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, -1, -1));
 
-        jLabel5.setText("Informe IMC");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, -1, 20));
-
-        jButton2.setText("Ingresar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
+        jLabel5.setText("Realizar IMC:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 20));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(jPanel2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 590, 430));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 590, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,29 +114,12 @@ public class PanelMedicion extends javax.swing.JPanel {
         ShowPanel(p1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    // Ejemplo: usar la primera medición (índice 0)
-    int indiceMedicion = 0; // Aquí deberías tomarlo de la selección real del usuario
-
-    // Obtener la medición y calcular IMC
-    double imc = controladorMedicion.obtenerIMC(indiceMedicion);
-    String nombreUsuario = controladorMedicion.buscarMedicion(indiceMedicion)
-                            .getCliente().getNombre();
-
-    // Crear el panel IMC y mostrarlo
-    PanelIMC p1 = new PanelIMC(nombreUsuario, imc);
-    ShowPanel(p1);
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
