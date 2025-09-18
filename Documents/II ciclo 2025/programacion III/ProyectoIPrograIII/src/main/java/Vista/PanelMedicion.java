@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import AccesoDatos.Coleccion_Medicion;
 import AccesoDatos.Coleccion_Sucursal;
+import Controlador.Controlador_Medicion;
 import Vista.PanelPruebaMedicion;
 
 
@@ -17,16 +18,17 @@ import Vista.PanelPruebaMedicion;
  */
 public class PanelMedicion extends javax.swing.JPanel {
 
-    private Coleccion_Medicion coleccionMedicion;
+    private Controlador_Medicion controladorMedicion;
     
     /**
      * Creates new form PanelRegistro
      */
-    public PanelMedicion(Coleccion_Medicion coleccionMedicion) {
+    public PanelMedicion(Controlador_Medicion controladorMedicion) {
         initComponents();
-        //RegistroCliente p1 = new RegistroCliente();
+        this.controladorMedicion = controladorMedicion;
+        //PanelIMC p1 = new PanelIMC();
         //ShowPanel(p1);
-        this.coleccionMedicion = coleccionMedicion;
+        
     }
 
     
@@ -37,17 +39,7 @@ public class PanelMedicion extends javax.swing.JPanel {
     jPanel2.add(p, BorderLayout.CENTER);
     jPanel2.revalidate();
     jPanel2.repaint();
-}/*
-
-    private void ShowPanel(JPanel p) {
-        p.setSize(600, 600);
-        p.setLocation(0, 0);
-        Mostrar.removeAll();
-        Mostrar.add(p, BorderLayout.CENTER);
-        Mostrar.revalidate();
-        Mostrar.repaint();
-
-    }*/
+}
     
     
 
@@ -102,6 +94,11 @@ public class PanelMedicion extends javax.swing.JPanel {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, -1, 20));
 
         jButton2.setText("Ingresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -122,9 +119,24 @@ public class PanelMedicion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PanelPruebaMedicion p1 = new PanelPruebaMedicion(coleccionMedicion);
+        PanelPruebaMedicion p1 = new PanelPruebaMedicion(controladorMedicion);
         ShowPanel(p1);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    // Ejemplo: usar la primera medición (índice 0)
+    int indiceMedicion = 0; // Aquí deberías tomarlo de la selección real del usuario
+
+    // Obtener la medición y calcular IMC
+    double imc = controladorMedicion.obtenerIMC(indiceMedicion);
+    String nombreUsuario = controladorMedicion.buscarMedicion(indiceMedicion)
+                            .getCliente().getNombre();
+
+    // Crear el panel IMC y mostrarlo
+    PanelIMC p1 = new PanelIMC(nombreUsuario, imc);
+    ShowPanel(p1);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

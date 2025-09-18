@@ -34,6 +34,10 @@ public class Controlador_Medicion {
     public boolean modificarMedicion(int indice, Medicion m) {
         return coleccion.modificar(indice, m);
     }
+    
+    public double obtenerIMC(int indice) {
+        return coleccion.calcularIMC(indice);
+    }
 
     // Listar todas las mediciones
     public List<Medicion> listar() {

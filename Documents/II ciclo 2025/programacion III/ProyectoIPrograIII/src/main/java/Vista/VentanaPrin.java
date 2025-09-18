@@ -8,6 +8,7 @@ import AccesoDatos.Coleccion_Cliente;
 import AccesoDatos.Coleccion_Instructor;
 import AccesoDatos.Coleccion_Sucursal;
 import AccesoDatos.Coleccion_Medicion;
+import Controlador.Controlador_Medicion;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
 import java.awt.BorderLayout;
@@ -29,8 +30,9 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Coleccion_Cliente coleccionCliente;
     private Coleccion_Instructor coleccionInstructor;
     private Coleccion_Sucursal coleccionSucursal;
+    private Coleccion_Medicion coleccionMedicion;
     private Controlador_Cliente controladorcliente;
-     private Coleccion_Medicion coleccionMedicion;
+    private Controlador_Medicion controladorMedicion;
     
 
     
@@ -45,6 +47,9 @@ public class VentanaPrin extends javax.swing.JFrame {
         this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
         this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
         this.coleccionMedicion = new Coleccion_Medicion(new ArrayList<>());
+        this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
+        // this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
+        //this.controladorMedicion = new Controlador_Medicion(new ArrayList<>());
         
         //this.controladorcliente = new Controlador_Cliente();
         
@@ -383,7 +388,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     }//GEN-LAST:event_SalidaActionPerformed
 
     private void MedicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedicionActionPerformed
-        PanelMedicion p1 = new PanelMedicion(coleccionMedicion);
+        PanelMedicion p1 = new PanelMedicion(controladorMedicion);
         ShowPanel(p1);
     }//GEN-LAST:event_MedicionActionPerformed
 

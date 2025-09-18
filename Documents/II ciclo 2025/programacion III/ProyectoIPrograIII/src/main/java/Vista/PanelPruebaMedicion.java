@@ -4,9 +4,10 @@
  */
 package Vista;
 
-import AccesoDatos.Coleccion_Medicion;
+import Controlador.Controlador_Medicion;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import Modelo.Medicion;
 
 /**
  *
@@ -14,15 +15,59 @@ import javax.swing.JPanel;
  */
 public class PanelPruebaMedicion extends javax.swing.JPanel {
 
-    private Coleccion_Medicion coleccionMedicion;
+    private Controlador_Medicion controladorMedicion;
     
     /**
      * Creates new form PanelPruebaMedicion
      */
-     public PanelPruebaMedicion(Coleccion_Medicion coleccionMedicion) {
-        this.coleccionMedicion = coleccionMedicion;
+     public PanelPruebaMedicion(Controlador_Medicion controladorMedicion) {
+        this.controladorMedicion = controladorMedicion;
         initComponents();
+        
+        btnGuardaryCal.setText("Guardar Medición");
+        btnGuardaryCal.addActionListener(evt -> guardarMedicion());
     }
+     
+     private void limpiarCampos() {
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+    jTextField7.setText("");
+    jTextField8.setText("");
+    jTextField9.setText("");
+    jTextField10.setText("");
+}
+
+     
+    private void guardarMedicion() {
+    try {
+        double peso = Double.parseDouble(jTextField1.getText());
+        double estatura = Double.parseDouble(jTextField2.getText());
+        double porcentajeGrasa = Double.parseDouble(jTextField3.getText());
+        double porcentajeMusculo = Double.parseDouble(jTextField4.getText());
+        double grasaVisceral = Double.parseDouble(jTextField5.getText());
+        int edadMetabolica = Integer.parseInt(jTextField6.getText());
+        double cintura = Double.parseDouble(jTextField7.getText());
+        double pecho = Double.parseDouble(jTextField8.getText());
+        double muslo = Double.parseDouble(jTextField9.getText());
+        double cadera = Double.parseDouble(jTextField10.getText());
+
+        Medicion m = new Medicion(null, null, null, peso, estatura, porcentajeGrasa,
+                                  porcentajeMusculo, edadMetabolica, grasaVisceral,
+                                  cintura, cadera, pecho, muslo);
+
+        controladorMedicion.registrarMedicion(m);
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Medición guardada correctamente!");
+        limpiarCampos();
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.");
+    }
+}
+
 
      
     /**
@@ -56,7 +101,7 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnGuardaryCal = new javax.swing.JButton();
 
         jLabel1.setText("Rellene el formulario de manera correcta");
 
@@ -80,47 +125,42 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
 
         jLabel11.setText("Ingrese la medida del pecho (cm):");
 
-        jTextField1.setText("jTextField1");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField1");
-
-        jTextField3.setText("jTextField1");
-
-        jTextField4.setText("jTextField1");
-
-        jTextField5.setText("jTextField1");
-
-        jTextField6.setText("jTextField1");
-
-        jTextField7.setText("jTextField1");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
             }
         });
 
-        jTextField8.setText("jTextField1");
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
             }
         });
 
-        jTextField9.setText("jTextField1");
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
             }
         });
 
-        jTextField10.setText("jTextField1");
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("jButton1");
+        btnGuardaryCal.setText("Guardar");
+        btnGuardaryCal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardaryCalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,7 +218,7 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGuardaryCal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(383, 383, 383))
         );
         jPanel1Layout.setVerticalGroup(
@@ -219,7 +259,7 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnGuardaryCal)
                 .addGap(115, 115, 115))
         );
 
@@ -256,9 +296,17 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void btnGuardaryCalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaryCalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardaryCalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnGuardaryCal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
