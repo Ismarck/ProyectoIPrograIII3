@@ -19,12 +19,13 @@ public class Sucursal {
     }
 
     public Sucursal(String Provincia, String Canton, int Codigo, Instructor instructor) {
-        this.Provincia = Provincia;
-        this.Canton = Canton;
-        this.Codigo = Codigo;
-        this.instructor = instructor;
-        this.clientes = new ArrayList<>();
-    }
+    this.Provincia = Provincia;
+    this.Canton = Canton;
+    this.Codigo = Codigo;
+    this.instructor = null; // ahora sí asigna el instructor
+    this.clientes = new ArrayList<>();
+}
+
 
     public Instructor getInstructor() {
         return instructor;

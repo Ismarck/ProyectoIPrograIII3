@@ -145,14 +145,14 @@ public class PanelRegistro extends JPanel {
     private void SucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SucursalActionPerformed
         //RegistroSucursal p1 = new RegistroSucursal(this.coleccionSucursal);
         //ShowPanel(p1);
-        RegistroCliente regCliente = new RegistroCliente(this.coleccionCliente, this.coleccionSucursal);
+        RegistroCliente regCliente = new RegistroCliente(this.coleccionCliente, this.coleccionSucursal, this.coleccionInstructor);
         RegistroSucursal p1 = new RegistroSucursal(this.coleccionSucursal, regCliente);
         ShowPanel(p1);
     }//GEN-LAST:event_SucursalActionPerformed
 
     private void ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteActionPerformed
-        RegistroCliente p1 = new RegistroCliente(coleccionCliente, coleccionSucursal);
-        ShowPanel(p1);
+        RegistroCliente p1 = new RegistroCliente(coleccionCliente, coleccionSucursal, coleccionInstructor);
+    ShowPanel(p1);
     }//GEN-LAST:event_ClienteActionPerformed
 
     private void jScrollPane1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jScrollPane1ComponentAdded

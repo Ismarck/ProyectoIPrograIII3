@@ -7,13 +7,24 @@ package Modelo;
 public class Instructor extends Persona {
 
     private String Especialidad;
+    private Sucursal sucursal;
 
     public Instructor() {
     }
 
-    public Instructor(String Especialidad,String Nombre, String Fecha_Nacimiento, String Correo, int Numero_Celular, int Cedula, char Sexo) {
+    public Instructor(String Especialidad,String Nombre, String Fecha_Nacimiento, String Correo, int Numero_Celular, int Cedula, char Sexo, Sucursal sucursal) {
         super(Nombre,Fecha_Nacimiento, Correo, Numero_Celular, Cedula, Sexo);
         this.Especialidad = Especialidad;
+        this.sucursal = sucursal;
+    }
+    
+    // Getter y Setter de sucursal
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 
     public String getEspecialidad() {
@@ -37,9 +48,10 @@ public class Instructor extends Persona {
                
            '}';
     }
-    public static void main(String[] args) 
+    /*public static void main(String[] args) 
     {
         Instructor instructor1 = new Instructor(
+       
         "CrossFit",
          "Benji",
         "2000-12-07",
@@ -50,5 +62,5 @@ public class Instructor extends Persona {
         );
         
         System.out.println(instructor1.Datos());
-    }
+    }*/
 }

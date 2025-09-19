@@ -6,6 +6,7 @@ package Vista;
 import AccesoDatos.Coleccion_Sucursal;
 import Modelo.Instructor;
 import Modelo.Sucursal;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -64,16 +65,13 @@ public class RegistroSucursal extends javax.swing.JPanel {
 
         Codigo.setText("Codigo:");
 
-        Textcodigo.setText("jTextField1");
         Textcodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextcodigoActionPerformed(evt);
             }
         });
 
-        TextProvincia.setText("jTextField1");
-
-        TextCanton.setText("jTextField1");
+        TextProvincia.setText("1");
 
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,14 +87,11 @@ public class RegistroSucursal extends javax.swing.JPanel {
 
         Provincia1.setText("Provincia");
 
-        TextProvincia1.setText("jTextField1");
         TextProvincia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextProvincia1ActionPerformed(evt);
             }
         });
-
-        TextProvincia2.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -190,51 +185,13 @@ public class RegistroSucursal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*try {
-
+         /*try {
             String Provincia = TextProvincia.getText();
             String Canton = TextCanton.getText();
             int Codigo = Integer.parseInt(Textcodigo.getText());
 
-        Instructor instructor1 = new Instructor(
-        "CrossFit",
-         "Benji",
-        "2000-12-07",
-        "benjacol@gmail.com",
-        88776655,
-        123456789,
-        'M'
-        );
+            Sucursal sucursalNueva = new Sucursal(Provincia, Canton, Codigo);
             
-            Sucursal nuevo = new Sucursal(
-                Provincia,
-                Canton,
-                Codigo,
-                instructor1
-            );
-
-            if (Coleccionsuc.Insertar_Sucursal(nuevo)) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Sucursal registrada con éxito");
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "La Sucursal ya existe");
-            }
-
-        }
-        catch (NumberFormatException ex
-
-        ) {
-            javax.swing.JOptionPane.showMessageDialog(this, "El Codigo de Sucursal o Provincia es Incorrecta.");
-        }
-        catch (Exception ex
-
-        ) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }*/
-        try {
-            String Provincia = TextProvincia.getText();
-            String Canton = TextCanton.getText();
-            int Codigo = Integer.parseInt(Textcodigo.getText());
-
             Instructor instructor1 = new Instructor(
                     "CrossFit",
                     "Benji",
@@ -242,14 +199,9 @@ public class RegistroSucursal extends javax.swing.JPanel {
                     "benjacol@gmail.com",
                     88776655,
                     123456789,
-                    'M'
-            );/*
-            Instructor instructor1 = new Instructor(
-            Especialidad,
-            Nombre,
-            
-            );*/
-
+                    'M',
+                    sucursalNueva
+            );
 
             Sucursal nuevo = new Sucursal(
                     Provincia,
@@ -274,8 +226,53 @@ public class RegistroSucursal extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(this, "El Código de Sucursal debe ser numérico.");
         } catch (Exception ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }*/
+    try {
+        String provincia = TextProvincia.getText().trim();
+        String canton = TextCanton.getText().trim();
+        int codigo = Integer.parseInt(Textcodigo.getText().trim());
+
+        
+        Sucursal sucursalNueva = new Sucursal(); // constructor vacío
+        sucursalNueva.setProvincia(provincia);
+        sucursalNueva.setCanton(canton);
+        sucursalNueva.setCodigo(codigo);
+
+        // crear instructor opcionalmente
+        Instructor instructor1 = new Instructor(
+                "CrossFit",
+                "Benji",
+                "2000-12-07",
+                "benjacol@gmail.com",
+                88776655,
+                123456789,
+                'M',
+                sucursalNueva
+        );
+        
+        
+
+        // asignar instructor a la sucursal
+        sucursalNueva.setInstructor(instructor1);
+
+
+        if (Coleccionsuc.Insertar_Sucursal(sucursalNueva)) {
+            JOptionPane.showMessageDialog(this, "Sucursal registrada con éxito");
+
+           // 🔹 Actualizar el ComboBox después de insertar
+                if (registroCliente != null) {
+            registroCliente.actualizarComboSucursales();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "La Sucursal ya existe");
         }
 
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "El Código de Sucursal debe ser numérico.");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TextProvincia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextProvincia1ActionPerformed

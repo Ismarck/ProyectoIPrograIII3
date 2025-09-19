@@ -11,6 +11,7 @@ import Modelo.Sucursal;
 import java.awt.BorderLayout;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -252,7 +253,7 @@ public class RegistroInstructor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            try {
+            /*try {
             
             String nombre = Nombreins.getText().trim();
             String especialidad = jComboBoxExpecialidad.getSelectedItem().toString();//.getText().trim();
@@ -283,6 +284,38 @@ public class RegistroInstructor extends javax.swing.JPanel {
         javax.swing.JOptionPane.showMessageDialog(this, "El número de celular o cédula no es válido.");
     } catch (Exception ex) {
         javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+    }*/
+    try {
+        String nombre = Nombreins.getText().trim();
+        String especialidad = jComboBoxExpecialidad.getSelectedItem().toString();
+        String fechaNacimiento = FechaNacIns.getText().trim();
+        String correo = Correoins.getText().trim();
+        int cedula = Integer.parseInt(Cedulains.getText().trim());
+        int numeroCelular = Integer.parseInt(Celularins.getText().trim());
+        char sexo = SexoIns.getText().trim().isEmpty() ? 'M' : SexoIns.getText().trim().charAt(0);
+
+        // 👇 Instructor con sucursal = null (se le asignará al matricularlo en una sucursal)
+        Instructor nuevo = new Instructor(
+            especialidad,     
+            nombre,           
+            fechaNacimiento, 
+            correo,           
+            numeroCelular,    
+            cedula,           
+            sexo,
+            null
+        );
+
+        if (Coleccionins.Insertar_Instructor(nuevo)) {
+            JOptionPane.showMessageDialog(this, "Instructor registrado con éxito");
+        } else {
+            JOptionPane.showMessageDialog(this, "El Instructor ya existe");
+        }
+
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "El número de celular o cédula no es válido.");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 

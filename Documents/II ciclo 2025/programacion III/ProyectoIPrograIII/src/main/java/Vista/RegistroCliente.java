@@ -5,6 +5,7 @@
 package Vista;
 
 import AccesoDatos.Coleccion_Cliente;
+import AccesoDatos.Coleccion_Instructor;
 import AccesoDatos.Coleccion_Sucursal;
 import Modelo.Cliente;
 import Modelo.Instructor;
@@ -12,37 +13,97 @@ import Modelo.Sucursal;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
-/**
- *
- * @author marcosisaacarayaabarca
- */
+
+
 public class RegistroCliente extends javax.swing.JPanel {
     
-     private Coleccion_Cliente Coleccion;
-     //prueba combobox
-     private Coleccion_Sucursal coleccionSucursales;
-     private Map<String, Sucursal> mapaSucursales = new HashMap<>();
-    
+    private Coleccion_Cliente Coleccion;
+    //prueba combobox
+    private Coleccion_Sucursal coleccionSucursales;
+    private Coleccion_Instructor coleccionInstructores;
+    private Map<String, Sucursal> mapaSucursales = new HashMap<>();
+    private Map<String, Instructor> mapaInstructores = new HashMap<>();
+
      
-    public RegistroCliente(Coleccion_Cliente Coleccion,Coleccion_Sucursal coleccionSucursales) {
+    public RegistroCliente(Coleccion_Cliente Coleccion, Coleccion_Sucursal coleccionSucursales, Coleccion_Instructor coleccionInstructores) {
         initComponents();
         this.Coleccion = Coleccion;
-        //
         this.coleccionSucursales = coleccionSucursales;
-        actualizarComboSucursales();  
-    
+        this.coleccionInstructores = coleccionInstructores;
+
+        actualizarComboSucursales(); // opcional
+        if (!mapaSucursales.isEmpty()) {
+            Sucursal primeraSucursal = mapaSucursales.values().iterator().next();
+            actualizarComboInstructores(primeraSucursal);
+        }
+    }
+
+    // Llenar ComboBox de sucursales
+    public void actualizarComboSucursales() {
+        CombxSucursal.removeAllItems();
+        mapaSucursales.clear();
+
+        for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
+            String clave = s.toString(); // "Provincia - Canton (Codigo)"
+            CombxSucursal.addItem(clave);
+            mapaSucursales.put(clave, s);
+        }
+
+        // Seleccionar la primera sucursal y actualizar instructores automáticamente
+        if (!mapaSucursales.isEmpty()) {
+            CombxSucursal.setSelectedIndex(0);
+            actualizarComboInstructores(mapaSucursales.values().iterator().next());
+        }
     }
     
-    public void actualizarComboSucursales() {
-    CombxSucursal.removeAllItems();
-    mapaSucursales.clear();
+    public void actualizarComboInstructores(Sucursal sucursal) {
+    CombxInstructor.removeAllItems();
+    mapaInstructores.clear();
 
-    for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
-        String clave = s.getProvincia() + " - " + s.getCanton();
-        CombxSucursal.addItem(clave);
-        mapaSucursales.put(clave, s);
+    boolean hayInstructores = false;
+
+    for (Instructor ins : coleccionInstructores.Listar_Instructor()) {
+        if (ins.getSucursal() != null && 
+            ins.getSucursal().getCodigo() == sucursal.getCodigo()) { // Comparación por código
+            String clave = ins.getNombre() + " - " + ins.getEspecialidad();
+            CombxInstructor.addItem(clave);
+            mapaInstructores.put(clave, ins);
+            hayInstructores = true;
+        }
+    }
+
+    if (!hayInstructores) {
+        CombxInstructor.addItem("No hay instructores en esta sucursal");
+    }
+
+    // Selecciona automáticamente el primer instructor si hay alguno
+    if (hayInstructores) {
+        CombxInstructor.setSelectedIndex(0);
     }
 }
+
+    
+    /*public void actualizarComboInstructores(Sucursal sucursal) {
+    CombxInstructor.removeAllItems();
+    mapaInstructores.clear();
+
+    for (Instructor ins : coleccionInstructores.Listar_Instructor()) {
+        // Aquí asumimos que Instructor tiene un atributo sucursal
+        if (ins.getSucursal() != null && ins.getSucursal().equals(sucursal)) {
+            String clave = ins.getNombre() + " - " + ins.getEspecialidad();
+            CombxInstructor.addItem(clave);
+            mapaInstructores.put(clave, ins);
+        }
+    }
+
+    // Si no hay instructores en la sucursal
+    if (CombxInstructor.getItemCount() == 0) {
+        CombxInstructor.addItem("No hay instructores en esta sucursal");
+    }
+}*/
+
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -222,12 +283,15 @@ public class RegistroCliente extends javax.swing.JPanel {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
  
-        try {
+        /*try {
             String Nombre = TextoNombre.getText();
             String Fecha_Nacimiento = TextoFechaNAcimiento.getText();
             String clave = (String) CombxSucursal.getSelectedItem();
             Sucursal sucursalSeleccionada = mapaSucursales.get(clave);
             String Correo = TextoCorreo.getText();
+            String claveInstructor = (String) CombxInstructor.getSelectedItem();
+            Instructor instructorSeleccionado = mapaInstructores.get(claveInstructor);
+
             int  numeroCelular = Integer.parseInt(TxtCelular.getText());
             int cedula = Integer.parseInt(TextoCedula.getText());
 
@@ -235,14 +299,15 @@ public class RegistroCliente extends javax.swing.JPanel {
             String fechaInscripcion = java.time.LocalDate.now().toString(); // hoy
             char sexo = 'M'; // o 'F', según quieras implementarlo
             
-             Instructor instructor1 = new Instructor(
+            
+            Instructor instructor1 = new Instructor(
             "CrossFit",
              "Benji",
             "2000-12-07",
             "benjacol@gmail.com",
             88776655,
             123456789,
-            'M'
+            'M',
             );
             // Crear el objeto Cliente
             Cliente nuevo = new Cliente(
@@ -253,7 +318,7 @@ public class RegistroCliente extends javax.swing.JPanel {
                     numeroCelular,
                     cedula,
                     sexo,
-                    instructor1,
+                    instructorSeleccionado,
                     sucursalSeleccionada
             );
             
@@ -271,9 +336,108 @@ public class RegistroCliente extends javax.swing.JPanel {
 
         } catch (Exception ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }*/
+        
+        
+        /*
+    try {
+        String nombre = TextoNombre.getText().trim();
+        String fechaNacimiento = TextoFechaNAcimiento.getText().trim();
+        String correo = TextoCorreo.getText().trim();
+        int numeroCelular = Integer.parseInt(TxtCelular.getText().trim());
+        int cedula = Integer.parseInt(TextoCedula.getText().trim());
+
+        // 🔹 Sucursal seleccionada
+        String claveSucursal = (String) CombxSucursal.getSelectedItem();
+        Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
+
+        // 🔹 Instructor seleccionado
+        String claveInstructor = (String) CombxInstructor.getSelectedItem();
+        Instructor instructorSeleccionado = mapaInstructores.get(claveInstructor);
+
+        // Otros datos
+        String fechaInscripcion = java.time.LocalDate.now().toString();
+        char sexo = 'M'; // O desde un campo de texto
+
+        // 👇 Crear Cliente
+        Cliente nuevo = new Cliente(
+            fechaInscripcion,
+            nombre,
+            fechaNacimiento,
+            correo,
+            numeroCelular,
+            cedula,
+            sexo,
+            instructorSeleccionado,
+            sucursalSeleccionada
+        );
+
+        if (sucursalSeleccionada != null) {
+            nuevo.setSucursal(sucursalSeleccionada);
+            sucursalSeleccionada.getClientes().add(nuevo);
+        }
+
+        if (Coleccion.Insertar(nuevo)) {
+            JOptionPane.showMessageDialog(this, "Cliente registrado con éxito");
+        } else {
+            JOptionPane.showMessageDialog(this, "El cliente ya existe");
+        }
+
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "El celular o cédula debe ser numérico.");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+    }  */
+        
+          try {
+            String nombre = TextoNombre.getText().trim();
+            String fechaNacimiento = TextoFechaNAcimiento.getText().trim();
+            String correo = TextoCorreo.getText().trim();
+            int numeroCelular = Integer.parseInt(TxtCelular.getText().trim());
+            int cedula = Integer.parseInt(TextoCedula.getText().trim());
+
+            String claveSucursal = (String) CombxSucursal.getSelectedItem();
+            Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
+
+            String claveInstructor = (String) CombxInstructor.getSelectedItem();
+            Instructor instructorSeleccionado = mapaInstructores.get(claveInstructor);
+
+            if (sucursalSeleccionada == null) {
+                JOptionPane.showMessageDialog(this, "Seleccione una sucursal válida.");
+                return;
+            }
+
+            // Sexo opcional, por ahora 'M'
+            char sexo = 'M';
+            String fechaInscripcion = java.time.LocalDate.now().toString();
+
+            Cliente nuevo = new Cliente(
+                    fechaInscripcion,
+                    nombre,
+                    fechaNacimiento,
+                    correo,
+                    numeroCelular,
+                    cedula,
+                    sexo,
+                    instructorSeleccionado,
+                    sucursalSeleccionada
+            );
+
+            // Asignar cliente a la sucursal
+            sucursalSeleccionada.getClientes().add(nuevo);
+
+            if (Coleccion.Insertar(nuevo)) {
+                JOptionPane.showMessageDialog(this, "Cliente registrado con éxito");
+            } else {
+                JOptionPane.showMessageDialog(this, "El cliente ya existe");
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "El celular o cédula debe ser numérico.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
     
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TextoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoCedulaActionPerformed
@@ -289,11 +453,40 @@ public class RegistroCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_TextoFechaNAcimientoActionPerformed
 
     private void CombxSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombxSucursalActionPerformed
-        // TODO add your handling code here:
+        //String claveSucursal = (String) CombxSucursal.getSelectedItem();
+        //Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
+        //if (sucursalSeleccionada != null) {
+        //    actualizarComboInstructores(sucursalSeleccionada);
+        //}
+        String claveSucursal = (String) CombxSucursal.getSelectedItem();
+        Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
+        if (sucursalSeleccionada != null) {
+        actualizarComboInstructores(sucursalSeleccionada);
+        }
     }//GEN-LAST:event_CombxSucursalActionPerformed
 
     private void CombxInstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombxInstructorActionPerformed
-        // TODO add your handling code here:
+    CombxInstructor.removeAllItems();
+    mapaInstructores.clear();
+
+    // 🔹 Obtener la sucursal seleccionada
+    String claveSucursal = (String) CombxSucursal.getSelectedItem();
+    Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
+
+    if (sucursalSeleccionada != null) {
+        for (Instructor ins : coleccionInstructores.Listar_Instructor()) {
+            if (ins.getSucursal() != null &&
+                ins.getSucursal().getCodigo() == sucursalSeleccionada.getCodigo()) {
+                String clave = ins.getNombre() + " - " + ins.getEspecialidad();
+                CombxInstructor.addItem(clave);
+                mapaInstructores.put(clave, ins);
+            }
+        }
+    }
+
+    if (CombxInstructor.getItemCount() == 0) {
+        CombxInstructor.addItem("No hay instructores en esta sucursal");
+    }
     }//GEN-LAST:event_CombxInstructorActionPerformed
 
 
