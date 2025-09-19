@@ -18,12 +18,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Component id="btnClienteinf" min="-2" max="-2" attributes="0"/>
+              <Component id="btnSucursal" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnInstructorinf" min="-2" max="-2" attributes="0"/>
+              <Component id="btnInstructor" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnSucursal" min="-2" pref="123" max="-2" attributes="0"/>
-              <EmptySpace pref="282" max="32767" attributes="0"/>
+              <Component id="btnCliente" min="-2" pref="73" max="-2" attributes="0"/>
+              <EmptySpace pref="420" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -32,9 +32,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnClienteinf" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnInstructorinf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSucursal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnInstructor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="425" max="32767" attributes="0"/>
           </Group>
@@ -42,28 +42,28 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnClienteinf">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Informe Cliente"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClienteinfActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnInstructorinf">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Informe Instructor"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInstructorinfActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnSucursal">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Informe Sucursal"/>
+        <Property name="text" type="java.lang.String" value="Sucursal"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSucursalActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnInstructor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Instructor"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInstructorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCliente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cliente"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClienteActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

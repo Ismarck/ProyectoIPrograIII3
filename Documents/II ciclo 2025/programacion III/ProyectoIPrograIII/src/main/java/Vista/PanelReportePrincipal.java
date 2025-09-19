@@ -4,12 +4,7 @@
  */
 package Vista;
 
-import AccesoDatos.Coleccion_Cliente;
-import AccesoDatos.Coleccion_Sucursal;
 import Controlador.Controlador_Cliente;
-import Controlador.Controlador_Instructor;
-import Controlador.Controlador_Sucursal;
-import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -20,23 +15,13 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     
     private JPanel panelContenedor;
     private Controlador_Cliente controlador_Cliente;
-    private Controlador_Instructor controlador_Instructor;
-    private Controlador_Sucursal controlador_Sucursal;
-    
-    Coleccion_Cliente coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
-    Coleccion_Sucursal coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
-
-    Controlador_Cliente controlador = new Controlador_Cliente(coleccionCliente, coleccionSucursal);
-
     
     /**
      * Creates new form PanelREportePrincipal
      */
-    public PanelReportePrincipal(JPanel panelContenedor, Controlador_Cliente controlador, /*, Controlador_Instructor controlador_Instructor,*/Controlador_Sucursal controlador_Sucursal) {
+    public PanelReportePrincipal(JPanel panelContenedor, Controlador_Cliente controlador) {
         this.panelContenedor = panelContenedor;
         this.controlador_Cliente = controlador;
-        //this.controlador_Instructor = controlador_Instructor;
-        this.controlador_Sucursal = controlador_Sucursal;
         initComponents();
     }
     
@@ -57,28 +42,28 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnClienteinf = new javax.swing.JButton();
-        btnInstructorinf = new javax.swing.JButton();
         btnSucursal = new javax.swing.JButton();
+        btnInstructor = new javax.swing.JButton();
+        btnCliente = new javax.swing.JButton();
 
-        btnClienteinf.setText("Informe Cliente");
-        btnClienteinf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClienteinfActionPerformed(evt);
-            }
-        });
-
-        btnInstructorinf.setText("Informe Instructor");
-        btnInstructorinf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInstructorinfActionPerformed(evt);
-            }
-        });
-
-        btnSucursal.setText("Informe Sucursal");
+        btnSucursal.setText("Sucursal");
         btnSucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSucursalActionPerformed(evt);
+            }
+        });
+
+        btnInstructor.setText("Instructor");
+        btnInstructor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInstructorActionPerformed(evt);
+            }
+        });
+
+        btnCliente.setText("Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
             }
         });
 
@@ -88,44 +73,42 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(btnClienteinf)
+                .addComponent(btnSucursal)
                 .addGap(18, 18, 18)
-                .addComponent(btnInstructorinf)
+                .addComponent(btnInstructor)
                 .addGap(18, 18, 18)
-                .addComponent(btnSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(420, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnClienteinf)
-                    .addComponent(btnInstructorinf)
-                    .addComponent(btnSucursal))
+                    .addComponent(btnSucursal)
+                    .addComponent(btnInstructor)
+                    .addComponent(btnCliente))
                 .addContainerGap(425, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInstructorinfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructorinfActionPerformed
-        //PanelReporteInstructor panelInstructor = new PanelReporteInstructor(controlador_Instructor);
-       // mostrarPanel(panelInstructor);
-    }//GEN-LAST:event_btnInstructorinfActionPerformed
-
-    private void btnClienteinfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteinfActionPerformed
-        PanelReporteCliente panelCliente = new PanelReporteCliente(controlador_Cliente);
-        mostrarPanel(panelCliente);
-    }//GEN-LAST:event_btnClienteinfActionPerformed
+    private void btnInstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInstructorActionPerformed
 
     private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
-       PanelReporteSucursal panelSucursal = new PanelReporteSucursal(controlador_Cliente);
-       mostrarPanel(panelSucursal);
+        PanelReporteCliente panelSucursal = new PanelReporteCliente(controlador_Cliente);
+        mostrarPanel(panelSucursal);
     }//GEN-LAST:event_btnSucursalActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClienteinf;
-    private javax.swing.JButton btnInstructorinf;
+    private javax.swing.JButton btnCliente;
+    private javax.swing.JButton btnInstructor;
     private javax.swing.JButton btnSucursal;
     // End of variables declaration//GEN-END:variables
 }

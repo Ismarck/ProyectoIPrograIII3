@@ -321,11 +321,6 @@ public class RegistroCliente extends javax.swing.JPanel {
                     instructorSeleccionado,
                     sucursalSeleccionada
             );
-            
-            if (sucursalSeleccionada != null) {
-            nuevo.setSucursal(sucursalSeleccionada);           // asigna la sucursal al cliente
-            sucursalSeleccionada.getClientes().add(nuevo);    // agrega el cliente a la lista de la sucursal
-            }
 
             // Insertar con el controlador
             if (Coleccion.Insertar(nuevo)) {

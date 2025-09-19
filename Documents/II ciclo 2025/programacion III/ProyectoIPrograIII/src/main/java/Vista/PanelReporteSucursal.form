@@ -34,18 +34,18 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="LabelBusquedaNombre">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Busqueda de Codigo por Sucursal:"/>
+            <Property name="text" type="java.lang.String" value="Busqueda Por Nombre:"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="41" y="39" width="210" height="28"/>
+              <AbsoluteConstraints x="41" y="39" width="151" height="28"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtBusquedaporNombre">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="260" y="40" width="202" height="-1"/>
+              <AbsoluteConstraints x="204" y="42" width="202" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -58,7 +58,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="480" y="40" width="-1" height="-1"/>
+              <AbsoluteConstraints x="418" y="42" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -78,12 +78,12 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="9" rowCount="10">
-                    <Column editable="true" title="Sucursal" type="java.lang.Integer"/>
-                    <Column editable="true" title="Cedula" type="java.lang.Object"/>
+                    <Column editable="true" title="Cedula" type="java.lang.Integer"/>
                     <Column editable="true" title="Nombre" type="java.lang.String"/>
                     <Column editable="true" title="Sexo" type="java.lang.Object"/>
                     <Column editable="true" title="Nacimiento" type="java.lang.String"/>
                     <Column editable="true" title="Instructor" type="java.lang.Object"/>
+                    <Column editable="true" title="Sucursal" type="java.lang.Object"/>
                     <Column editable="true" title="Correo" type="java.lang.String"/>
                     <Column editable="true" title="Celular" type="java.lang.Integer"/>
                     <Column editable="true" title="Inscripcion" type="java.lang.String"/>
