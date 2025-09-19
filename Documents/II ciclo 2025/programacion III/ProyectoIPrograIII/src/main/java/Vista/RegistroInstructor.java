@@ -48,6 +48,32 @@ public class RegistroInstructor extends javax.swing.JPanel {
             mapaSucursales.put(clave, s);
         }
     }
+     
+    /*public void actualizarComboInstructores(Sucursal sucursal) {
+    CombxInstructor.removeAllItems();
+    mapaInstructores.clear();
+
+    boolean hayInstructores = false;
+
+    for (Instructor ins : coleccionInstructores.Listar_Instructor()) {
+        if (ins.getSucursal() != null && 
+            ins.getSucursal().getCodigo() == sucursal.getCodigo()) {
+            String clave = ins.getNombre() + " - " + ins.getEspecialidad();
+            CombxInstructor.addItem(clave);
+            mapaInstructores.put(clave, ins);
+            hayInstructores = true;
+        }
+    }
+
+    if (!hayInstructores) {
+        CombxInstructor.addItem("No hay instructores en esta sucursal");
+    } else {
+        CombxInstructor.setSelectedIndex(0);
+    }
+}
+*/
+     
+     
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -140,6 +166,11 @@ public class RegistroInstructor extends javax.swing.JPanel {
         NumeroCelIns1.setText("Numero Celular:");
 
         CombxInstructor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CombxInstructor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombxInstructorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -285,38 +316,49 @@ public class RegistroInstructor extends javax.swing.JPanel {
     } catch (Exception ex) {
         javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
     }*/
-    try {
-        String nombre = Nombreins.getText().trim();
-        String especialidad = jComboBoxExpecialidad.getSelectedItem().toString();
-        String fechaNacimiento = FechaNacIns.getText().trim();
-        String correo = Correoins.getText().trim();
-        int cedula = Integer.parseInt(Cedulains.getText().trim());
-        int numeroCelular = Integer.parseInt(Celularins.getText().trim());
-        char sexo = SexoIns.getText().trim().isEmpty() ? 'M' : SexoIns.getText().trim().charAt(0);
+ /*  
+try {
+    String nombre = Nombreins.getText().trim();
+    String especialidad = jComboBoxExpecialidad.getSelectedItem().toString();
+    String fechaNacimiento = FechaNacIns.getText().trim();
+    String correo = Correoins.getText().trim();
+    int cedula = Integer.parseInt(Cedulains.getText().trim());
+    int numeroCelular = Integer.parseInt(Celularins.getText().trim());
+    char sexo = SexoIns.getText().trim().isEmpty() ? 'M' : SexoIns.getText().trim().charAt(0);
 
-        // 👇 Instructor con sucursal = null (se le asignará al matricularlo en una sucursal)
-        Instructor nuevo = new Instructor(
-            especialidad,     
-            nombre,           
-            fechaNacimiento, 
-            correo,           
-            numeroCelular,    
-            cedula,           
-            sexo,
-            null
-        );
+    // 🔹 Obtener la sucursal seleccionada
+    //String claveSucursal = (String) CombxSucursal.getSelectedItem();
+    //Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
 
-        if (Coleccionins.Insertar_Instructor(nuevo)) {
-            JOptionPane.showMessageDialog(this, "Instructor registrado con éxito");
-        } else {
-            JOptionPane.showMessageDialog(this, "El Instructor ya existe");
-        }
+    // Crear instructor asignándole la sucursal
+    Instructor nuevo = new Instructor(
+        especialidad,     
+        nombre,           
+        fechaNacimiento, 
+        correo,           
+        numeroCelular,    
+        cedula,           
+        sexo,
+        //sucursalSeleccionada // 🔹 ya no es null
+    );
 
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "El número de celular o cédula no es válido.");
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+    // Insertar en la colección
+    if (Coleccionins.Insertar_Instructor(nuevo)) {
+        JOptionPane.showMessageDialog(this, "Instructor registrado con éxito");
+
+        // 🔹 Actualizar ComboBox de instructores inmediatamente
+        actualizarComboInstructores(sucursalSeleccionada);
+
+    } else {
+        JOptionPane.showMessageDialog(this, "El Instructor ya existe");
     }
+
+} catch (NumberFormatException ex) {
+    JOptionPane.showMessageDialog(this, "El número de celular o cédula no es válido.");
+} catch (Exception ex) {
+    JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+}*/
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CelularinsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CelularinsActionPerformed
@@ -342,6 +384,10 @@ public class RegistroInstructor extends javax.swing.JPanel {
     private void CorreoinsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoinsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CorreoinsActionPerformed
+
+    private void CombxInstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombxInstructorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombxInstructorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

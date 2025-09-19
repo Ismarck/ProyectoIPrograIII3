@@ -56,7 +56,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         }
     }
     
-    public void actualizarComboInstructores(Sucursal sucursal) {
+   public void actualizarComboInstructores(Sucursal sucursal) {
     CombxInstructor.removeAllItems();
     mapaInstructores.clear();
 
@@ -64,7 +64,7 @@ public class RegistroCliente extends javax.swing.JPanel {
 
     for (Instructor ins : coleccionInstructores.Listar_Instructor()) {
         if (ins.getSucursal() != null && 
-            ins.getSucursal().getCodigo() == sucursal.getCodigo()) { // Comparación por código
+            ins.getSucursal().getCodigo() == sucursal.getCodigo()) {
             String clave = ins.getNombre() + " - " + ins.getEspecialidad();
             CombxInstructor.addItem(clave);
             mapaInstructores.put(clave, ins);
@@ -74,13 +74,11 @@ public class RegistroCliente extends javax.swing.JPanel {
 
     if (!hayInstructores) {
         CombxInstructor.addItem("No hay instructores en esta sucursal");
-    }
-
-    // Selecciona automáticamente el primer instructor si hay alguno
-    if (hayInstructores) {
+    } else {
         CombxInstructor.setSelectedIndex(0);
     }
 }
+
 
     
     /*public void actualizarComboInstructores(Sucursal sucursal) {
