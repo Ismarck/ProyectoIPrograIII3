@@ -22,8 +22,9 @@ public class Controlador_Cliente {
     private Coleccion_Cliente coleccionCliente;
     private Coleccion_Sucursal coleccionSucursal;
 
-    public Controlador_Cliente(Coleccion_Cliente coleccionCliente) {
+    public Controlador_Cliente(Coleccion_Cliente coleccionCliente, Coleccion_Sucursal coleccionSucursal) {
         this.coleccionCliente = coleccionCliente;
+        this.coleccionSucursal = coleccionSucursal;
     }
 
     public boolean registrar(Cliente c) {
@@ -69,35 +70,33 @@ public class Controlador_Cliente {
     return modelo;
 }
  
-    public List<Cliente> buscarClientesPorSucursal(String nombreSucursal) {
-    List<Cliente> resultado = new ArrayList<>();
-    for (Sucursal s : coleccionSucursal.Listar_Sucursal()) { // recorres todas las sucursales
-        if (s.getProvincia().equalsIgnoreCase(nombreSucursal)) {
-            resultado.addAll(s.getClientes());
-        }
+    public List<Cliente> buscarClientesPorSucursal(int codigoSucursal) {
+    if (coleccionSucursal != null) {
+        return coleccionSucursal.listarClientesPorSucursal(codigoSucursal);
     }
-    return resultado;
+    return new ArrayList<>();
 }
 
+
     
     
-    public DefaultTableModel obtenerTablaClientesPorSucursal(String nombreSucursal) {
+    public DefaultTableModel obtenerTablaClientesPorSucursal(int CodigoSucursal) {
         // Buscar clientes por sucursal
-        List<Cliente> clientes = buscarClientesPorSucursal(nombreSucursal); // este método lo implementas según tu lógica
+        List<Cliente> clientes = buscarClientesPorSucursal(CodigoSucursal); // este método lo implementas según tu lógica
 
         // Definir columnas igual que en tu JTable
-        String[] columnas = {"Cedula", "Nombre", "Sexo", "Nacimiento", "Instructor", "Sucursal", "Correo", "Celular", "Inscripcion"};
+        String[] columnas = {"Sucursal", "Nombre", "Sexo", "Nacimiento", "Instructor", "Cedula", "Correo", "Celular", "Inscripcion"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
         // Llenar la tabla
         for (Cliente c : clientes) {
             Object[] fila = {
-                c.getCedula(),
+                (c.getSucursal() != null) ? c.getSucursal().getCodigo() + " - " + c.getSucursal().getProvincia() : "No asociada",
                 c.getNombre(),
                 c.getSexo(),
                 c.getFecha_Nacimiento(),
                 (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
-                (c.getSucursal() != null) ? c.getSucursal().getProvincia() + " - " + c.getSucursal().getCanton() : "No asociada",
+                c.getCedula(),
                 c.getCorreo(),
                 c.getNumero_Celular(),
                 c.getFecha_Inscripcion(),

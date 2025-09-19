@@ -11,6 +11,7 @@ import AccesoDatos.Coleccion_Medicion;
 import Controlador.Controlador_Medicion;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
+import Controlador.Controlador_Sucursal;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
@@ -370,10 +371,11 @@ public class VentanaPrin extends javax.swing.JFrame {
         //PanelReportes p1 = new PanelReportes(this.);
         //ShowPanel(p1);
     //Controlador_Cliente controladorCliente = new Controlador_Cliente(this.coleccionCliente);
-    Controlador_Cliente controladorCliente = new Controlador_Cliente(coleccionCliente);
+    Controlador_Cliente controladorCliente = new Controlador_Cliente(coleccionCliente, coleccionSucursal);
+    Controlador_Sucursal controladorSucursal = new Controlador_Sucursal(coleccionSucursal);
 
     // Creamos el panel de reportes principal pasando el panel contenedor y el controlador
-    PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, controladorCliente);
+    PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, controladorCliente, /*controlador_Instructor, */ controladorSucursal);
 
     // Mostramos el panel
     ShowPanel(p1);
