@@ -5,6 +5,7 @@
 package AccesoDatos;
 import Controlador.*;
 import Modelo.Sucursal;
+import Modelo.Cliente;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,16 +62,25 @@ public class Coleccion_Sucursal {
         }
         return null;
     }
-    
+ 
     // En Coleccion_Sucursal
-public Sucursal buscarPorProvincia(String provincia) {
-    for (Sucursal s : lista) {
-        if (s.getProvincia().equalsIgnoreCase(provincia)) {
-            return s;
+    public Sucursal buscarPorProvincia(String provincia) {
+        for (Sucursal s : lista) {
+            if (s.getProvincia().equalsIgnoreCase(provincia)) {
+                return s;
+            }
         }
+        return null; // Si no se encuentra
     }
-    return null; // Si no se encuentra
-}    
+
+    public List<Cliente> listarClientesPorSucursal(int codigoSucursal) {
+        Sucursal sucursal = Buscar_Sucursal(codigoSucursal);
+        if (sucursal != null) {
+            return new ArrayList<>(sucursal.getClientes()); // Devuelve copia de la lista
+        }
+        return new ArrayList<>(); // Devuelve lista vacía si no existe la sucursal
+    }
+
     
     //Listar Instructor
     public List<Sucursal> Listar_Sucursal(){

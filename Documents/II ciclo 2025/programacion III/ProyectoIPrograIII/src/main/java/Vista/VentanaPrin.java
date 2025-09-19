@@ -370,8 +370,14 @@ public class VentanaPrin extends javax.swing.JFrame {
         //PanelReportes p1 = new PanelReportes(this.);
         //ShowPanel(p1);
     //Controlador_Cliente controladorCliente = new Controlador_Cliente(this.coleccionCliente);
-    PanelReportePrincipal p1 = new PanelReportePrincipal(/*controladorCliente*/);
+    Controlador_Cliente controladorCliente = new Controlador_Cliente(coleccionCliente);
+
+    // Creamos el panel de reportes principal pasando el panel contenedor y el controlador
+    PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, controladorCliente);
+
+    // Mostramos el panel
     ShowPanel(p1);
+
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed

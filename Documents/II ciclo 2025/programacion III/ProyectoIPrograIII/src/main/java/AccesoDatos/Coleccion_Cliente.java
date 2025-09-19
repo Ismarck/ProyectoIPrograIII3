@@ -63,19 +63,19 @@ public class Coleccion_Cliente {
         return null;
     }
     
-    // Buscar Cliente por cédula
-    public Cliente buscarpornombre(String Nombre) {
-        for (Cliente cli : lista) {
-            if (cli.getNombre() == Nombre) {
-                return cli;
-            }
-        }
-        return null;
+    public List<Cliente> buscarPorNombre(String nombre) {
+    List<Cliente> resultados = new ArrayList<>();
+    if(nombre == null || nombre.trim().isEmpty()) {
+        return resultados; // Devuelve lista vacía si el campo está vacío
     }
 
-    
-    
-    //}
+    for (Cliente cli : lista) {
+        if (cli.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+            resultados.add(cli);
+        }
+    }
+    return resultados;
+}
     
     // Listar Clientes
     public List<Cliente> Listar() {

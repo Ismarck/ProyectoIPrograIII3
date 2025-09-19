@@ -4,18 +4,34 @@
  */
 package Vista;
 
+import Controlador.Controlador_Cliente;
+import javax.swing.JPanel;
+
 /**
  *
  * @author marcosisaacarayaabarca
  */
 public class PanelReportePrincipal extends javax.swing.JPanel {
-
+    
+    private JPanel panelContenedor;
+    private Controlador_Cliente controlador_Cliente;
+    
     /**
      * Creates new form PanelREportePrincipal
      */
-    public PanelReportePrincipal() {
+    public PanelReportePrincipal(JPanel panelContenedor, Controlador_Cliente controlador) {
+        this.panelContenedor = panelContenedor;
+        this.controlador_Cliente = controlador;
         initComponents();
     }
+    
+    private void mostrarPanel(JPanel panel) {
+    panelContenedor.removeAll();           // Limpia lo que estaba
+    panel.setSize(panelContenedor.getSize());
+    panelContenedor.add(panel);
+    panelContenedor.revalidate();
+    panelContenedor.repaint();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,7 +97,8 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnInstructorActionPerformed
 
     private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
-        // TODO add your handling code here:
+        PanelReporteCliente panelSucursal = new PanelReporteCliente(controlador_Cliente);
+        mostrarPanel(panelSucursal);
     }//GEN-LAST:event_btnSucursalActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed

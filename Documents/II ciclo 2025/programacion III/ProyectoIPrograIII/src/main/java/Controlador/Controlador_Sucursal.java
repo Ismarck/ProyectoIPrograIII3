@@ -6,6 +6,7 @@ package Controlador;
 
 import AccesoDatos.Coleccion_Sucursal;
 import Modelo.Sucursal;
+import Modelo.Cliente;
 
 /**
  *
@@ -37,6 +38,10 @@ public class Controlador_Sucursal {
     
     public boolean modificar(Sucursal c) {
         return coleccionSucursal.Modificar_Sucursal(c);
+    }
+    
+    public java.util.List<Cliente> listarClientesPorSucursal(int codigoSucursal) {
+        return coleccionSucursal.listarClientesPorSucursal(codigoSucursal);
     }
 
     public java.util.List<Sucursal> listar() {

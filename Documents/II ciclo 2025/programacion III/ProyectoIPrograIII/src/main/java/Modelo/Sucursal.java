@@ -1,5 +1,7 @@
 package Modelo;
 import Modelo.Instructor;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -11,6 +13,7 @@ public class Sucursal {
     private String Canton;
     private int Codigo;
     private Instructor instructor;
+    private List<Cliente> clientes;
     
     public Sucursal() {
     }
@@ -20,6 +23,7 @@ public class Sucursal {
         this.Canton = Canton;
         this.Codigo = Codigo;
         this.instructor = instructor;
+        this.clientes = new ArrayList<>();
     }
 
     public Instructor getInstructor() {
@@ -53,6 +57,11 @@ public class Sucursal {
     public void setCodigo(int Codigo) {
         this.Codigo = Codigo;
     }
+    
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+    
 /*
     @Override
     public String toString() {
