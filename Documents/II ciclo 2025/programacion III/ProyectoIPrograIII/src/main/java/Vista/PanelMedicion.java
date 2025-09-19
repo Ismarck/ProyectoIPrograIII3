@@ -87,9 +87,9 @@ public class PanelMedicion extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
 
-        jLabel5.setText("Realizar IMC:");
+        jLabel5.setText("Realizar Prueba IMC:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 20));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));

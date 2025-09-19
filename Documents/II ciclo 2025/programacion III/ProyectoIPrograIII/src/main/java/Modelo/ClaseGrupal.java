@@ -4,6 +4,9 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author porto
@@ -11,21 +14,38 @@ package Modelo;
 public class ClaseGrupal {
     
     private String Codigo;
-    private String TipoClase;
+    private String Horario;
     private String Salon;
     private int CupoMaximo;
-    private String Horario;
+    private Instructor instructor;
+    private List<Cliente> clientes;
+    
 
     public ClaseGrupal() {
 
     }
 
-    public ClaseGrupal(String Codigo, String TipoClase, String Salon, int CupoMaximo, String Horario) {
-        this.Codigo = Codigo;
-        this.TipoClase = TipoClase;
-        this.Salon = Salon;
-        this.CupoMaximo = CupoMaximo;
-        this.Horario = Horario;
+    public ClaseGrupal(String codigo, String horario, String salon, int cupoMaximo, Instructor instructor) {
+        this.Codigo = codigo;
+        this.Horario = horario;
+        this.Salon = salon;
+        this.CupoMaximo = cupoMaximo;
+        this.instructor = instructor;
+        this.clientes = new ArrayList<>();
+    }
+    
+    public boolean matricularCliente(Cliente cliente) {
+        if (clientes.size() < CupoMaximo) {
+            if (!clientes.contains(cliente)) { // evitar duplicados
+                clientes.add(cliente);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public List<Cliente> getMatriculados() {
+        return clientes;
     }
 
     public String getCodigo() {
@@ -36,12 +56,12 @@ public class ClaseGrupal {
         this.Codigo = Codigo;
     }
 
-    public String getTipoClase() {
-        return TipoClase;
+    public String getHorario() {
+        return Horario;
     }
 
-    public void setTipoClase(String TipoClase) {
-        this.TipoClase = TipoClase;
+    public void setHorario(String Horario) {
+        this.Horario = Horario;
     }
 
     public String getSalon() {
@@ -60,15 +80,47 @@ public class ClaseGrupal {
         this.CupoMaximo = CupoMaximo;
     }
 
-    public String getHorario() {
-        return Horario;
+    public Instructor getInstructor() {
+        return instructor;
     }
 
-    public void setHorario(String Horario) {
-        this.Horario = Horario;
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+    
+    
+
 
     @Override
+    public String toString() {
+        return "ClaseGrupal{" 
+                + "Codigo=" + Codigo 
+                + ", Horario=" + Horario 
+                + ", Salon=" + Salon 
+                + ", CupoMaximo=" + CupoMaximo 
+                + ", instructor=" + instructor 
+                + ", clientes=" + clientes + '}';
+    }
+    /*
+    public boolean matricularCliente(Cliente c) {
+        if (clientes.size() < capacidad && !clientes.contains(c)) {
+            clientes.add(c);
+            return true;
+        }
+        return false;
+    }*/
+
+    
+    
+   /* @Override
     public String toString() {
         return "Rutina {"
                 + "Codigo='" + Codigo + '\''
@@ -77,14 +129,14 @@ public class ClaseGrupal {
                 + ", CupoMaximo=" + CupoMaximo
                 + ", Horario='" + Horario + '\''
                 + '}';
-    }
-    
+    }*/
+    /*
      public static void main(String[] args) 
     {
         ClaseGrupal clasegrupal1 = new ClaseGrupal("R001", "Yoga", "Sala 3", 25, "Lunes 7am"
         );
         
         System.out.println(clasegrupal1.toString());
-    }
+    }*/
 }
 

@@ -138,7 +138,7 @@ public class PanelRegistro extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void InstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstructorActionPerformed
-        RegistroInstructor p1 = new RegistroInstructor(this.coleccionInstructor);
+        RegistroInstructor p1 = new RegistroInstructor(this.coleccionInstructor, this.coleccionSucursal);
         ShowPanel(p1);;
     }//GEN-LAST:event_InstructorActionPerformed
 

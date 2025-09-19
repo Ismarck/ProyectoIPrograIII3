@@ -55,7 +55,13 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
     private void guardarMedicion() {
         try {
             double peso = Double.parseDouble(txtPeso.getText());
-            double estatura = Double.parseDouble(txtEstatura.getText()) / 100; // Convertir cm a metros
+            double estatura = Double.parseDouble(txtEstatura.getText());
+
+            // Detectar si la estatura está en metros o cm
+            if (estatura > 3) { // asume que si es mayor a 3, está en cm
+                estatura = estatura / 100.0; // convertir cm a metros
+            } // Convertir cm a metros
+            
             double porcentajeGrasa = Double.parseDouble(txtGrasa.getText());
             double porcentajeMusculo = Double.parseDouble(txtMusculo.getText());
             double grasaVisceral = Double.parseDouble(txtGrasaVis.getText());
@@ -83,13 +89,14 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
     }
 
     private String clasificarIMC(double imc) {
-        if (imc < 16.00) return "Delgadez severa";
-        if (imc < 17.00) return "Delgadez moderada";
-        if (imc < 18.50) return "Delgadez leve";
-        if (imc < 25.00) return "Normal";
-        if (imc < 30.00) return "Pre-obesidad";
-        if (imc < 35.00) return "Obesidad leve";
-        if (imc < 40.00) return "Obesidad media";
+        if (imc <= 16.00) return "Delgadez severa";
+        if (imc <= 17.00) return "Delgadez moderada";
+        if (imc <= 18.50) return "Delgadez leve";
+        if (imc <= 25.00) return "Normal";
+        if (imc <= 30.00) return "Pre-obesidad";
+        if (imc <= 35.00) return "Obesidad leve";
+        if (imc <= 40.00) return "Obesidad media";
+        else
         return "Obesidad mórbida";
     }
     /**

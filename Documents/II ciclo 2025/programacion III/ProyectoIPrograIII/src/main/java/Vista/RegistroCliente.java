@@ -40,6 +40,7 @@ public class RegistroCliente extends javax.swing.JPanel {
         //this.add(CombxSucursal);
     
     }
+    
     public void actualizarComboSucursales() {
     CombxSucursal.removeAllItems();
     mapaSucursales.clear();

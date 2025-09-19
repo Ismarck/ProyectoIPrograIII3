@@ -14,14 +14,14 @@ import java.util.List;
  *
  * @author marcosisaacarayaabarca
  */
-public class PanelReportes extends javax.swing.JPanel {
+public class PanelReporteInstructor extends javax.swing.JPanel {
     
     private Controlador_Cliente controlador_Cliente;
 
     /**
      * Creates new form PanelUsuario
      */
-    public PanelReportes(Controlador_Cliente controlador) {
+    public PanelReporteInstructor(Controlador_Cliente controlador) {
         initComponents();
        // this.controlador_Cliente = controlador_Cliente;
         this.controlador_Cliente = controlador;
@@ -116,15 +116,11 @@ public class PanelReportes extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     

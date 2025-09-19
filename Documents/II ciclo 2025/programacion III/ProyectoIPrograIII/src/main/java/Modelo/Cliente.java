@@ -1,5 +1,7 @@
 package Modelo;
 import Modelo.Sucursal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -11,6 +13,7 @@ public class Cliente extends Persona {
     private String Fecha_Inscripcion;
     private Instructor InstructorAsignado;
     private Sucursal sucursal;
+    private List<ClaseGrupal> clasesMatriculadas; 
 
 
     public Cliente() {
@@ -21,6 +24,7 @@ public class Cliente extends Persona {
         this.Fecha_Inscripcion = Fecha_Inscripcion;
         this.InstructorAsignado = InstructorAsignado;
         this.sucursal = sucursal;
+        this.clasesMatriculadas = new ArrayList<>(); 
     }
      
     public String getFecha_Inscripcion() {
@@ -49,7 +53,17 @@ public class Cliente extends Persona {
         this.sucursal = sucursal;
     }
     
-    
+     public List<ClaseGrupal> getClasesMatriculadas() {
+        return clasesMatriculadas;
+    }
+
+    public boolean agregarClase(ClaseGrupal clase) {
+        if (!clasesMatriculadas.contains(clase) && clasesMatriculadas.size() < 3) {
+            clasesMatriculadas.add(clase);
+            return true;
+        }
+        return false;
+    }
     
     @Override
     public String Datos() {

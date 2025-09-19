@@ -48,6 +48,7 @@ public class VentanaPrin extends javax.swing.JFrame {
         this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
         this.coleccionMedicion = new Coleccion_Medicion(new ArrayList<>());
         this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
+        
         // this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
         //this.controladorMedicion = new Controlador_Medicion(new ArrayList<>());
         
@@ -368,8 +369,8 @@ public class VentanaPrin extends javax.swing.JFrame {
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
         //PanelReportes p1 = new PanelReportes(this.);
         //ShowPanel(p1);
-    Controlador_Cliente controladorCliente = new Controlador_Cliente(this.coleccionCliente);
-    PanelReportes p1 = new PanelReportes(controladorCliente);
+    //Controlador_Cliente controladorCliente = new Controlador_Cliente(this.coleccionCliente);
+    PanelReportePrincipal p1 = new PanelReportePrincipal(/*controladorCliente*/);
     ShowPanel(p1);
     }//GEN-LAST:event_ReportesActionPerformed
 

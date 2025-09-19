@@ -47,46 +47,7 @@ public class Controlador_Cliente {
     public java.util.List<Cliente> listar() {
         return coleccionCliente.Listar();
     }
-    /*
-    public DefaultTableModel obtenerTablaClientes() {
-
-    List<Cliente> clientes = coleccionCliente.Listar();
-
-    DefaultTableModel modelo = new DefaultTableModel(
-
-        new Object[]{"Cedula", "Nombre", "Sexo", "Nacimiento", "Instructor", "Sucursal", "Correo", "Celular", "Inscripcion"}, 0);
-
-    
-
-    for (Cliente c : clientes) {
-
-        modelo.addRow(new Object[]{
-
-            c.getCedula(),
-
-            c.getNombre(),
-
-            c.getSexo(),
-
-            c.getFecha_Nacimiento(),
-
-            c.getCorreo(),
-
-            c.getNumero_Celular(),
-
-            c.getFecha_Inscripcion(),
-
-            (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
-
-            (c.getSucursal() != null) ? c.getSucursal().getProvincia() : "No asociada"
-
-        });
-
-    }
-
-    return modelo;
-
-}*/
+   
     public DefaultTableModel obtenerTablaClientesPorNombre(String nombre) {
     List<Cliente> clientes = coleccionCliente.Listar();
 
