@@ -11,6 +11,7 @@ import Modelo.Sucursal;
 import java.awt.BorderLayout;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -38,15 +39,24 @@ public class RegistroInstructor extends javax.swing.JPanel {
     }
 
      public void actualizarComboSucursales() {
-        CombxInstructor.removeAllItems();
+        CombxSucursal.removeAllItems();
         mapaSucursales.clear();
 
         for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
             String clave = s.getProvincia() + " - " + s.getCanton();
-            CombxInstructor.addItem(clave);
+            CombxSucursal.addItem(clave);
             mapaSucursales.put(clave, s);
         }
     }
+     
+     //Eliminar si no funcion 
+     public void actualizarComboInstructoresPorSucursal(Sucursal sucursal) {
+        CombxSucursal.removeAllItems();
+        for (Instructor ins : sucursal.getListaInstructores()) {
+            CombxSucursal.addItem(ins.getNombre());
+        }
+    }
+//Hasta aqui
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,7 +81,7 @@ public class RegistroInstructor extends javax.swing.JPanel {
         SexoIns = new javax.swing.JTextField();
         jComboBoxExpecialidad = new javax.swing.JComboBox<>();
         NumeroCelIns1 = new javax.swing.JLabel();
-        CombxInstructor = new javax.swing.JComboBox<>();
+        CombxSucursal = new javax.swing.JComboBox<>();
 
         Especialidad.setText("Especialidad:");
 
@@ -138,7 +148,12 @@ public class RegistroInstructor extends javax.swing.JPanel {
 
         NumeroCelIns1.setText("Numero Celular:");
 
-        CombxInstructor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CombxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CombxSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombxSucursalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -179,7 +194,7 @@ public class RegistroInstructor extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CombxInstructor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CombxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(SexoIns, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -222,7 +237,7 @@ public class RegistroInstructor extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxExpecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CombxInstructor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CombxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -252,7 +267,8 @@ public class RegistroInstructor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            try {
+            /*Mantener si no funcinoa el otro
+        try {
             
             String nombre = Nombreins.getText().trim();
             String especialidad = jComboBoxExpecialidad.getSelectedItem().toString();//.getText().trim();
@@ -283,7 +299,50 @@ public class RegistroInstructor extends javax.swing.JPanel {
         javax.swing.JOptionPane.showMessageDialog(this, "El número de celular o cédula no es válido.");
     } catch (Exception ex) {
         javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+    }*/
+    try {
+        String nombre = Nombreins.getText().trim();
+        String especialidad = jComboBoxExpecialidad.getSelectedItem().toString();
+        String fechaNacimiento = FechaNacIns.getText().trim();
+        String correo = Correoins.getText().trim();
+        int cedula = Integer.parseInt(Cedulains.getText().trim());
+        int numeroCelular = Integer.parseInt(Celularins.getText().trim());
+        char sexo = SexoIns.getText().trim().isEmpty() ? 'M' : SexoIns.getText().trim().charAt(0);
+
+        // Crear el instructor
+        Instructor nuevo = new Instructor(
+            especialidad,
+            nombre,
+            fechaNacimiento,
+            correo,
+            numeroCelular,
+            cedula,
+            sexo
+        );
+
+        // Obtener la sucursal seleccionada del combo
+        String claveSucursal = CombxSucursal.getSelectedItem().toString();
+        Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
+
+        if (sucursalSeleccionada == null) {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado una sucursal válida.");
+            return;
+        }
+
+        if (Coleccionins.Insertar_Instructor(nuevo)) {
+            sucursalSeleccionada.agregarInstructor(nuevo);
+            JOptionPane.showMessageDialog(this, "Instructor registrado y asociado a sucursal.");
+            actualizarComboInstructoresPorSucursal(sucursalSeleccionada);
+        } else {
+            JOptionPane.showMessageDialog(this, "El instructor ya existe.");
+        }
+
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "El número de celular o cédula no es válido.");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
     }
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CelularinsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CelularinsActionPerformed
@@ -310,12 +369,16 @@ public class RegistroInstructor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_CorreoinsActionPerformed
 
+    private void CombxSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombxSucursalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombxSucursalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CedulaIns;
     private javax.swing.JTextField Cedulains;
     private javax.swing.JTextField Celularins;
-    private javax.swing.JComboBox<String> CombxInstructor;
+    private javax.swing.JComboBox<String> CombxSucursal;
     private javax.swing.JTextField Correoins;
     private javax.swing.JLabel Especialidad;
     private javax.swing.JLabel Especialidad3;

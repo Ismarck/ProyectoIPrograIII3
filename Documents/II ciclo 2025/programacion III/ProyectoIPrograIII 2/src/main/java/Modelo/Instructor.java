@@ -23,6 +23,17 @@ public class Instructor extends Persona {
     public void setEspecialidad(String Especialidad) {
         this.Especialidad = Especialidad;
     }
+    
+    /*@Override
+    public String toString() {
+        return getNombre(); // o getNombre() + " " + getApellido() si existe
+    }*/
+    
+    @Override
+    public String toString() {
+        return getNombre(); // o como quieras mostrarlo
+    }
+
 
     @Override
     public String Datos() {
@@ -37,6 +48,9 @@ public class Instructor extends Persona {
                
            '}';
     }
+    
+    
+    
     public static void main(String[] args) 
     {
         Instructor instructor1 = new Instructor(

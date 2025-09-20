@@ -62,6 +62,21 @@ public class Sucursal {
         return clientes;
     }
     
+    //Borrar si no funciona
+    // En la clase Sucursal
+private List<Instructor> listaInstructores = new ArrayList<>();
+
+    public void agregarInstructor(Instructor ins) {
+        if (!listaInstructores.contains(ins)) {
+            listaInstructores.add(ins);
+        }
+    }
+
+    public List<Instructor> getListaInstructores() {
+        return new ArrayList<>(listaInstructores);
+    }
+
+    
 /*
     @Override
     public String toString() {

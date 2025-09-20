@@ -6,6 +6,7 @@ package AccesoDatos;
 import Controlador.*;
 import Modelo.Sucursal;
 import Modelo.Cliente;
+import Modelo.Instructor;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,9 @@ import java.util.List;
 public class Coleccion_Sucursal {
     
     private List<Sucursal> lista;
+    //Meter Combobox
+    private List<Instructor> listaInstructores = new ArrayList<>();
+    //
 
     public Coleccion_Sucursal(List<Sucursal> lista) {
         this.lista = lista;
@@ -53,6 +57,18 @@ public class Coleccion_Sucursal {
         return false;
     }
     
+    //Buscar InstructorxSucursal
+    public void agregarInstructor(Instructor ins) {
+        if (!listaInstructores.contains(ins)) {
+            listaInstructores.add(ins);
+        }
+    }
+    
+    public List<Instructor> getListaInstructores() {
+        return listaInstructores;
+    }
+    //
+    
     
     public Sucursal Buscar_Sucursal(int Codigo) {
         for (Sucursal ins : lista) {
@@ -80,7 +96,10 @@ public class Coleccion_Sucursal {
         }
         return new ArrayList<>(); // Devuelve lista vacía si no existe la sucursal
     }
-
+    
+    public List<Sucursal> getListaSucursales() {
+    return lista;
+}
     
     //Listar Instructor
     public List<Sucursal> Listar_Sucursal(){
