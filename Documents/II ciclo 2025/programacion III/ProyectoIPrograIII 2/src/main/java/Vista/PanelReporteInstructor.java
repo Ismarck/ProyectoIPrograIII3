@@ -24,7 +24,7 @@ public class PanelReporteInstructor extends javax.swing.JPanel {
     public PanelReporteInstructor(Controlador_Instructor controlador_Instructor) {
         initComponents();
         this.controlador_Instructor = controlador_Instructor; // conectar el panel con el controlador
-        initComponents();
+        //initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -98,6 +98,7 @@ public class PanelReporteInstructor extends javax.swing.JPanel {
         if (!nombreInstructor.isEmpty()) {
             Tabla.setModel(controlador_Instructor.obtenerTablaClientesPorInstructor(nombreInstructor));
         }
+       
     }//GEN-LAST:event_btnBusNombreActionPerformed
 
 

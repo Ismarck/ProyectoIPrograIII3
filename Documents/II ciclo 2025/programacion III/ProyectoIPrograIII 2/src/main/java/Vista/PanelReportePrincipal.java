@@ -25,17 +25,16 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     
     Coleccion_Cliente coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
     Coleccion_Sucursal coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
-
     Controlador_Cliente controlador = new Controlador_Cliente(coleccionCliente, coleccionSucursal);
 
     
     /**
      * Creates new form PanelREportePrincipal
      */
-    public PanelReportePrincipal(JPanel panelContenedor, Controlador_Cliente controlador, /*, Controlador_Instructor controlador_Instructor,*/Controlador_Sucursal controlador_Sucursal) {
+    public PanelReportePrincipal(JPanel panelContenedor, Controlador_Cliente controlador, Controlador_Instructor controlador_Instructor,Controlador_Sucursal controlador_Sucursal) {
         this.panelContenedor = panelContenedor;
         this.controlador_Cliente = controlador;
-        //this.controlador_Instructor = controlador_Instructor;
+        this.controlador_Instructor = controlador_Instructor;
         this.controlador_Sucursal = controlador_Sucursal;
         initComponents();
     }
@@ -48,6 +47,7 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     panelContenedor.repaint();
 }
 
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

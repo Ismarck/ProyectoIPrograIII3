@@ -4,6 +4,7 @@
  */
 package Controlador;
 import Modelo.Instructor;
+import AccesoDatos.Coleccion_Cliente;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +22,15 @@ public class Controlador_Instructor {
     private Coleccion_Instructor coleccion;
     private List<Instructor> listaInstructores;
     private List<Cliente> listaClientes;
+    private Coleccion_Cliente coleccionCliente;
 
 
-    public Controlador_Instructor(Coleccion_Instructor coleccion) {
+    public Controlador_Instructor(Coleccion_Instructor coleccion, Coleccion_Cliente coleccionCliente) {
         this.coleccion = coleccion;
         listaInstructores = new ArrayList<>();
         listaClientes = new ArrayList<>();
+                this.coleccionCliente = coleccionCliente;
+
     }
 
     public boolean registrarInstructor(Instructor ins) {
@@ -55,19 +59,46 @@ public class Controlador_Instructor {
     
    
  
-    // Método clave: obtener clientes por instructor
+//    // Método clave: obtener clientes por instructor
+//    public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
+//        List<Cliente> resultado = new ArrayList<>();
+//        for (Instructor ins : listar()) {
+//          //  if (ins.getNombre().equalsIgnoreCase(nombreInstructor)) {
+//          if (ins.getNombre().toLowerCase().contains(nombreInstructor.toLowerCase())) {
+//                resultado.addAll(ins.getListaClientes());
+//                break;
+//            }
+//        }
+//        return resultado;
+//    }
+//public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
+//    List<Cliente> resultado = new ArrayList<>();
+//    for (Cliente cli : coleccionCliente.Listar()) {
+//        if (cli.getInstructorAsignado() != null &&
+//           // cli.getInstructorAsignado().getNombre().equalsIgnoreCase(nombreInstructor)) {
+//              cli.getInstructorAsignado().getNombre().toLowerCase().contains(nombreInstructor.toLowerCase())) {
+//
+//            resultado.add(cli);
+//        }
+//    }
+//    return resultado;
+//}
     public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
-        List<Cliente> resultado = new ArrayList<>();
-        for (Instructor ins : listar()) {
-            if (ins.getNombre().equalsIgnoreCase(nombreInstructor)) {
-                resultado.addAll(ins.getListaClientes());
-                break;
+    List<Cliente> resultado = new ArrayList<>();
+    String nombreBusqueda = nombreInstructor.toLowerCase().trim();
+
+    for (Cliente cli : coleccionCliente.Listar()) {
+        if (cli.getInstructorAsignado() != null) {
+            String nombreInstructorCliente = cli.getInstructorAsignado().getNombre().toLowerCase().trim();
+            if (nombreInstructorCliente.contains(nombreBusqueda)) {
+                resultado.add(cli);
             }
         }
-        return resultado;
     }
 
-    
+    System.out.println("Clientes encontrados: " + resultado.size());
+    return resultado;
+}
     
     public DefaultTableModel obtenerTablaClientesPorInstructor(String nombreInstructor) {
     // Buscar clientes por instructor

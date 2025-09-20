@@ -34,7 +34,8 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Coleccion_Medicion coleccionMedicion;
     private Controlador_Cliente controladorcliente;
     private Controlador_Medicion controladorMedicion;
-    
+private Controlador_Instructor controladorInstructor;
+
 
     
     public VentanaPrin() {
@@ -49,7 +50,8 @@ public class VentanaPrin extends javax.swing.JFrame {
         this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
         this.coleccionMedicion = new Coleccion_Medicion(new ArrayList<>());
         this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
-        
+        this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
+        this.controladorInstructor = new Controlador_Instructor(this.coleccionInstructor, this.coleccionCliente);
         // this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
         //this.controladorMedicion = new Controlador_Medicion(new ArrayList<>());
         
@@ -375,7 +377,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     Controlador_Sucursal controladorSucursal = new Controlador_Sucursal(coleccionSucursal);
 
     // Creamos el panel de reportes principal pasando el panel contenedor y el controlador
-    PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, controladorCliente, /*controlador_Instructor, */ controladorSucursal);
+    PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, controladorCliente, controladorInstructor,  controladorSucursal);
 
     // Mostramos el panel
     ShowPanel(p1);
