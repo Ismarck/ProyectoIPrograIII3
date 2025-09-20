@@ -41,7 +41,7 @@ public class PanelReporteInstructor extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LabelBusquedaNombre.setText("Busqueda Por Nombre:");
-        jPanel1.add(LabelBusquedaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 39, 151, 28));
+        jPanel1.add(LabelBusquedaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 151, 28));
         jPanel1.add(jTxtBusquedaporNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 42, 202, -1));
 
         btnBusNombre.setText("Buscar");
@@ -96,7 +96,7 @@ public class PanelReporteInstructor extends javax.swing.JPanel {
     private void btnBusNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusNombreActionPerformed
         String nombreInstructor = jTxtBusquedaporNombre.getText().trim();
         if (!nombreInstructor.isEmpty()) {
-            Tabla.setModel(controlador_Instructor.obtenerTablaClientesPorInstructor(nombreInstructor));
+            Tabla.setModel(this.controlador_Instructor.obtenerTablaClientesPorInstructor(nombreInstructor));
         }
        
     }//GEN-LAST:event_btnBusNombreActionPerformed

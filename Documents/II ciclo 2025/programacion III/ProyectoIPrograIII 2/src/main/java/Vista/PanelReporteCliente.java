@@ -109,8 +109,10 @@ public class PanelReporteCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_jTxtBusquedaporNombre1ActionPerformed
 
     private void btnBusNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusNombre1ActionPerformed
-      String nombre = jTxtBusquedaporNombre1.getText();
-      Tabla.setModel(controlador_Cliente.obtenerTablaClientesPorNombre(nombre));
+      String nombre = jTxtBusquedaporNombre1.getText().trim();
+        if (!nombre.isEmpty()) {
+            Tabla.setModel(this.controlador_Cliente.obtenerTablaClientesPorNombre(nombre));
+        }
     }//GEN-LAST:event_btnBusNombre1ActionPerformed
 
 

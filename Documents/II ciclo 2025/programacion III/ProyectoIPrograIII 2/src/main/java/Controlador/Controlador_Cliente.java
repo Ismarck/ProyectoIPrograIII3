@@ -38,7 +38,15 @@ public class Controlador_Cliente {
     public Cliente buscar(int Cedula) {
         return coleccionCliente.buscar(Cedula);
     }
-   
+    
+    public List<Cliente> buscarpornombre(String nombre) {
+        return coleccionCliente.buscarPorNombre(nombre);
+    }
+    
+    public Cliente buscarpornombreunico(String nombre) {
+        return coleccionCliente.buscarClientePorNombreUnico(nombre);
+    }
+
     public boolean modificar(Cliente c) {
         return coleccionCliente.Modificar(c);
     }

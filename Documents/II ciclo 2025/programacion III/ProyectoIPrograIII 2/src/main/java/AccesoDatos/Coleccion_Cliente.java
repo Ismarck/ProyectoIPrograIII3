@@ -77,6 +77,14 @@ public class Coleccion_Cliente {
     return resultados;
 }
     
+    public Cliente buscarClientePorNombreUnico(String nombre) {
+    List<Cliente> resultados = buscarPorNombre(nombre);
+    if (!resultados.isEmpty()) {
+        return resultados.get(0); // solo el primero
+    }
+    return null;
+}
+    
     // Listar Clientes
     public List<Cliente> Listar() {
         return new ArrayList<>(lista);

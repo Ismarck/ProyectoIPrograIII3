@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import AccesoDatos.Coleccion_Medicion;
 import AccesoDatos.Coleccion_Sucursal;
+import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Medicion;
 import Vista.PanelPruebaMedicion;
 
@@ -19,16 +20,23 @@ import Vista.PanelPruebaMedicion;
 public class PanelMedicion extends javax.swing.JPanel {
 
     private Controlador_Medicion controladorMedicion;
+    private Controlador_Cliente controladorCliente;
     
     /**
      * Creates new form PanelRegistro
      */
-    public PanelMedicion(Controlador_Medicion controladorMedicion) {
+    /*public PanelMedicion(Controlador_Medicion controladorMedicion) {
         initComponents();
         this.controladorMedicion = controladorMedicion;
+         this.controladorCliente = controladorCliente;
         //PanelIMC p1 = new PanelContenido();
         //ShowPanel(p1);
         
+    }*/
+     public PanelMedicion(Controlador_Medicion controladorMedicion, Controlador_Cliente controladorCliente) {
+        this.controladorMedicion = controladorMedicion;
+        this.controladorCliente = controladorCliente;
+        initComponents();
     }
 
     
@@ -42,10 +50,7 @@ public class PanelMedicion extends javax.swing.JPanel {
 
     jPanel2.revalidate();
     jPanel2.repaint();
-}
-
-    
-    
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,12 +66,12 @@ public class PanelMedicion extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btnReporteMedicion = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnPruebaIMC = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -83,13 +88,13 @@ public class PanelMedicion extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 73, 519, -1));
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnReporteMedicion.setText("Buscar");
+        btnReporteMedicion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnReporteMedicionActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, -1));
+        jPanel1.add(btnReporteMedicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, -1));
 
         jLabel5.setText("Reporte Medicion:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, -1, 20));
@@ -102,13 +107,13 @@ public class PanelMedicion extends javax.swing.JPanel {
         jLabel6.setText("Realizar Prueba IMC:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, 20));
 
-        jButton2.setText("Buscar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnPruebaIMC.setText("Buscar");
+        btnPruebaIMC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnPruebaIMCActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
+        jPanel1.add(btnPruebaIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,19 +127,20 @@ public class PanelMedicion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PanelPruebaMedicion p1 = new PanelPruebaMedicion(controladorMedicion);
+    private void btnReporteMedicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteMedicionActionPerformed
+        PanelReporteMedicion p1 = new PanelReporteMedicion(this.controladorMedicion);
         ShowPanel(p1);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnReporteMedicionActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnPruebaIMCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaIMCActionPerformed
+        PanelPruebaMedicion p1 = new PanelPruebaMedicion(this.controladorMedicion, this.controladorCliente);
+        ShowPanel(p1);
+    }//GEN-LAST:event_btnPruebaIMCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnPruebaIMC;
+    private javax.swing.JButton btnReporteMedicion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

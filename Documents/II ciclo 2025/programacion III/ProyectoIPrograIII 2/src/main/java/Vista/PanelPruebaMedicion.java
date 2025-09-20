@@ -7,6 +7,7 @@ package Vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import Controlador.Controlador_Medicion;
+import Controlador.Controlador_Cliente;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import Modelo.Medicion;
@@ -21,18 +22,22 @@ import javax.swing.JOptionPane;
 public class PanelPruebaMedicion extends javax.swing.JPanel {
 
     private Controlador_Medicion controladorMedicion;
+    private Controlador_Cliente controladorCliente;
     private Cliente cliente;
     
     /**
      * Creates new form PanelPruebaMedicion
      */
     
-     public PanelPruebaMedicion(Controlador_Medicion controladorMedicion ) {
+    public PanelPruebaMedicion(Controlador_Medicion controladorMedicion, Controlador_Cliente controladorCliente) {
         this.controladorMedicion = controladorMedicion;
-        initComponents();
-        this.cliente = cliente;
+        this.controladorCliente = controladorCliente; // primero asignar bien
+        this.cliente = null; // inicializa en null hasta que busques uno
+
+        initComponents(); // ahora sí inicializas los componentes
+
         LocalDate fechaHoy = LocalDate.now();
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // o "yyyy-MM-dd"
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         txtFecha.setText(fechaHoy.format(formato));
         btnGuardaryCal.addActionListener(evt -> guardarMedicion());
     }
@@ -51,6 +56,10 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
         txtIMC.setText("");
         txtClasiIMC.setText("");
     }*/
+     
+    private void BuscarCliente(String Nombre){
+        
+    }
     
     private void guardarMedicion() {
         try {
@@ -147,6 +156,7 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
         IMC = new javax.swing.JLabel();
         ClassIMC = new javax.swing.JLabel();
         txtClasiIMC = new javax.swing.JTextField();
+        btnBuscarCliente = new javax.swing.JButton();
 
         jLabel1.setText("DATOS DEL CLIENTE");
 
@@ -230,6 +240,13 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
         txtClasiIMC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtClasiIMCActionPerformed(evt);
+            }
+        });
+
+        btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
             }
         });
 
@@ -319,7 +336,8 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel10)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtMuslo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtMuslo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -341,9 +359,11 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
                     .addComponent(txtIDCL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(IntrucCL, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtInstruCL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(btnBuscarCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -387,7 +407,7 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ClassIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtClasiIMC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -440,6 +460,42 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClasiIMCActionPerformed
 
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        try {
+            // Pido el nombre que se escribe en el campo
+            String nombre = txtNombreCL.getText().trim();
+
+            if (nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese el nombre del cliente para buscar.");
+                return;
+            }
+
+            // Buscar el cliente usando el controlador
+            cliente = controladorCliente.buscarpornombreunico(nombre);
+
+            if (cliente != null) {
+                // Rellenar los campos con los datos del cliente
+                txtIDCL.setText(String.valueOf(cliente.getCedula()));
+                txtNombreCL.setText(cliente.getNombre());
+                txtInstruCL.setText(
+                        (cliente.getInstructorAsignado() != null)
+                        ? cliente.getInstructorAsignado().getNombre()
+                        : "No asignado"
+                );
+                // Si quieres mostrar también la fecha de inscripción:
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                txtFecha.setText(cliente.getFecha_Inscripcion());
+
+                JOptionPane.showMessageDialog(this, "Cliente encontrado y cargado.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Cliente no encontrado.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar el cliente: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cadera;
@@ -453,6 +509,7 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
     private javax.swing.JLabel IntrucCL;
     private javax.swing.JLabel NombreCL;
     private javax.swing.JLabel PESO;
+    private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnGuardaryCal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

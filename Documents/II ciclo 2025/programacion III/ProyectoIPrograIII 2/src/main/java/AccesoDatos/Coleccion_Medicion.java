@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Coleccion_Medicion {
     private List<Medicion> lista;
+    
+    private static final int MAX_MEDICIONES = 10;
 
     public Coleccion_Medicion(List<Medicion> lista) {
         this.lista = lista;
     }
-
-    private static final int MAX_MEDICIONES = 10;
 
     // Insertar Medición
     public boolean insertar(Medicion m) {
@@ -56,10 +56,21 @@ public class Coleccion_Medicion {
         }
         return -1; // devuelve -1 si la medición no existe o estatura inválida
     }
-
-
+    
     // Listar todas las mediciones
     public List<Medicion> listar() {
         return new ArrayList<>(lista); // devolvemos copia para seguridad
     }
+    
+    // Buscar medicion de cliente 
+    public List<Medicion> buscarMedicionesPorCliente(String nombreCliente) {
+        List<Medicion> resultado = new ArrayList<>();
+        for (Medicion m : lista) {
+            if (m.getCliente() != null && m.getCliente().getNombre().equalsIgnoreCase(nombreCliente)) {
+                resultado.add(m);
+            }
+        }
+        return resultado;
+    }
+
 }

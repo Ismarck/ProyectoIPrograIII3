@@ -29,12 +29,14 @@ public class VentanaPrin extends javax.swing.JFrame {
      * Creates new form VentanaPrin
      */
     private Coleccion_Cliente coleccionCliente;
+    private Controlador_Cliente controladorCliente;
     private Coleccion_Instructor coleccionInstructor;
     private Coleccion_Sucursal coleccionSucursal;
     private Coleccion_Medicion coleccionMedicion;
-    private Controlador_Cliente controladorcliente;
+    //private Controlador_Cliente controladorcliente;
     private Controlador_Medicion controladorMedicion;
-private Controlador_Instructor controladorInstructor;
+    private Controlador_Instructor controladorInstructor;
+    private Controlador_Sucursal controladorSucursal;
 
 
     
@@ -52,19 +54,16 @@ private Controlador_Instructor controladorInstructor;
         this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
         this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
         this.controladorInstructor = new Controlador_Instructor(this.coleccionInstructor, this.coleccionCliente);
-        // this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
-        //this.controladorMedicion = new Controlador_Medicion(new ArrayList<>());
-        
-        //this.controladorcliente = new Controlador_Cliente();
+        this.controladorSucursal = new Controlador_Sucursal(coleccionSucursal);
+        //this.controladorcliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal );
+        this.controladorCliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal);
+
         
         // Mostrar panel de bienvenida una sola vez
         PanelBienvenida p1 = new PanelBienvenida();
         ShowPanel(p1);
 
     }
-    
-    
-    
     
     public void SetDate() {
         LocalDate now = LocalDate.now();
@@ -373,11 +372,9 @@ private Controlador_Instructor controladorInstructor;
         //PanelReportes p1 = new PanelReportes(this.);
         //ShowPanel(p1);
     //Controlador_Cliente controladorCliente = new Controlador_Cliente(this.coleccionCliente);
-    Controlador_Cliente controladorCliente = new Controlador_Cliente(coleccionCliente, coleccionSucursal);
-    Controlador_Sucursal controladorSucursal = new Controlador_Sucursal(coleccionSucursal);
 
     // Creamos el panel de reportes principal pasando el panel contenedor y el controlador
-    PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, controladorCliente, controladorInstructor,  controladorSucursal);
+    PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, this.controladorCliente, this.controladorInstructor,  this.controladorSucursal);
 
     // Mostramos el panel
     ShowPanel(p1);
@@ -399,7 +396,7 @@ private Controlador_Instructor controladorInstructor;
     }//GEN-LAST:event_SalidaActionPerformed
 
     private void MedicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedicionActionPerformed
-        PanelMedicion p1 = new PanelMedicion(controladorMedicion);
+        PanelMedicion p1 = new PanelMedicion(this.controladorMedicion, this.controladorCliente);
         ShowPanel(p1);
     }//GEN-LAST:event_MedicionActionPerformed
 
