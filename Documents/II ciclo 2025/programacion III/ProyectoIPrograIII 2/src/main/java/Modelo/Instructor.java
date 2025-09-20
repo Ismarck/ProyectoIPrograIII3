@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author marcosisaacarayaabarca
@@ -7,6 +10,7 @@ package Modelo;
 public class Instructor extends Persona {
 
     private String Especialidad;
+    private List<Cliente> listaClientes;
 
     public Instructor() {
     }
@@ -14,6 +18,7 @@ public class Instructor extends Persona {
     public Instructor(String Especialidad,String Nombre, String Fecha_Nacimiento, String Correo, int Numero_Celular, int Cedula, char Sexo) {
         super(Nombre,Fecha_Nacimiento, Correo, Numero_Celular, Cedula, Sexo);
         this.Especialidad = Especialidad;
+        listaClientes = new ArrayList<>();
     }
 
     public String getEspecialidad() {
@@ -28,6 +33,18 @@ public class Instructor extends Persona {
     public String toString() {
         return getNombre(); // o getNombre() + " " + getApellido() si existe
     }*/
+    
+    // Métodos para manejar clientes
+    public List<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+
+    public void agregarCliente(Cliente c) {
+        if (!listaClientes.contains(c)) {
+            listaClientes.add(c);
+        }
+    }
+
     
     @Override
     public String toString() {

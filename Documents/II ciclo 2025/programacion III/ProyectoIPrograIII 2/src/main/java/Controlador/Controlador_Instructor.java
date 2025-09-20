@@ -12,70 +12,21 @@ import java.util.List;
  *
  * @author marcosisaacarayaabarca
  */
-/*
-public class Controlador_Instructor {
-    /*
-    
-    private List<Instructor> lista;
-
-    public Controlador_Instructor(List<Instructor> lista) {
-        this.lista = lista;
-    }
-  
-    //Insertar Instructor
-    public boolean Insertar_Instructor(Instructor t){
-        if(Buscar_Instructor(t.getCedula()) != null){
-        return false;
-        }
-        lista.add(t);
-        return true;
-    }
-    //Modificar Instructor
-    public boolean Modificar_Instructor(Instructor nuevo) {
-        for (int i = 0; i < lista.size(); i++) {
-            Instructor actual = lista.get(i);
-            if (actual.getCedula() == nuevo.getCedula()) {
-                lista.set(i, nuevo);
-                return true;
-            }
-        }
-        return false;
-    }
-    //Eliminar Instructor
-    public boolean Eliminar_Instructor(int Cedula){
-        for(Instructor ins:lista){
-            if(ins.getCedula() == Cedula){
-                lista.remove(ins);
-                return true;
-            }
-        }
-        return false;
-    }
-    //Buscar Instructor
-    public Instructor Buscar_Instructor(int Cedula) {
-        for (Instructor ins : lista) {
-            if (ins.getCedula() == Cedula) {
-                return ins;
-            }
-        }
-        return null;
-    }
-    //Listar Instructor
-    public List<Instructor> Listar_Instructor(){
-        return new ArrayList<>(lista);
-    }
-    */
-    
-    
-//}*/
 import AccesoDatos.Coleccion_Instructor;
+import Modelo.Cliente;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Controlador_Instructor {
     private Coleccion_Instructor coleccion;
+    private List<Instructor> listaInstructores;
+    private List<Cliente> listaClientes;
+
 
     public Controlador_Instructor(Coleccion_Instructor coleccion) {
         this.coleccion = coleccion;
+        listaInstructores = new ArrayList<>();
+        listaClientes = new ArrayList<>();
     }
 
     public boolean registrarInstructor(Instructor ins) {
@@ -97,4 +48,53 @@ public class Controlador_Instructor {
     public java.util.List<Instructor> listar() {
         return coleccion.Listar_Instructor();
     }
+   
+    public List<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+    
+   
+ 
+    // Método clave: obtener clientes por instructor
+    public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
+        List<Cliente> resultado = new ArrayList<>();
+        for (Instructor ins : listar()) {
+            if (ins.getNombre().equalsIgnoreCase(nombreInstructor)) {
+                resultado.addAll(ins.getListaClientes());
+                break;
+            }
+        }
+        return resultado;
+    }
+
+    
+    
+    public DefaultTableModel obtenerTablaClientesPorInstructor(String nombreInstructor) {
+    // Buscar clientes por instructor
+    List<Cliente> clientes = listarClientesPorInstructor(nombreInstructor); // Este método lo implementas en tu controlador
+
+    // Definir columnas igual que en tu JTable
+    String[] columnas = {"Cedula", "Nombre", "Sexo", "Nacimiento", "Instructor", "Sucursal", "Correo", "Celular", "Inscripcion"};
+    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+    // Llenar la tabla
+    for (Cliente c : clientes) {
+        Object[] fila = {
+            c.getCedula(),
+            c.getNombre(),
+            c.getSexo(),
+            c.getFecha_Nacimiento(),
+            (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+            (c.getSucursal() != null) ? c.getSucursal().getCodigo() + " - " + c.getSucursal().getProvincia() : "No asociada",
+            c.getCorreo(),
+            c.getNumero_Celular(),
+            c.getFecha_Inscripcion()
+        };
+        modelo.addRow(fila);
+    }
+
+    return modelo;
+}
+
+    
 }

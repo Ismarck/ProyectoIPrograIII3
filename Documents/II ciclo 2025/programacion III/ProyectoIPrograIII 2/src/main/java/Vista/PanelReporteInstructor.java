@@ -23,7 +23,8 @@ public class PanelReporteInstructor extends javax.swing.JPanel {
      */
     public PanelReporteInstructor(Controlador_Instructor controlador_Instructor) {
         initComponents();
-      // this.Controlador_Instructor = controlador_Instructor;
+        this.controlador_Instructor = controlador_Instructor; // conectar el panel con el controlador
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -93,12 +94,10 @@ public class PanelReporteInstructor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnBusNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusNombreActionPerformed
-        //Tabla.setModel(controlador_Cliente.obtenerTablaClientes()); 
-        String nombre = jTxtBusquedaporNombre.getText();
-        //Tabla.setModel(Controlador_Instructor.obtenerTablaClientesPorNombre(nombre));
-
-        //Tabla.setModel(controlador_Cliente.obtenerTablaClientes());
-
+        String nombreInstructor = jTxtBusquedaporNombre.getText().trim();
+        if (!nombreInstructor.isEmpty()) {
+            Tabla.setModel(controlador_Instructor.obtenerTablaClientesPorInstructor(nombreInstructor));
+        }
     }//GEN-LAST:event_btnBusNombreActionPerformed
 
 

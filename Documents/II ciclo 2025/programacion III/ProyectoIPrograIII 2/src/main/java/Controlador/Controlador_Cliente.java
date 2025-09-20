@@ -46,6 +46,7 @@ public class Controlador_Cliente {
     public java.util.List<Cliente> listar() {
         return coleccionCliente.Listar();
     }
+    
    public DefaultTableModel obtenerTablaClientesPorNombre(String nombre) {
     List<Cliente> clientes = coleccionCliente.buscarPorNombre(nombre);
 
@@ -76,9 +77,6 @@ public class Controlador_Cliente {
     }
     return new ArrayList<>();
 }
-
-
-    
     
     public DefaultTableModel obtenerTablaClientesPorSucursal(int CodigoSucursal) {
         // Buscar clientes por sucursal
