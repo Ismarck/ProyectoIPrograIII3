@@ -13,24 +13,7 @@ import javax.swing.JPanel;
 /**
  *
  * @author marcosisaacarayaabarca
- */
-//public class PanelRegistro extends javax.swing.JPanel {
-
-    /**
-     * Creates new form PanelRegistro
-     */
-    /*
-    public PanelRegistro(/*Coleccion_Cliente coleccionCliente Coleccion_Instructor coleccionInstructor) {
-    initComponents();
-    this.coleccionCliente = coleccionCliente;
-    RegistroCliente p1 = new RegistroCliente(coleccionCliente);
-    ShowPanel(p1);
-    //this.coleccionInstructor = coleccionInstructor;
-    //ShowPanel(p1);
-    this.coleccionInstructor = coleccionInstructor;
-    //RegistroInstructor p1 = new RegistroInstructor(coleccionInstructor);
-    ShowPanel(p1);
-    }*/
+*/ 
 public class PanelRegistro extends JPanel {
     private Coleccion_Cliente coleccionCliente;
     private Coleccion_Instructor coleccionInstructor;
@@ -54,9 +37,6 @@ public class PanelRegistro extends JPanel {
 
     }
     
-    //private Coleccion_Cliente coleccionCliente;
-    //private Coleccion_Instructor coleccionInstructor;
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

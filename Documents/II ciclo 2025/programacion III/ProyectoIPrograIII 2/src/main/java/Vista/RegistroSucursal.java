@@ -243,13 +243,7 @@ public class RegistroSucursal extends javax.swing.JPanel {
                     88776655,
                     123456789,
                     'M'
-            );/*
-            Instructor instructor1 = new Instructor(
-            Especialidad,
-            Nombre,
-            
-            );*/
-
+            );
 
             Sucursal nuevo = new Sucursal(
                     Provincia,
@@ -261,7 +255,7 @@ public class RegistroSucursal extends javax.swing.JPanel {
             if (Coleccionsuc.Insertar_Sucursal(nuevo)) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Sucursal registrada con éxito");
 
-                // 🔹 Actualizar el ComboBox después de insertar
+                //Actualizar el ComboBox después de insertar
                 if (registroCliente != null) {
             registroCliente.actualizarComboSucursales();
             }

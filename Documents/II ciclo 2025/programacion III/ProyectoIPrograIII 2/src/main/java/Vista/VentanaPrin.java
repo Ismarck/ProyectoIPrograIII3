@@ -4,10 +4,12 @@
  */
 package Vista;
 
+import AccesoDatos.Coleccion_ClaseGrupal;
 import AccesoDatos.Coleccion_Cliente;
 import AccesoDatos.Coleccion_Instructor;
 import AccesoDatos.Coleccion_Sucursal;
 import AccesoDatos.Coleccion_Medicion;
+import Controlador.Controlador_ClaseGrupal;
 import Controlador.Controlador_Medicion;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
@@ -33,10 +35,12 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Coleccion_Instructor coleccionInstructor;
     private Coleccion_Sucursal coleccionSucursal;
     private Coleccion_Medicion coleccionMedicion;
+    private Coleccion_ClaseGrupal Coleccion_ClaseGrupal;
     //private Controlador_Cliente controladorcliente;
     private Controlador_Medicion controladorMedicion;
     private Controlador_Instructor controladorInstructor;
     private Controlador_Sucursal controladorSucursal;
+    private Controlador_ClaseGrupal controladorClaseGrupal;
 
 
     
@@ -57,7 +61,7 @@ public class VentanaPrin extends javax.swing.JFrame {
         this.controladorSucursal = new Controlador_Sucursal(coleccionSucursal);
         //this.controladorcliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal );
         this.controladorCliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal);
-
+        this.controladorClaseGrupal = new Controlador_ClaseGrupal(new Coleccion_ClaseGrupal(),this.controladorInstructor,this.controladorCliente);
         
         // Mostrar panel de bienvenida una sola vez
         PanelBienvenida p1 = new PanelBienvenida();
@@ -387,7 +391,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistroActionPerformed
         
     private void ClasesGrupalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClasesGrupalesActionPerformed
-        PanelEjercicio p1 = new PanelEjercicio();
+        PanelPrincipalClaseGrupal p1 = new PanelPrincipalClaseGrupal(this.controladorClaseGrupal, this.controladorInstructor, this.controladorCliente);
         ShowPanel(p1);
     }//GEN-LAST:event_ClasesGrupalesActionPerformed
 
@@ -460,6 +464,5 @@ public class VentanaPrin extends javax.swing.JFrame {
     private javax.swing.JLabel mensaje1;
     private javax.swing.JLabel mensaje2;
     // End of variables declaration//GEN-END:variables
-
 
 }

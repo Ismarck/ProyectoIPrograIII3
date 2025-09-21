@@ -2,82 +2,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author porto
- */
 public class ClaseGrupal {
-    
-    private String Codigo;
-    private String Horario;
-    private String Salon;
-    private int CupoMaximo;
+    private String tipoClase;
     private Instructor instructor;
-    private List<Cliente> clientes;
-    
+    private String horario;
+    private int cupoMaximo;
+    private int cuposDisponibles;
+    private List<Cliente> matriculados;
 
-    public ClaseGrupal() {
-
-    }
-
-    public ClaseGrupal(String codigo, String horario, String salon, int cupoMaximo, Instructor instructor) {
-        this.Codigo = codigo;
-        this.Horario = horario;
-        this.Salon = salon;
-        this.CupoMaximo = cupoMaximo;
-        this.instructor = instructor;
-        this.clientes = new ArrayList<>();
-    }
-    
-    public boolean matricularCliente(Cliente cliente) {
-        if (clientes.size() < CupoMaximo) {
-            if (!clientes.contains(cliente)) { // evitar duplicados
-                clientes.add(cliente);
-                return true;
-            }
+    public ClaseGrupal(String tipoClase, Instructor instructor, String horario, int cupoMaximo) {
+        if (!instructor.getEspecialidad().equalsIgnoreCase(tipoClase)) {
+            throw new IllegalArgumentException("El instructor no tiene la especialidad requerida.");
         }
-        return false;
-    }
-    
-    public List<Cliente> getMatriculados() {
-        return clientes;
-    }
-
-    public String getCodigo() {
-        return Codigo;
+        this.tipoClase = tipoClase;
+        this.instructor = instructor;
+        this.horario = horario;
+        this.cupoMaximo = cupoMaximo;
+        this.cuposDisponibles = cupoMaximo;
+        this.matriculados = new ArrayList<>();
     }
 
-    public void setCodigo(String Codigo) {
-        this.Codigo = Codigo;
+    public String getTipoClase() {
+        return tipoClase;
     }
 
-    public String getHorario() {
-        return Horario;
-    }
-
-    public void setHorario(String Horario) {
-        this.Horario = Horario;
-    }
-
-    public String getSalon() {
-        return Salon;
-    }
-
-    public void setSalon(String Salon) {
-        this.Salon = Salon;
-    }
-
-    public int getCupoMaximo() {
-        return CupoMaximo;
-    }
-
-    public void setCupoMaximo(int CupoMaximo) {
-        this.CupoMaximo = CupoMaximo;
+    public void setTipoClase(String tipoClase) {
+        this.tipoClase = tipoClase;
     }
 
     public Instructor getInstructor() {
@@ -88,55 +44,48 @@ public class ClaseGrupal {
         this.instructor = instructor;
     }
 
-    public List<Cliente> getClientes() {
-        return clientes;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
-    
-    
 
+    public int getCupoMaximo() {
+        return cupoMaximo;
+    }
+
+    public void setCupoMaximo(int cupoMaximo) {
+        this.cupoMaximo = cupoMaximo;
+    }
+
+    public int getCuposDisponibles() {
+        return cuposDisponibles;
+    }
+
+    public void setCuposDisponibles(int cuposDisponibles) {
+        this.cuposDisponibles = cuposDisponibles;
+    }
 
     @Override
     public String toString() {
-        return "ClaseGrupal{" 
-                + "Codigo=" + Codigo 
-                + ", Horario=" + Horario 
-                + ", Salon=" + Salon 
-                + ", CupoMaximo=" + CupoMaximo 
-                + ", instructor=" + instructor 
-                + ", clientes=" + clientes + '}';
+        return "ClaseGrupal{" + "tipoClase=" + tipoClase + ", instructor=" + instructor + ", horario=" + horario + ", cupoMaximo=" + cupoMaximo + ", cuposDisponibles=" + cuposDisponibles + ", matriculados=" + matriculados + '}';
     }
-    /*
+    
+    
+
+
     public boolean matricularCliente(Cliente c) {
-        if (clientes.size() < capacidad && !clientes.contains(c)) {
-            clientes.add(c);
+        if (cuposDisponibles > 0 && !matriculados.contains(c)) {
+            matriculados.add(c);
+            cuposDisponibles--;
             return true;
         }
         return false;
-    }*/
+    }
 
-    
-    
-   /* @Override
-    public String toString() {
-        return "Rutina {"
-                + "Codigo='" + Codigo + '\''
-                + ", TipoClase='" + TipoClase + '\''
-                + ", Salon='" + Salon + '\''
-                + ", CupoMaximo=" + CupoMaximo
-                + ", Horario='" + Horario + '\''
-                + '}';
-    }*/
-    /*
-     public static void main(String[] args) 
-    {
-        ClaseGrupal clasegrupal1 = new ClaseGrupal("R001", "Yoga", "Sala 3", 25, "Lunes 7am"
-        );
-        
-        System.out.println(clasegrupal1.toString());
-    }*/
+    public List<Cliente> getMatriculados() {
+        return matriculados;
+    }
 }
-
