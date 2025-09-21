@@ -91,11 +91,10 @@ public class ClaseGrupal {
 
     @Override
     public String toString() {
-        return "ClaseGrupal{" + "tipoClase=" + tipoClase + ", instructor=" + instructor + ", horario=" + horario + ", cupoMaximo=" + cupoMaximo + ", cuposDisponibles=" + cuposDisponibles + ", matriculados=" + matriculados + '}';
+    return tipoClase + " - " + horario + " (" + sucursal + ")";
     }
     
     
-
 
     public boolean matricularCliente(Cliente c) {
         if (cuposDisponibles > 0 && !matriculados.contains(c)) {

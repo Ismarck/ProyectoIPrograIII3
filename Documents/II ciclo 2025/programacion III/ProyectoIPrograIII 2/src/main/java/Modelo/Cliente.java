@@ -68,7 +68,9 @@ public class Cliente extends Persona {
         }
         return false;
     }
-    
+    public String toString() {
+    return getNombre() + " (" + getCedula() + ")";
+}
     @Override
     public String Datos() {
     return "Cliente {" +
