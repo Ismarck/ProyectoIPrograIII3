@@ -11,6 +11,7 @@ public class Instructor extends Persona {
 
     private String Especialidad;
     private List<Cliente> listaClientes;
+    private String sucursal;
 
     public Instructor() {
     }
@@ -19,6 +20,7 @@ public class Instructor extends Persona {
         super(Nombre,Fecha_Nacimiento, Correo, Numero_Celular, Cedula, Sexo);
         this.Especialidad = Especialidad;
         listaClientes = new ArrayList<>();
+        this.sucursal = sucursal;
     }
 
     public String getEspecialidad() {
@@ -28,11 +30,6 @@ public class Instructor extends Persona {
     public void setEspecialidad(String Especialidad) {
         this.Especialidad = Especialidad;
     }
-    
-    /*@Override
-    public String toString() {
-        return getNombre(); // o getNombre() + " " + getApellido() si existe
-    }*/
     
     // Métodos para manejar clientes
     public List<Cliente> getListaClientes() {
@@ -45,10 +42,18 @@ public class Instructor extends Persona {
         }
     }
 
+    public String getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(String sucursal) {
+        this.sucursal = sucursal;
+    }
+
     
     @Override
     public String toString() {
-        return getNombre(); // o como quieras mostrarlo
+        return getNombre(); 
     }
 
 

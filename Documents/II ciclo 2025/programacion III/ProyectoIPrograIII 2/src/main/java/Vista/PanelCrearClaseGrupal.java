@@ -10,6 +10,8 @@ import Controlador.Controlador_ClaseGrupal;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
 import Modelo.Cliente;
+import Modelo.Sucursal;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -25,31 +27,161 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     private Controlador_Instructor controladorInstructor;
     private Controlador_Cliente controladorCliente;
     private DefaultTableModel modeloTabla;
+    private List<Sucursal> listaSucursales; // lista de sucursales
+
+
+
     
     /**
      * Creates new form PanelCrearClaseGrupal
      */
     
-    public PanelCrearClaseGrupal(Controlador_ClaseGrupal controlador,Controlador_Instructor controladorInstructor,Controlador_Cliente controladorCliente) {
+    /*public PanelCrearClaseGrupal(Controlador_ClaseGrupal controlador,Controlador_Instructor controladorInstructor,Controlador_Cliente controladorCliente) {
     this.controlador = controlador;
     this.controladorInstructor = controladorInstructor;
     this.controladorCliente = controladorCliente; // agregar atributo
     initComponents();
     cargarInstructores();
     inicializarTabla();
+}*/
+    /* mantener public PanelCrearClaseGrupal(Controlador_ClaseGrupal controlador,
+                                 Controlador_Instructor controladorInstructor,
+                                 Controlador_Cliente controladorCliente) {
+        this.controlador = controlador;
+        this.controladorInstructor = controladorInstructor;
+        this.controladorCliente = controladorCliente;
+        initComponents();
+        inicializarTabla();
+        inicializarEventos();
+    }*/
+    public PanelCrearClaseGrupal(Controlador_ClaseGrupal controlador,
+                             Controlador_Instructor controladorInstructor,
+                             Controlador_Cliente controladorCliente) {
+    this.controlador = controlador;
+    this.controladorInstructor = controladorInstructor;
+    this.controladorCliente = controladorCliente;
+    initComponents();
+    inicializarTabla();
+    inicializarEventos(); // Asegurar que esto se llame después
 }
-    private void cargarInstructores() {
-        CombxInstructorclase.removeAllItems();
+    
+    /*private void cargarInstructores(String sucursalBuscada) {
+        /*CombxInstructorclase.removeAllItems();
         for (Instructor ins : controladorInstructor.listar()) {
             CombxInstructorclase.addItem(ins);
+        }//
+        CombxInstructorclase.removeAllItems();
+        DefaultComboBoxModel<Instructor> modelo = new DefaultComboBoxModel<>();
+
+        for (Instructor ins : controladorInstructor.listar()) {
+            String suc = ins.getSucursal();
+            if (suc != null && suc.trim().equalsIgnoreCase(sucursalBuscada)) {
+                modelo.addElement(ins);
+            }
+        }
+
+        CombxInstructorclase.setModel(modelo);
+
+        if (modelo.getSize() == 0) {
+            JOptionPane.showMessageDialog(this, "No se encontraron instructores en la sucursal: " + sucursalBuscada);
+        } else {
+            CombxInstructorclase.setSelectedIndex(0); // dispara el autocompletado
+        }
+    }*/
+    //borrar si no funciona
+    /*private void cargarInstructores(String sucursalBuscada) {
+    CombxInstructorclase.removeAllItems();
+    DefaultComboBoxModel<Instructor> modelo = new DefaultComboBoxModel<>();
+
+    for (Instructor ins : controladorInstructor.listar()) {
+        String suc = ins.getSucursal();
+        if (suc != null && suc.trim().equalsIgnoreCase(sucursalBuscada)) {
+            modelo.addElement(ins);
         }
     }
+
+    CombxInstructorclase.setModel(modelo);
+
+    if (modelo.getSize() == 0) {
+        JOptionPane.showMessageDialog(this, "No se encontraron instructores en la sucursal: " + sucursalBuscada);
+    } else {
+        CombxInstructorclase.setSelectedIndex(0); // dispara autocompletado
+    }
+}//hastaaqeui
+    */
+    private void cargarInstructores(String sucursalBuscada) {
+    CombxInstructorclase.removeAllItems();
+    DefaultComboBoxModel<Instructor> modelo = new DefaultComboBoxModel<>();
+
+    for (Instructor ins : controladorInstructor.listar()) {
+        String suc = ins.getSucursal();
+        if (suc != null && suc.trim().equalsIgnoreCase(sucursalBuscada)) {
+            modelo.addElement(ins);
+        }
+    }
+
+    CombxInstructorclase.setModel(modelo);
+
+    if (modelo.getSize() == 0) {
+        JOptionPane.showMessageDialog(this, "No se encontraron instructores en la sucursal: " + sucursalBuscada);
+    } else {
+        CombxInstructorclase.setSelectedIndex(0); // dispara el autocompletado
+    }
+}
     
     private void inicializarTabla() {
         modeloTabla = new DefaultTableModel(new String[]{"Tipo", "Instructor", "Horario", "Cupo Max", "Disponibles"}, 0);
         jTable2.setModel(modeloTabla);
         actualizarTabla();
+        inicializarEventos(); 
     }
+    
+   /* private void inicializarEventos() {
+        // Quitamos listeners previos (si existieran) para no duplicarlos
+        for (java.awt.event.ItemListener il : CombxInstructorclase.getItemListeners()) {
+            CombxInstructorclase.removeItemListener(il);
+        }
+
+        // Autocompletar el tipo de clase cuando se selecciona un instructor
+        CombxInstructorclase.addItemListener(e -> {
+            if (e.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+                Instructor ins = (Instructor) e.getItem();
+                if (ins != null && ins.getEspecialidad() != null) {
+                    txtTipoClase.setText(ins.getEspecialidad());
+                } else {
+                    txtTipoClase.setText("");
+                }
+            }
+        });
+    }*/
+    
+    //Eliminar si no funciona 
+    private void inicializarEventos() {
+    CombxInstructorclase.addItemListener(e -> {
+        if (e.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            Instructor ins = (Instructor) e.getItem();
+            if (ins != null && ins.getEspecialidad() != null) {
+                txtTipoClase.setText(ins.getEspecialidad());
+            } else {
+                txtTipoClase.setText("");
+            }
+        }
+    });
+}
+    //
+    /*private void inicializarEventos() {
+    CombxInstructorclase.addItemListener(e -> {
+        if (e.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            Instructor ins = (Instructor) e.getItem();
+            if (ins != null && ins.getEspecialidad() != null) {
+                txtTipoClase.setText(ins.getEspecialidad());
+            } else {
+                txtTipoClase.setText("");
+            }
+        }
+    });
+}*/
+
     
     private void actualizarTabla() {
         modeloTabla.setRowCount(0);
@@ -63,6 +195,9 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
             });
         }
     }
+    
+    
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -95,6 +230,11 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
         TipoClase.setText("Tipo Clase:");
 
         txtTipoClase.setText("jTextField1");
+        txtTipoClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTipoClaseActionPerformed(evt);
+            }
+        });
 
         Instructor.setText("Instructor:");
 
@@ -106,7 +246,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
 
         txtCupoMaximo.setText("jTextField1");
 
-        CombxInstructorclase.setModel(new DefaultComboBoxModel<Instructor>());
+        CombxInstructorclase.setModel(new DefaultComboBoxModel<>());
 
         ClaseGrupal1.setFont(new java.awt.Font("Gurmukhi MN", 0, 18)); // NOI18N
         ClaseGrupal1.setText("Crear Clase Grupal (Sucursal)");
@@ -134,6 +274,11 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
         });
 
         jButton1.setText("Buscar Sucursal");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -298,15 +443,84 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       /*
         txtTipoClase.setText("");
         txtHorario.setText("");
         txtCupoMaximo.setText("");
-        CombxInstructorclase.setSelectedIndex(0);
+        txtSucursal.setText(""); // <-- CAMBIO
+        if (CombxInstructorclase.getItemCount() > 0) {
+            CombxInstructorclase.setSelectedIndex(0); // <-- CAMBIO
+        }*/
+    txtTipoClase.setText("");
+    txtHorario.setText("");
+    txtCupoMaximo.setText("");
+    txtSucursal.setText("");
+    CombxInstructorclase.removeAllItems(); 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSucursalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSucursalActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        /*String sucursalBuscada = txtSucursal.getText().trim();
+        if (sucursalBuscada.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese una sucursal para buscar.");
+            return;
+        }
+
+        if (CombxInstructorclase.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(null, "No se encontraron instructores en la sucursal: " + sucursalBuscada);
+        }
+        DefaultComboBoxModel<Instructor> modelo = new DefaultComboBoxModel<>();
+        for (Instructor ins : controladorInstructor.listar()) {
+            String suc = ins.getSucursal();
+            if (suc != null && suc.trim().equalsIgnoreCase(sucursalBuscada)) {
+                modelo.addElement(ins);
+            }
+        }
+        CombxInstructorclase.setModel(modelo);
+
+        if (modelo.getSize() == 0) {
+            JOptionPane.showMessageDialog(this, "No se encontraron instructores en la sucursal: " + sucursalBuscada);
+        } else {
+            CombxInstructorclase.setSelectedIndex(0); // dispara el autocompletado
+        }*/
+        
+        //Mantener
+        /*
+        String sucursalBuscada = txtSucursal.getText().trim();
+
+        if (sucursalBuscada.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese una sucursal para buscar.");
+            return;
+        }
+
+        // Llamar al método que carga instructores filtrando por sucursal
+        //cargarInstructores(sucursalBuscada);*/
+        
+        /*String sucursalBuscada = txtSucursal.getText().trim();
+
+    if (sucursalBuscada.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingrese una sucursal para buscar.");
+        return;
+    }
+
+    cargarInstructores(sucursalBuscada);*/
+    String sucursalBuscada = txtSucursal.getText().trim();
+
+    if (sucursalBuscada.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingrese una sucursal para buscar.");
+        return;
+    }
+
+    cargarInstructores(sucursalBuscada);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtTipoClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoClaseActionPerformed
+       // Método vacío: no agregar listeners aquí
+    }//GEN-LAST:event_txtTipoClaseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
