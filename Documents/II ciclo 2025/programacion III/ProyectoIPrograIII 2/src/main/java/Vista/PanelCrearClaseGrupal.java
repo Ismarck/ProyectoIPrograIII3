@@ -546,3 +546,4 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     private javax.swing.JTextField txtTipoClase;
     // End of variables declaration//GEN-END:variables
 }
+///
