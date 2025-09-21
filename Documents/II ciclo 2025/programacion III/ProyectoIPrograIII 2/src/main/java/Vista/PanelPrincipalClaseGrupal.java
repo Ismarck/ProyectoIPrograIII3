@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import Controlador.Controlador_ClaseGrupal;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
+import Controlador.Controlador_Sucursal;
 
 
 /**
@@ -20,7 +21,8 @@ public class PanelPrincipalClaseGrupal extends javax.swing.JPanel {
     private Controlador_ClaseGrupal controlador;
     private Controlador_Instructor controladorInstructor;
     private Controlador_Cliente controladorCliente;
-    
+    private Controlador_Sucursal controladorSucursal;
+
     /**
      * Creates new form PanelRegistro
      */
@@ -29,6 +31,7 @@ public class PanelPrincipalClaseGrupal extends javax.swing.JPanel {
     this.controlador = controlador;
     this.controladorInstructor = controladorInstructor;
     this.controladorCliente = controladorCliente;
+    this.controladorSucursal = controladorSucursal;
 }
 
 
@@ -113,7 +116,7 @@ public class PanelPrincipalClaseGrupal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearClaseGrupalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearClaseGrupalActionPerformed
-        PanelCrearClaseGrupal p1 = new PanelCrearClaseGrupal(this.controlador, this.controladorInstructor, this.controladorCliente);
+        PanelCrearClaseGrupal p1 = new PanelCrearClaseGrupal(this.controlador, this.controladorInstructor, this.controladorCliente,this.controladorSucursal);
 
         ShowPanel(p1);
     }//GEN-LAST:event_btnCrearClaseGrupalActionPerformed

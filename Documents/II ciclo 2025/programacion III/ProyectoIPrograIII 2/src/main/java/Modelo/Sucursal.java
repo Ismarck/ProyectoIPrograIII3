@@ -6,7 +6,7 @@ import java.util.List;
 /**
  *
  * @author marcosisaacarayaabarca
- */
+ */ 
 public class Sucursal {
 
     private String Provincia;
@@ -14,6 +14,7 @@ public class Sucursal {
     private int Codigo;
     private Instructor instructor;
     private List<Cliente> clientes;
+    private List<Instructor> instructores;
     
     public Sucursal() {
     }
@@ -24,6 +25,7 @@ public class Sucursal {
         this.Codigo = Codigo;
         this.instructor = instructor;
         this.clientes = new ArrayList<>();
+        this.instructores=new ArrayList<>();
     }
 
     public Instructor getInstructor() {
