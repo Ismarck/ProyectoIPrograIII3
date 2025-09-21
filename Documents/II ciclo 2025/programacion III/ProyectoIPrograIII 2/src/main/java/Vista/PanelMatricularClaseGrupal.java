@@ -67,25 +67,12 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
         }
     }
 
-    /*private void inicializarTabla() {
-        Tabla = new DefaultTableModel(new String[]{"Nombre", "Correo", "Teléfono"}, 0);
-        Tabla.setModel(Tabla);
-    }*/
     private void inicializarTabla() {
         modeloTabla = new DefaultTableModel(new String[]{"Nombre", "Correo", "Teléfono"}, 0);
         Tabla.setModel(modeloTabla);  // Asignamos el modelo al JTable
     }
 
-
-
-    /*private void actualizarTabla(ClaseGrupal clase) {
-        Tabla.setRowCount(0); // Limpia la tabla
-        if (clase != null) {
-            for (Cliente c : clase.getMatriculados()) {
-               Tabla.addRow(new Object[]{c.getNombre(), c.getCorreo(), c.getNumero_Celular()});
-            }
-        }
-    }*/
+    /*
     private void actualizarTabla(ClaseGrupal clase) {
     modeloTabla.setRowCount(0); // Limpiar datos anteriores
     if (clase != null) {
@@ -97,7 +84,30 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
             });
         }
     }
-}
+}*/
+    
+    //borrar si nofuncionsa 
+    private void actualizarTabla(ClaseGrupal clase) {
+        modeloTabla.setRowCount(0); // Limpiar datos anteriores
+        if (clase != null) {
+            for (Cliente c : clase.getMatriculados()) {
+                modeloTabla.addRow(new Object[]{
+                    c.getNombre(),
+                    c.getCorreo(),
+                    c.getNumero_Celular()
+                });
+            }
+        }
+    }
+
+    private void mostrarCuposClase(ClaseGrupal clase) {
+        if (clase != null) {
+            int disponibles = clase.getCupoMaximo() - clase.getMatriculados().size();
+            JOptionPane.showMessageDialog(this, "Cupos disponibles: " + disponibles);
+        }
+    }
+    //hasta aqui
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -255,7 +265,7 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnvervlienteenclaseActionPerformed
 
     private void btnclientemattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientemattActionPerformed
-        ClaseGrupal clase = (ClaseGrupal) CombxClase.getSelectedItem();
+        /*ClaseGrupal clase = (ClaseGrupal) CombxClase.getSelectedItem();
         Cliente cliente = (Cliente) CombxCliente.getSelectedItem();
         if (clase != null && cliente != null) {
             if (controladorClase.matricularCliente(clase, cliente)) {
@@ -264,6 +274,26 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "No se puede matricular (sin cupo o ya inscrito).");
             }
+        }*/
+        ClaseGrupal clase = (ClaseGrupal) CombxClase.getSelectedItem();
+        Cliente cliente = (Cliente) CombxCliente.getSelectedItem();
+
+        if (clase == null || cliente == null) {
+            return;
+        }
+
+        // Verificar máximo 3 clases por cliente
+        if (controladorCliente.cantidadClasesMatriculadas(cliente) >= 3) {
+            JOptionPane.showMessageDialog(this, "Cliente ya tiene 3 clases matriculadas.");
+            return;
+        }
+
+        if (controladorClase.matricularCliente(clase, cliente)) {
+            actualizarTabla(clase);
+            mostrarCuposClase(clase);
+            JOptionPane.showMessageDialog(this, "Cliente matriculado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se puede matricular (sin cupo o ya inscrito).");
         }
     }//GEN-LAST:event_btnclientemattActionPerformed
 

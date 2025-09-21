@@ -23,4 +23,16 @@ public class Coleccion_ClaseGrupal {
         }
         return null;
     }
+    
+    // Nuevo método: contar clases por sucursal
+     public int contarClasesPorSucursal(String sucursal) {
+        int contador = 0;
+        for (ClaseGrupal c : clases) {
+            if (c.getSucursal().equalsIgnoreCase(sucursal)) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+    
 }

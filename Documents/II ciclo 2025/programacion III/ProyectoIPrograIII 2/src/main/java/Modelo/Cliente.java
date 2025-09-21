@@ -14,6 +14,7 @@ public class Cliente extends Persona {
     private Instructor InstructorAsignado;
     private Sucursal sucursal;
     private List<ClaseGrupal> clasesMatriculadas; 
+    private List<ClaseGrupal> clases;
 
 
     public Cliente() {
@@ -56,6 +57,9 @@ public class Cliente extends Persona {
      public List<ClaseGrupal> getClasesMatriculadas() {
         return clasesMatriculadas;
     }
+     
+    public List<ClaseGrupal> getClases() { return clases; }
+    public void setClases(List<ClaseGrupal> clases) { this.clases = clases; }
 
     public boolean agregarClase(ClaseGrupal clase) {
         if (!clasesMatriculadas.contains(clase) && clasesMatriculadas.size() < 3) {

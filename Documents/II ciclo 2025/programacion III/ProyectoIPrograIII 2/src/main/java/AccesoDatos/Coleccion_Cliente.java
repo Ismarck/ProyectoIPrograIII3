@@ -9,6 +9,7 @@ import Modelo.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 import AccesoDatos.Coleccion_Sucursal;
+import Modelo.ClaseGrupal;
 
 /**
  *
@@ -16,6 +17,9 @@ import AccesoDatos.Coleccion_Sucursal;
  */
 public class Coleccion_Cliente {
     private List<Cliente> lista;
+    private List<ClaseGrupal> clases;
+    public List<ClaseGrupal> getClases() { return clases; }
+
 
     public Coleccion_Cliente(List<Cliente> lista) {
         this.lista = lista;
@@ -85,6 +89,20 @@ public class Coleccion_Cliente {
     return null;
 }
     
+   
+    // Cuenta cuántas clases tiene matriculado un cliente
+    public int cantidadClasesMatriculadas(Cliente c) {
+        if (c == null || c.getClasesMatriculadas() == null) {
+            return 0;
+        }
+        return c.getClasesMatriculadas().size();
+    }
+
+   
+
+    
+
+
     // Listar Clientes
     public List<Cliente> Listar() {
         return new ArrayList<>(lista);

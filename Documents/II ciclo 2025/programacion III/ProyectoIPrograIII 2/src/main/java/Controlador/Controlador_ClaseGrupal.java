@@ -31,6 +31,10 @@ public class Controlador_ClaseGrupal {
     public boolean matricularCliente(ClaseGrupal clase, Cliente cliente) {
         return clase.matricularCliente(cliente);
     }
+    
+     public int contarClasesPorSucursal(String sucursal) {
+        return coleccion.contarClasesPorSucursal(sucursal);
+    }
 
     public List<ClaseGrupal> listarClases() {
         return coleccion.obtenerTodas();

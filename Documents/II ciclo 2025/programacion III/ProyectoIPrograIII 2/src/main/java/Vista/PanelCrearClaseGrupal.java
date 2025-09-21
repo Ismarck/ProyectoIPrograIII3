@@ -9,6 +9,7 @@ import Modelo.Instructor;
 import Controlador.Controlador_ClaseGrupal;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
+import Modelo.Cliente;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -69,7 +70,10 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
             });
         }
     }
-
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -252,13 +256,33 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        try {
+        /*try {
             String tipo = txtTipoClase.getText().trim();
             Instructor ins = (Instructor) CombxInstructorclase.getSelectedItem();
             String horario = txtHorario.getText().trim();
             int cupo = Integer.parseInt(txtCupoMaximo.getText().trim());
 
             ClaseGrupal clase = new ClaseGrupal(tipo, ins, horario, cupo);
+            controlador.crearClaseGrupal(clase);
+            actualizarTabla();
+            JOptionPane.showMessageDialog(this, "Clase creada con éxito.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }*/
+        try {
+            String tipo = txtTipoClase.getText().trim();
+            Instructor ins = (Instructor) CombxInstructorclase.getSelectedItem();
+            String horario = txtHorario.getText().trim();
+            int cupo = Integer.parseInt(txtCupoMaximo.getText().trim());
+            String sucursal = txtSucursal.getText().trim();
+
+            // Validar máximo 8 clases por sucursal
+            if (controlador.contarClasesPorSucursal(sucursal) >= 8) {
+                JOptionPane.showMessageDialog(this, "Ya se alcanzó el máximo de 8 clases en esta sucursal.");
+                return;
+            }
+
+            ClaseGrupal clase = new ClaseGrupal(tipo, ins, horario, cupo, sucursal);
             controlador.crearClaseGrupal(clase);
             actualizarTabla();
             JOptionPane.showMessageDialog(this, "Clase creada con éxito.");

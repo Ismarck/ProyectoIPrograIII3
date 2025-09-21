@@ -55,6 +55,10 @@ public class Controlador_Cliente {
         return coleccionCliente.Listar();
     }
     
+   public int cantidadClasesMatriculadas(Cliente c) {
+        return coleccionCliente.cantidadClasesMatriculadas(c);
+    }
+    
    public DefaultTableModel obtenerTablaClientesPorNombre(String nombre) {
     List<Cliente> clientes = coleccionCliente.buscarPorNombre(nombre);
 

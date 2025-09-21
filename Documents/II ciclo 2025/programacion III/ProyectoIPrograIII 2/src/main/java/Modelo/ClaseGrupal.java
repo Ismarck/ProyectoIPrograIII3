@@ -13,10 +13,11 @@ public class ClaseGrupal {
     private Instructor instructor;
     private String horario;
     private int cupoMaximo;
+    private String sucursal; 
     private int cuposDisponibles;
     private List<Cliente> matriculados;
 
-    public ClaseGrupal(String tipoClase, Instructor instructor, String horario, int cupoMaximo) {
+    /*public ClaseGrupal(String tipoClase, Instructor instructor, String horario, int cupoMaximo) {
         if (!instructor.getEspecialidad().equalsIgnoreCase(tipoClase)) {
             throw new IllegalArgumentException("El instructor no tiene la especialidad requerida.");
         }
@@ -26,7 +27,16 @@ public class ClaseGrupal {
         this.cupoMaximo = cupoMaximo;
         this.cuposDisponibles = cupoMaximo;
         this.matriculados = new ArrayList<>();
-    }
+    }*/
+    public ClaseGrupal(String tipoClase, Instructor instructor, String horario, int cupoMaximo, String sucursal) {
+        this.tipoClase = tipoClase;
+        this.instructor = instructor;
+        this.horario = horario;
+        this.cupoMaximo = cupoMaximo;
+        this.sucursal = sucursal;
+        this.matriculados = new ArrayList<>();
+}
+
 
     public String getTipoClase() {
         return tipoClase;
@@ -66,6 +76,16 @@ public class ClaseGrupal {
 
     public void setCuposDisponibles(int cuposDisponibles) {
         this.cuposDisponibles = cuposDisponibles;
+    }
+    
+    // Getter que faltaba
+    public String getSucursal() {
+        return sucursal;
+    }
+
+    // Opcional: setter si necesitas modificar la sucursal
+    public void setSucursal(String sucursal) {
+        this.sucursal = sucursal;
     }
 
     @Override
