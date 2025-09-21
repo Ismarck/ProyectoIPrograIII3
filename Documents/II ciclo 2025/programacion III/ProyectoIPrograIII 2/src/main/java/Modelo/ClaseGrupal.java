@@ -33,6 +33,7 @@ public class ClaseGrupal {
         this.instructor = instructor;
         this.horario = horario;
         this.cupoMaximo = cupoMaximo;
+        this.cuposDisponibles = cupoMaximo; // 🔹 Ahora sí
         this.sucursal = sucursal;
         this.matriculados = new ArrayList<>();
 }
