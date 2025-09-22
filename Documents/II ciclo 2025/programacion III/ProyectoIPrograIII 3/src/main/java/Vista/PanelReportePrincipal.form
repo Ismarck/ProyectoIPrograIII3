@@ -23,7 +23,9 @@
               <Component id="btnInstructorinf" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnSucursal" min="-2" pref="123" max="-2" attributes="0"/>
-              <EmptySpace pref="282" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnInsSucu" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="93" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -35,6 +37,7 @@
                   <Component id="btnClienteinf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnInstructorinf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSucursal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnInsSucu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="425" max="32767" attributes="0"/>
           </Group>
@@ -64,6 +67,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSucursalActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnInsSucu">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Informe Instructor por sucursal"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInsSucuActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
