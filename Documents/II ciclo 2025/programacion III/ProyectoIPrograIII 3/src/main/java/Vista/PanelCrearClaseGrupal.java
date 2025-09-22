@@ -86,6 +86,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
         jTable2 = new javax.swing.JTable();
         Sucursal = new javax.swing.JLabel();
         txtSucursal = new javax.swing.JTextField();
+        btnSucursal = new javax.swing.JButton();
 
         ClaseGrupal.setFont(new java.awt.Font("Gurmukhi MN", 0, 18)); // NOI18N
         ClaseGrupal.setText("Lista De Clases en la Sucursal");
@@ -145,6 +146,13 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
             }
         });
 
+        btnSucursal.setText("Buscar");
+        btnSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSucursalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,14 +193,16 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
                                                 .addGap(55, 55, 55)
                                                 .addComponent(Sucursal)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnSucursal))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(133, 133, 133)
                                 .addComponent(ClaseGrupal1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(127, 127, 127)
                                 .addComponent(ClaseGrupal, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 39, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
@@ -214,7 +224,8 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
                             .addComponent(txtTipoClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Sucursal)
-                        .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSucursal)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Instructor)
@@ -279,6 +290,10 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSucursalActionPerformed
 
+    private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSucursalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ClaseGrupal;
@@ -291,6 +306,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     private javax.swing.JLabel TipoClase;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSucursal;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

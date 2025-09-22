@@ -178,6 +178,12 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
 
         jLabel11.setText("Pecho(CM):");
 
+        txtNombreCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreCLActionPerformed(evt);
+            }
+        });
+
         txtEstatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEstaturaActionPerformed(evt);
@@ -495,6 +501,10 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error al buscar el cliente: " + e.getMessage());
         }
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void txtNombreCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreCLActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
