@@ -85,6 +85,18 @@ public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
     return resultado; // si no se encuentra el instructor, devuelve lista vacía
 }
 
+//Metodo creado recientemente// Dentro de Coleccion_Instructor.java
+public List<Instructor> buscarPorSucursal(String sucursal) {
+    List<Instructor> resultado = new ArrayList<>();
+    for (Instructor ins : lista) {  // usa "lista", no "instructores"
+        if (ins.getSucursal().equalsIgnoreCase(sucursal)) {
+            resultado.add(ins);
+        }
+    }
+    return resultado;
+}
+// Marcos
+
 
     // Listar Instructores
     public List<Instructor> Listar_Instructor(){

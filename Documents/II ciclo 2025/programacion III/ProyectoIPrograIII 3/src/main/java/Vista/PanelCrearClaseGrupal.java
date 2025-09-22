@@ -291,7 +291,37 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSucursalActionPerformed
 
     private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
-        // TODO add your handling code here:
+        try {
+            // Obtengo el nombre de la sucursal
+            String sucursal = txtSucursal.getText().trim();
+
+            if (sucursal.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese el nombre de la sucursal.");
+                return;
+            }
+
+            // Buscar instructores en esa sucursal
+            java.util.List<Instructor> instructores = this.controladorInstructor.buscarPorSucursal(sucursal);
+
+            if (instructores != null && !instructores.isEmpty()) {
+                // Limpiar el combo y volver a llenarlo
+                CombxInstructorclase.removeAllItems();
+                for (Instructor ins : instructores) {
+                    CombxInstructorclase.addItem(ins);
+                }
+
+                // Mostrar la especialidad del primer instructor en un JTextField
+                Instructor primero = instructores.get(0);
+                txtTipoClase.setText(primero.getEspecialidad());
+
+                JOptionPane.showMessageDialog(this, "Instructores encontrados para la sucursal " + sucursal);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontraron instructores para esta sucursal.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar instructores: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnSucursalActionPerformed
 
 

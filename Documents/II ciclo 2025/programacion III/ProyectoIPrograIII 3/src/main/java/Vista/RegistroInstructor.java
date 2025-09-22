@@ -308,6 +308,11 @@ public class RegistroInstructor extends javax.swing.JPanel {
         int cedula = Integer.parseInt(Cedulains.getText().trim());
         int numeroCelular = Integer.parseInt(Celularins.getText().trim());
         char sexo = SexoIns.getText().trim().isEmpty() ? 'M' : SexoIns.getText().trim().charAt(0);
+        
+        //Nuevo 
+        String claveSucursal = CombxSucursal.getSelectedItem().toString();
+        Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
+        //Marcos
 
         // Crear el instructor
         Instructor nuevo = new Instructor(
@@ -317,12 +322,14 @@ public class RegistroInstructor extends javax.swing.JPanel {
             correo,
             numeroCelular,
             cedula,
-            sexo
+            sexo,
+            sucursalSeleccionada.getProvincia()
         );
-
+        
+       
         // Obtener la sucursal seleccionada del combo
-        String claveSucursal = CombxSucursal.getSelectedItem().toString();
-        Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
+        //String claveSucursal = CombxSucursal.getSelectedItem().toString();
+        //Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
 
         if (sucursalSeleccionada == null) {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado una sucursal válida.");

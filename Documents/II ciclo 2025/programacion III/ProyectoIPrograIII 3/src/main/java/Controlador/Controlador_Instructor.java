@@ -52,6 +52,11 @@ public class Controlador_Instructor {
     public java.util.List<Instructor> listar() {
         return coleccion.Listar_Instructor();
     }
+    
+    //Metodo nuevo
+    public List<Instructor> buscarPorSucursal(String sucursal) {
+        return coleccion.buscarPorSucursal(sucursal);
+    }//Marcos
    
     public List<Cliente> getListaClientes() {
         return listaClientes;

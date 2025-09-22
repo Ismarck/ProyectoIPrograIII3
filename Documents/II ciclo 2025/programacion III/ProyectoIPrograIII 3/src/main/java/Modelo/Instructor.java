@@ -11,14 +11,17 @@ public class Instructor extends Persona {
 
     private String Especialidad;
     private List<Cliente> listaClientes;
+    //Marcos llamado nuevo
+    private String sucursal;
 
     public Instructor() {
     }
 
-    public Instructor(String Especialidad,String Nombre, String Fecha_Nacimiento, String Correo, int Numero_Celular, int Cedula, char Sexo) {
+    public Instructor(String Especialidad,String Nombre, String Fecha_Nacimiento, String Correo, int Numero_Celular, int Cedula, char Sexo, String sucursal) {
         super(Nombre,Fecha_Nacimiento, Correo, Numero_Celular, Cedula, Sexo);
         this.Especialidad = Especialidad;
         listaClientes = new ArrayList<>();
+        this.sucursal = sucursal;
     }
 
     public String getEspecialidad() {
@@ -44,8 +47,15 @@ public class Instructor extends Persona {
             listaClientes.add(c);
         }
     }
-
     
+    public String getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(String sucursal) {
+        this.sucursal = sucursal;
+    }
+
     @Override
     public String toString() {
         return getNombre(); // o como quieras mostrarlo
@@ -77,7 +87,8 @@ public class Instructor extends Persona {
         "benjacol@gmail.com",
         88776655,
         123456789,
-        'M'
+        'M',
+        "Heredia"      
         );
         
         System.out.println(instructor1.Datos());

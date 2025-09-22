@@ -242,7 +242,8 @@ public class RegistroSucursal extends javax.swing.JPanel {
                     "benjacol@gmail.com",
                     88776655,
                     123456789,
-                    'M'
+                    'M',
+                    "Heredia"
             );
 
             Sucursal nuevo = new Sucursal(
