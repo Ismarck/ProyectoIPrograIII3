@@ -179,10 +179,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value="Pecho y triceps"/>
+                <StringItem index="1" value="Biceps"/>
+                <StringItem index="2" value="Piernas"/>
+                <StringItem index="3" value="Espalda"/>
               </StringArray>
             </Property>
           </Properties>
@@ -194,6 +194,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar Ejercicio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgEjercicioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator3">
         </Component>

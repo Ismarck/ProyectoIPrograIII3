@@ -4,17 +4,50 @@
  */
 package Vista;
 
+import Modelo.Cliente;
+import Modelo.Ejercicio;
+import Modelo.Rutina;
+import Controlador.Controlador_Cliente;
+import Controlador.Controlador_Rutina;
+import AccesoDatos.Coleccion_Ejercicios;
+import AccesoDatos.Coleccion_Cliente;
+import AccesoDatos.Coleccion_Sucursal;
+
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marcosisaacarayaabarca
  */
 public class PanelRutina extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelRutina
-     */
-    public PanelRutina() {
+    private Controlador_Rutina controlador;
+    private Rutina rutinaGenerada;
+    private Controlador_Cliente controladorCliente; // agrega esta variable al panel
+    private Coleccion_Ejercicios coleccion;
+    private Coleccion_Cliente coleccionCliente;
+    private Coleccion_Sucursal coleccionSucursal;
+
+    public PanelRutina(Coleccion_Ejercicios coleccionEjercicios,
+            Coleccion_Cliente coleccionCliente,
+            Coleccion_Sucursal coleccionSucursal) {
         initComponents();
+
+        this.coleccion = coleccionEjercicios;
+        this.coleccionCliente = coleccionCliente;
+        this.coleccionSucursal = coleccionSucursal;
+
+        //this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
+        //this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
+        this.controlador = new Controlador_Rutina(coleccion);
+        this.controladorCliente = new Controlador_Cliente(coleccionCliente, coleccionSucursal);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{"Ejercicio", "Área"}));
     }
 
     /**
@@ -55,9 +88,14 @@ public class PanelRutina extends javax.swing.JPanel {
 
         jTextField1.setText("jTextField1");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pecho y triceps", "Biceps", "Piernas", "Espalda" }));
 
         btnAgEjercicio.setText("Agregar Ejercicio");
+        btnAgEjercicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgEjercicioActionPerformed(evt);
+            }
+        });
 
         labelNombEjercicio2.setText("Nombre Del Cliente:");
 
@@ -192,12 +230,68 @@ public class PanelRutina extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarRutinaActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:   
+        try {
+            String nombreCliente = jTextField2.getText().trim();
+            if (nombreCliente.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese el nombre del cliente");
+                return;
+            }
+
+            // Buscar cliente existente
+            Cliente cliente = controladorCliente.buscarpornombreunico(nombreCliente);
+
+            if (cliente == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró un cliente con ese nombre");
+                return;
+            }
+
+            // Generar la rutina con ese cliente
+            rutinaGenerada = controlador.generarRutina(cliente);
+            JOptionPane.showMessageDialog(null, "Rutina generada para " + cliente.getNombre());
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+
     }//GEN-LAST:event_btnGenerarRutinaActionPerformed
 
     private void btnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarRutinaActionPerformed
         // TODO add your handling code here:
+
+        if (rutinaGenerada == null) {
+            JOptionPane.showMessageDialog(null, "Primero genere una rutina");
+            return;
+        }
+
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // limpiar tabla
+
+        for (Modelo.Ejercicio e : rutinaGenerada.getEjercicios()) {
+            model.addRow(new Object[]{e.getNombre(), e.getArea()});
+        }
     }//GEN-LAST:event_btnMostrarRutinaActionPerformed
+
+    private void btnAgEjercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgEjercicioActionPerformed
+
+        try {
+            String nombre = jTextField1.getText().trim();
+            String area = jComboBox1.getSelectedItem().toString();
+
+            if (nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un nombre de ejercicio");
+                return;
+            }
+
+            controlador.agregarEjercicio(nombre, area);
+            JOptionPane.showMessageDialog(null, "Ejercicio agregado a la batería");
+            jTextField1.setText(""); // limpiar campo
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+
+
+    }//GEN-LAST:event_btnAgEjercicioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

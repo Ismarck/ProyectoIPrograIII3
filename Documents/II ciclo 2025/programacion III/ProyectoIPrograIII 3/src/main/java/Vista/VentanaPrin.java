@@ -8,6 +8,7 @@ import AccesoDatos.Coleccion_ClaseGrupal;
 import AccesoDatos.Coleccion_Cliente;
 import AccesoDatos.Coleccion_Instructor;
 import AccesoDatos.Coleccion_Sucursal;
+import AccesoDatos.Coleccion_Ejercicios;
 import AccesoDatos.Coleccion_Medicion;
 import Controlador.Controlador_ClaseGrupal;
 import Controlador.Controlador_Medicion;
@@ -41,6 +42,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Controlador_Instructor controladorInstructor;
     private Controlador_Sucursal controladorSucursal;
     private Controlador_ClaseGrupal controladorClaseGrupal;
+private Coleccion_Ejercicios coleccionEjercicios;
 
 
     
@@ -59,6 +61,7 @@ public class VentanaPrin extends javax.swing.JFrame {
         this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
         this.controladorInstructor = new Controlador_Instructor(this.coleccionInstructor, this.coleccionCliente);
         this.controladorSucursal = new Controlador_Sucursal(coleccionSucursal);
+        this.coleccionEjercicios = new Coleccion_Ejercicios();
         //this.controladorcliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal );
         this.controladorCliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal);
         this.controladorClaseGrupal = new Controlador_ClaseGrupal(new Coleccion_ClaseGrupal(),this.controladorInstructor,this.controladorCliente);
@@ -437,7 +440,9 @@ public class VentanaPrin extends javax.swing.JFrame {
     }//GEN-LAST:event_PrincipalActionPerformed
 
     private void RutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RutinaActionPerformed
-        PanelRutina p1 = new PanelRutina();
+        PanelRutina p1 = new PanelRutina(this.coleccionEjercicios, // si quieres iniciar vacío
+        this.coleccionCliente,
+        this.coleccionSucursal);
         ShowPanel(p1);
     }//GEN-LAST:event_RutinaActionPerformed
     
