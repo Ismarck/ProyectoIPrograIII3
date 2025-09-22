@@ -10,6 +10,8 @@ import AccesoDatos.Coleccion_Medicion;
 import AccesoDatos.Coleccion_Sucursal;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Medicion;
+import Controlador.Controlador_Sucursal;
+
 import Vista.PanelPruebaMedicion;
 
 
@@ -21,7 +23,8 @@ public class PanelMedicion extends javax.swing.JPanel {
 
     private Controlador_Medicion controladorMedicion;
     private Controlador_Cliente controladorCliente;
-    
+    private Controlador_Sucursal controladorSucursal; 
+
     /**
      * Creates new form PanelRegistro
      */
@@ -33,10 +36,13 @@ public class PanelMedicion extends javax.swing.JPanel {
         //ShowPanel(p1);
         
     }*/
-     public PanelMedicion(Controlador_Medicion controladorMedicion, Controlador_Cliente controladorCliente) {
-        this.controladorMedicion = controladorMedicion;
+     public PanelMedicion(Controlador_Medicion controladorMedicion, Controlador_Cliente controladorCliente, Controlador_Sucursal controladorSucursal) {
+               initComponents();
+
+         this.controladorMedicion = controladorMedicion;
         this.controladorCliente = controladorCliente;
-        initComponents();
+                this.controladorSucursal = controladorSucursal; 
+
     }
 
     
@@ -72,6 +78,8 @@ public class PanelMedicion extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         btnPruebaIMC = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        btnReportexSucursal = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -94,10 +102,10 @@ public class PanelMedicion extends javax.swing.JPanel {
                 btnReporteMedicionActionPerformed(evt);
             }
         });
-        jPanel1.add(btnReporteMedicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, -1));
+        jPanel1.add(btnReporteMedicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, -1, -1));
 
         jLabel5.setText("Reporte Medicion:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, -1, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, 20));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(jPanel2);
@@ -114,6 +122,17 @@ public class PanelMedicion extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnPruebaIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
+
+        jLabel4.setText("Reporte IMC Sucursal");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, -1, -1));
+
+        btnReportexSucursal.setText("Reporte");
+        btnReportexSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportexSucursalActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnReportexSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,13 +156,21 @@ public class PanelMedicion extends javax.swing.JPanel {
         ShowPanel(p1);
     }//GEN-LAST:event_btnPruebaIMCActionPerformed
 
+    private void btnReportexSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportexSucursalActionPerformed
+        // TODO add your handling code here:
+         PanelReporteIMCSucursal p1 = new PanelReporteIMCSucursal(this.controladorSucursal, this.controladorMedicion);
+        ShowPanel(p1);
+    }//GEN-LAST:event_btnReportexSucursalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPruebaIMC;
     private javax.swing.JButton btnReporteMedicion;
+    private javax.swing.JButton btnReportexSucursal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

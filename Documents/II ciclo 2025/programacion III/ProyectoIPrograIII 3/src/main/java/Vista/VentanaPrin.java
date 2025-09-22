@@ -423,7 +423,7 @@ private Coleccion_Ejercicios coleccionEjercicios;
     }//GEN-LAST:event_SalidaActionPerformed
 
     private void MedicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedicionActionPerformed
-        PanelMedicion p1 = new PanelMedicion(this.controladorMedicion, this.controladorCliente);
+        PanelMedicion p1 = new PanelMedicion(this.controladorMedicion, this.controladorCliente,this.controladorSucursal);
         ShowPanel(p1);
     }//GEN-LAST:event_MedicionActionPerformed
 
