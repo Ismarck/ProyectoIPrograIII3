@@ -382,7 +382,7 @@ private Coleccion_Ejercicios coleccionEjercicios;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(Mensaje_Bienvenida)
