@@ -128,6 +128,7 @@ public class VentanaPrin extends javax.swing.JFrame {
         Medicion = new javax.swing.JButton();
         ClasesGrupales = new javax.swing.JButton();
         Salida = new javax.swing.JButton();
+        Rutina = new javax.swing.JButton();
         Encabezado = new javax.swing.JPanel();
         mensaje1 = new javax.swing.JLabel();
         mensaje2 = new javax.swing.JLabel();
@@ -245,22 +246,45 @@ public class VentanaPrin extends javax.swing.JFrame {
             }
         });
 
+        Rutina.setBackground(new java.awt.Color(51, 51, 255));
+        Rutina.setFont(new java.awt.Font("Silom", 0, 14)); // NOI18N
+        Rutina.setForeground(new java.awt.Color(255, 255, 255));
+        Rutina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/salirico.jpg"))); // NOI18N
+        Rutina.setText("Rutina");
+        Rutina.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
+        Rutina.setBorderPainted(false);
+        Rutina.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Rutina.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Rutina.setIconTextGap(10);
+        Rutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RutinaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
             MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(appnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(MenuLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(Reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(Medicion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(ClasesGrupales, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MenuLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(appnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MenuLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Medicion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClasesGrupales, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuLayout.createSequentialGroup()
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Rutina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Salida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,8 +304,11 @@ public class VentanaPrin extends javax.swing.JFrame {
                 .addComponent(Medicion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(ClasesGrupales, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Rutina, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Salida, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         Encabezado.setBackground(new java.awt.Color(51, 153, 255));
@@ -408,6 +435,11 @@ public class VentanaPrin extends javax.swing.JFrame {
         PanelBienvenida p1 = new PanelBienvenida();
         ShowPanel(p1);
     }//GEN-LAST:event_PrincipalActionPerformed
+
+    private void RutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RutinaActionPerformed
+        PanelRutina p1 = new PanelRutina();
+        ShowPanel(p1);
+    }//GEN-LAST:event_RutinaActionPerformed
     
     
     /**
@@ -458,6 +490,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     private javax.swing.JButton Principal;
     private javax.swing.JButton Registro;
     private javax.swing.JButton Reportes;
+    private javax.swing.JButton Rutina;
     private javax.swing.JButton Salida;
     private javax.swing.JLabel appnombre;
     private javax.swing.JSeparator jSeparator1;
