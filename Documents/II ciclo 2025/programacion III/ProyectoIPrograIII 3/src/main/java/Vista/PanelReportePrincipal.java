@@ -61,6 +61,7 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
         btnInstructorinf = new javax.swing.JButton();
         btnSucursal = new javax.swing.JButton();
         btnInsSucu = new javax.swing.JButton();
+        btninstructorxesp = new javax.swing.JButton();
 
         btnClienteinf.setText("Informe Cliente");
         btnClienteinf.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +91,13 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
             }
         });
 
+        btninstructorxesp.setText("Informe instructor por especialidad");
+        btninstructorxesp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btninstructorxespActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +111,9 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
                 .addComponent(btnSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnInsSucu)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btninstructorxesp)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +123,8 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
                     .addComponent(btnClienteinf)
                     .addComponent(btnInstructorinf)
                     .addComponent(btnSucursal)
-                    .addComponent(btnInsSucu))
+                    .addComponent(btnInsSucu)
+                    .addComponent(btninstructorxesp))
                 .addContainerGap(425, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -134,9 +145,14 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSucursalActionPerformed
 
     private void btnInsSucuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsSucuActionPerformed
-  PanelReporteInsSucu panelInsSucu = new PanelReporteInsSucu(this.controlador_Sucursal);
+    PanelReporteInsSucu panelInsSucu = new PanelReporteInsSucu(this.controlador_Sucursal);
     mostrarPanel(panelInsSucu);
     }//GEN-LAST:event_btnInsSucuActionPerformed
+
+    private void btninstructorxespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninstructorxespActionPerformed
+    PanelReporteInsxEsp PanelReporteInsxEsp = new PanelReporteInsxEsp(this.controlador_Instructor);
+    mostrarPanel(PanelReporteInsxEsp);
+    }//GEN-LAST:event_btninstructorxespActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -144,5 +160,6 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     private javax.swing.JButton btnInsSucu;
     private javax.swing.JButton btnInstructorinf;
     private javax.swing.JButton btnSucursal;
+    private javax.swing.JButton btninstructorxesp;
     // End of variables declaration//GEN-END:variables
 }

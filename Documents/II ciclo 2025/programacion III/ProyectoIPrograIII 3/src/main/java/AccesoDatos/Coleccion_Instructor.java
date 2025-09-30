@@ -97,6 +97,24 @@ public List<Instructor> buscarPorSucursal(String sucursal) {
 }
 // Marcos
 
+//
+// Método para buscar instructores por especialidad
+public List<Instructor> buscarPorEspecialidad(String especialidad) {
+    List<Instructor> resultado = new ArrayList<>();
+    String especialidadBusqueda = especialidad.toLowerCase().trim();
+    
+    for (Instructor ins : lista) {
+        if (ins.getEspecialidad() != null &&
+            ins.getEspecialidad().toLowerCase().contains(especialidadBusqueda)) {
+            resultado.add(ins);
+        }
+    }
+    
+    return resultado;
+}
+
+//
+
 
     // Listar Instructores
     public List<Instructor> Listar_Instructor(){

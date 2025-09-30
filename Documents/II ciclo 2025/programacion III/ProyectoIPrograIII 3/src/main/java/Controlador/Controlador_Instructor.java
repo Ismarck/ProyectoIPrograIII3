@@ -133,4 +133,35 @@ public class Controlador_Instructor {
 }
 
     
+    //
+    // Método para obtener instructores por especialidad
+    public List<Instructor> listarPorEspecialidad(String especialidad) {
+        return coleccion.buscarPorEspecialidad(especialidad);
+    }
+
+// Método para llenar una tabla con instructores por especialidad
+    public DefaultTableModel obtenerTablaInstructoresPorEspecialidad(String especialidad) {
+        List<Instructor> instructores = listarPorEspecialidad(especialidad);
+
+        String[] columnas = {"Cédula", "Nombre", "Especialidad", "Correo", "Celular", "Sucursal"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+        for (Instructor ins : instructores) {
+            Object[] fila = {
+                ins.getCedula(),
+                ins.getNombre(),
+                ins.getEspecialidad(),
+                ins.getCorreo(),
+                ins.getNumero_Celular(),
+                (ins.getSucursal() != null) ? ins.getSucursal() : "No asociada"
+                //(ins.getSucursal() != null) ? ins.getSucursal().getCodigo() + " - " + ins.getSucursal().getProvincia() : "No asociada"
+            };
+            modelo.addRow(fila);
+        }
+
+        return modelo;
+    }
+    //
+
+    
 }
