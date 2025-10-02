@@ -1,10 +1,7 @@
 package Modelo;
 
 import java.util.List;
-import Modelo.Rutina;
 import java.util.ArrayList;
-
-
 
 /**
  *

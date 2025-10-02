@@ -7,6 +7,7 @@ import java.util.List;
  *
  * @author marcosisaacarayaabarca
  */
+
 public class Sucursal {
 
     private String Provincia;
@@ -62,7 +63,6 @@ public class Sucursal {
         return clientes;
     }
     
-    //Borrar si no funciona
     // En la clase Sucursal
 private List<Instructor> listaInstructores = new ArrayList<>();
 
@@ -76,19 +76,9 @@ private List<Instructor> listaInstructores = new ArrayList<>();
         return new ArrayList<>(listaInstructores);
     }
 
-    
-/*
-    @Override
-    public String toString() {
-        return "Sucursal{" + "Provincia=" + Provincia + ", Canton=" + Canton + ", Codigo=" + Codigo + "Instructor= "+ instructor +'}';
-    }*/
-    
     @Override
     public String toString() {
         return Provincia + " - " + Canton + " (" + Codigo + ")";
     }
-
-    
-
-    
+   
 }

@@ -12,10 +12,10 @@ import Controlador.Controlador_Rutina;
 import AccesoDatos.Coleccion_Ejercicios;
 import AccesoDatos.Coleccion_Cliente;
 import AccesoDatos.Coleccion_Sucursal;
-
+/*
 import java.util.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableModel;*/
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +26,7 @@ public class PanelRutina extends javax.swing.JPanel {
 
     private Controlador_Rutina controlador;
     private Rutina rutinaGenerada;
-    private Controlador_Cliente controladorCliente; // agrega esta variable al panel
+    private Controlador_Cliente controladorCliente; 
     private Coleccion_Ejercicios coleccion;
     private Coleccion_Cliente coleccionCliente;
     private Coleccion_Sucursal coleccionSucursal;
@@ -39,9 +39,6 @@ public class PanelRutina extends javax.swing.JPanel {
         this.coleccion = coleccionEjercicios;
         this.coleccionCliente = coleccionCliente;
         this.coleccionSucursal = coleccionSucursal;
-
-        //this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
-        //this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
         this.controlador = new Controlador_Rutina(coleccion);
         this.controladorCliente = new Controlador_Cliente(coleccionCliente, coleccionSucursal);
 
@@ -238,7 +235,6 @@ public class PanelRutina extends javax.swing.JPanel {
                 return;
             }
 
-            // Buscar cliente existente
             Cliente cliente = controladorCliente.buscarpornombreunico(nombreCliente);
 
             if (cliente == null) {
@@ -246,7 +242,6 @@ public class PanelRutina extends javax.swing.JPanel {
                 return;
             }
 
-            // Generar la rutina con ese cliente
             rutinaGenerada = controlador.generarRutina(cliente);
             JOptionPane.showMessageDialog(null, "Rutina generada para " + cliente.getNombre());
 
@@ -257,15 +252,13 @@ public class PanelRutina extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGenerarRutinaActionPerformed
 
     private void btnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarRutinaActionPerformed
-        // TODO add your handling code here:
-
         if (rutinaGenerada == null) {
             JOptionPane.showMessageDialog(null, "Primero genere una rutina");
             return;
         }
 
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // limpiar tabla
+        model.setRowCount(0); 
 
         for (Modelo.Ejercicio e : rutinaGenerada.getEjercicios()) {
             model.addRow(new Object[]{e.getNombre(), e.getArea()});

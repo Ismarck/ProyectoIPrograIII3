@@ -4,12 +4,9 @@
  */
 package Vista;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import Controlador.Controlador_Medicion;
 import Controlador.Controlador_Cliente;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 import Modelo.Medicion;
 import Modelo.Cliente;
 import java.time.LocalDate;
@@ -31,31 +28,16 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
     
     public PanelPruebaMedicion(Controlador_Medicion controladorMedicion, Controlador_Cliente controladorCliente) {
         this.controladorMedicion = controladorMedicion;
-        this.controladorCliente = controladorCliente; // primero asignar bien
-        this.cliente = null; // inicializa en null hasta que busques uno
+        this.controladorCliente = controladorCliente; 
+        this.cliente = null; 
 
-        initComponents(); // ahora sí inicializas los componentes
+        initComponents(); 
 
         LocalDate fechaHoy = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         txtFecha.setText(fechaHoy.format(formato));
         btnGuardaryCal.addActionListener(evt -> guardarMedicion());
     }
-     /*
-    private void limpiarCampos() {
-        txtPeso.setText("");
-        txtEstatura.setText("");
-        txtGrasa.setText("");
-        txtMusculo.setText("");
-        txtEdadMeta.setText("");
-        txtCintura.setText("");
-        txtGrasaVis.setText("");
-        txtPecho.setText("");
-        txtMuslo.setText("");
-        txtCadera.setText("");
-        txtIMC.setText("");
-        txtClasiIMC.setText("");
-    }*/
      
     private void BuscarCliente(String Nombre){
         
@@ -66,10 +48,9 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
             double peso = Double.parseDouble(txtPeso.getText());
             double estatura = Double.parseDouble(txtEstatura.getText());
 
-            // Detectar si la estatura está en metros o cm
-            if (estatura > 3) { // asume que si es mayor a 3, está en cm
-                estatura = estatura / 100.0; // convertir cm a metros
-            } // Convertir cm a metros
+            if (estatura > 3) { 
+                estatura = estatura / 100.0;
+            } 
             
             double porcentajeGrasa = Double.parseDouble(txtGrasa.getText());
             double porcentajeMusculo = Double.parseDouble(txtMusculo.getText());
@@ -80,18 +61,15 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
             double muslo = Double.parseDouble(txtMuslo.getText());
             double cadera = Double.parseDouble(txtCadera.getText());
 
-            // Calcular IMC
             double imc = peso / (estatura * estatura);
             txtIMC.setText(String.format("%.2f", imc));
             txtClasiIMC.setText(clasificarIMC(imc));
 
-            // Crear objeto Medicion y registrar
             Medicion m = new Medicion(cliente, null, LocalDate.now(), peso, estatura * 100, porcentajeGrasa,
                     porcentajeMusculo, edadMetabolica, grasaVisceral, cintura, cadera, pecho, muslo);
 
             controladorMedicion.registrarMedicion(m);
             JOptionPane.showMessageDialog(this, "Medición guardada correctamente!");
-            //limpiarCampos();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.");
         }
@@ -468,19 +446,16 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         try {
-            // Pido el nombre que se escribe en el campo
             String nombre = txtNombreCL.getText().trim();
 
             if (nombre.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Ingrese el nombre del cliente para buscar.");
                 return;
             }
-
-            // Buscar el cliente usando el controlador
+            
             cliente = controladorCliente.buscarpornombreunico(nombre);
 
             if (cliente != null) {
-                // Rellenar los campos con los datos del cliente
                 txtIDCL.setText(String.valueOf(cliente.getCedula()));
                 txtNombreCL.setText(cliente.getNombre());
                 txtInstruCL.setText(
@@ -488,7 +463,7 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
                         ? cliente.getInstructorAsignado().getNombre()
                         : "No asignado"
                 );
-                // Si quieres mostrar también la fecha de inscripción:
+                
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 txtFecha.setText(cliente.getFecha_Inscripcion());
 

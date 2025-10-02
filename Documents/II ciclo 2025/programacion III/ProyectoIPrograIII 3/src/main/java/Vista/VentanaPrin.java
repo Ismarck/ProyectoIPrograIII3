@@ -37,7 +37,6 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Coleccion_Sucursal coleccionSucursal;
     private Coleccion_Medicion coleccionMedicion;
     private Coleccion_ClaseGrupal Coleccion_ClaseGrupal;
-    //private Controlador_Cliente controladorcliente;
     private Controlador_Medicion controladorMedicion;
     private Controlador_Instructor controladorInstructor;
     private Controlador_Sucursal controladorSucursal;
@@ -52,7 +51,6 @@ private Coleccion_Ejercicios coleccionEjercicios;
         SetDate();
         initContent();
         
-          // Inicializo colecciones
         this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
         this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
         this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
@@ -62,11 +60,9 @@ private Coleccion_Ejercicios coleccionEjercicios;
         this.controladorInstructor = new Controlador_Instructor(this.coleccionInstructor, this.coleccionCliente);
         this.controladorSucursal = new Controlador_Sucursal(coleccionSucursal);
         this.coleccionEjercicios = new Coleccion_Ejercicios();
-        //this.controladorcliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal );
         this.controladorCliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal);
         this.controladorClaseGrupal = new Controlador_ClaseGrupal(new Coleccion_ClaseGrupal(),this.controladorInstructor,this.controladorCliente);
         
-        // Mostrar panel de bienvenida una sola vez
         PanelBienvenida p1 = new PanelBienvenida();
         ShowPanel(p1);
 
@@ -84,8 +80,6 @@ private Coleccion_Ejercicios coleccionEjercicios;
     }
     
     public void initContent(){
-        //ShowJPanel(new Registro());
-       
     }
    
      private void ShowPanel(JPanel p){
@@ -93,12 +87,10 @@ private Coleccion_Ejercicios coleccionEjercicios;
         p.setLocation(0, 0);
         Desarrollo.removeAll();
         Desarrollo.add(p, BorderLayout.CENTER );
-        //content.setViewportView(p);//ESTE ES PARA SCROLLPANEL
         Desarrollo.revalidate();
         Desarrollo.repaint();
  }
-    
-    //configuracion estilos letras
+
     private void initStyles(){
         Mensaje_Bienvenida.putClientProperty("FlatLaf.style", "font: 200% $light.font");
         Mensaje_Bienvenida.setForeground(Color.DARK_GRAY);
@@ -106,12 +98,9 @@ private Coleccion_Ejercicios coleccionEjercicios;
         mensaje1.setForeground(Color.white);
         mensaje2.putClientProperty("FlatLaf.style", "font: bold $h0.regular.font");
         mensaje2.setForeground(Color.white);
-        //Fecha1.putClientProperty("FlatLaf.style", "font: bold 24 $light.font");
-        //Fecha1.setForeground(Color.white);
         appnombre.putClientProperty("FlatLaf.style", "font: bold $h0.regular.font");
         appnombre.setForeground(Color.white);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -396,16 +385,8 @@ private Coleccion_Ejercicios coleccionEjercicios;
     }// </editor-fold>//GEN-END:initComponents
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
-        //PanelReportes p1 = new PanelReportes(this.);
-        //ShowPanel(p1);
-    //Controlador_Cliente controladorCliente = new Controlador_Cliente(this.coleccionCliente);
-
-    // Creamos el panel de reportes principal pasando el panel contenedor y el controlador
-    PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, this.controladorCliente, this.controladorInstructor,  this.controladorSucursal);
-
-    // Mostramos el panel
-    ShowPanel(p1);
-
+        PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, this.controladorCliente, this.controladorInstructor,  this.controladorSucursal);
+        ShowPanel(p1);
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed
@@ -433,13 +414,12 @@ private Coleccion_Ejercicios coleccionEjercicios;
     }//GEN-LAST:event_PrincipalActionPerformed
 
     private void RutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RutinaActionPerformed
-        PanelRutina p1 = new PanelRutina(this.coleccionEjercicios, // si quieres iniciar vacío
+        PanelRutina p1 = new PanelRutina(this.coleccionEjercicios, 
         this.coleccionCliente,
         this.coleccionSucursal);
         ShowPanel(p1);
     }//GEN-LAST:event_RutinaActionPerformed
-    
-    
+     
     /**
      * @param args the command line arguments
      */
@@ -474,7 +454,6 @@ private Coleccion_Ejercicios coleccionEjercicios;
             }
         });
     }
-    //hola
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

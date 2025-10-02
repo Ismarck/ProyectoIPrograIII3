@@ -4,17 +4,16 @@
  */
 
 package AccesoDatos;
-import Controlador.*;
 import Modelo.Cliente;
 import java.util.ArrayList;
 import java.util.List;
-import AccesoDatos.Coleccion_Sucursal;
 import Modelo.ClaseGrupal;
 
 /**
  *
  * @author marcosisaacarayaabarca
  */
+
 public class Coleccion_Cliente {
     private List<Cliente> lista;
     private List<ClaseGrupal> clases;
@@ -70,7 +69,7 @@ public class Coleccion_Cliente {
     public List<Cliente> buscarPorNombre(String nombre) {
     List<Cliente> resultados = new ArrayList<>();
     if(nombre == null || nombre.trim().isEmpty()) {
-        return resultados; // Devuelve lista vacía si el campo está vacío
+        return resultados; 
     }
 
     for (Cliente cli : lista) {
@@ -84,24 +83,17 @@ public class Coleccion_Cliente {
     public Cliente buscarClientePorNombreUnico(String nombre) {
     List<Cliente> resultados = buscarPorNombre(nombre);
     if (!resultados.isEmpty()) {
-        return resultados.get(0); // solo el primero
+        return resultados.get(0); 
     }
     return null;
 }
-    
    
-    // Cuenta cuántas clases tiene matriculado un cliente
     public int cantidadClasesMatriculadas(Cliente c) {
         if (c == null || c.getClasesMatriculadas() == null) {
             return 0;
         }
         return c.getClasesMatriculadas().size();
     }
-
-   
-
-    
-
 
     // Listar Clientes
     public List<Cliente> Listar() {

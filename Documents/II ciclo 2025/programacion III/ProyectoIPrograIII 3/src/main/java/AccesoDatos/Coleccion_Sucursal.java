@@ -3,11 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package AccesoDatos;
-import Controlador.*;
 import Modelo.Sucursal;
 import Modelo.Cliente;
 import Modelo.Instructor;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,22 +77,22 @@ public class Coleccion_Sucursal {
         return null;
     }
  
-    // En Coleccion_Sucursal
+    
     public Sucursal buscarPorProvincia(String provincia) {
         for (Sucursal s : lista) {
             if (s.getProvincia().equalsIgnoreCase(provincia)) {
                 return s;
             }
         }
-        return null; // Si no se encuentra
+        return null; 
     }
 
     public List<Cliente> listarClientesPorSucursal(int codigoSucursal) {
         Sucursal sucursal = Buscar_Sucursal(codigoSucursal);
         if (sucursal != null) {
-            return new ArrayList<>(sucursal.getClientes()); // Devuelve copia de la lista
+            return new ArrayList<>(sucursal.getClientes()); 
         }
-        return new ArrayList<>(); // Devuelve lista vacía si no existe la sucursal
+        return new ArrayList<>(); 
     }
     
     public List<Sucursal> getListaSucursales() {
@@ -105,4 +103,4 @@ public class Coleccion_Sucursal {
     public List<Sucursal> Listar_Sucursal(){
         return new ArrayList<>(lista);
     }
-}/**/
+}

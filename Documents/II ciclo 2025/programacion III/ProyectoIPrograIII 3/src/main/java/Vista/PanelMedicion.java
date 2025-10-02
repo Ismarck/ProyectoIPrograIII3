@@ -28,14 +28,7 @@ public class PanelMedicion extends javax.swing.JPanel {
     /**
      * Creates new form PanelRegistro
      */
-    /*public PanelMedicion(Controlador_Medicion controladorMedicion) {
-        initComponents();
-        this.controladorMedicion = controladorMedicion;
-         this.controladorCliente = controladorCliente;
-        //PanelIMC p1 = new PanelContenido();
-        //ShowPanel(p1);
-        
-    }*/
+    
      public PanelMedicion(Controlador_Medicion controladorMedicion, Controlador_Cliente controladorCliente, Controlador_Sucursal controladorSucursal) {
                initComponents();
 
@@ -44,8 +37,7 @@ public class PanelMedicion extends javax.swing.JPanel {
                 this.controladorSucursal = controladorSucursal; 
 
     }
-
-    
+ 
    private void ShowPanel(JPanel p) {
     p.setSize(jPanel2.getWidth(), jPanel2.getHeight());
     p.setLocation(0, 0);

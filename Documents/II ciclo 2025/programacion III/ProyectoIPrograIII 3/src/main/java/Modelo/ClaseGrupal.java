@@ -17,27 +17,16 @@ public class ClaseGrupal {
     private int cuposDisponibles;
     private List<Cliente> matriculados;
 
-    /*public ClaseGrupal(String tipoClase, Instructor instructor, String horario, int cupoMaximo) {
-        if (!instructor.getEspecialidad().equalsIgnoreCase(tipoClase)) {
-            throw new IllegalArgumentException("El instructor no tiene la especialidad requerida.");
-        }
-        this.tipoClase = tipoClase;
-        this.instructor = instructor;
-        this.horario = horario;
-        this.cupoMaximo = cupoMaximo;
-        this.cuposDisponibles = cupoMaximo;
-        this.matriculados = new ArrayList<>();
-    }*/
+    
     public ClaseGrupal(String tipoClase, Instructor instructor, String horario, int cupoMaximo, String sucursal) {
         this.tipoClase = tipoClase;
         this.instructor = instructor;
         this.horario = horario;
         this.cupoMaximo = cupoMaximo;
-        this.cuposDisponibles = cupoMaximo; // 🔹 Ahora sí
+        this.cuposDisponibles = cupoMaximo; 
         this.sucursal = sucursal;
         this.matriculados = new ArrayList<>();
 }
-
 
     public String getTipoClase() {
         return tipoClase;
@@ -94,8 +83,6 @@ public class ClaseGrupal {
     return tipoClase + " - " + horario + " (" + sucursal + ")";
     }
     
-    
-
     public boolean matricularCliente(Cliente c) {
         if (cuposDisponibles > 0 && !matriculados.contains(c)) {
             matriculados.add(c);

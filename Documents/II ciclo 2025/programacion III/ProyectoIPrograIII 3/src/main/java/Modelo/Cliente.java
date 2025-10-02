@@ -85,43 +85,6 @@ public class Cliente extends Persona {
             ", Sucursal Asociada = '"+ sucursal.toString() + '\'' +
            '}';
     }
-    /*
-    public static void main(String[] args) {
-        
-        Instructor instructor1 = new Instructor(
-        "CrossFit",
-         "Benji",
-        "2000-12-07",
-        "benjacol@gmail.com",
-        88776655,
-        123456789,
-        'M'
-        );
-        
-        /*Sucursal sucursal1 = new Sucursal(
-                "Alajuela",
-                "City Mall",
-                20101,
-                instructor1
-        );
-        
-        
-        
-        Cliente cliente1 = new Cliente(
-                
-            "2023-05-12",    
-            "Marquitos",
-            "2000-10-15",    
-            "prueba@gmail.com", 
-            88887777,        
-            123456789,       
-            'M',
-            instructor1,
-            sucursal1
-        );
-
-        System.out.println(cliente1.Datos());
-    }*/
     
 }
 

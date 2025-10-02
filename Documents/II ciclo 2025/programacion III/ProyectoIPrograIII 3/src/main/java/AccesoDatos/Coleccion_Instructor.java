@@ -3,14 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/*
-package AccesoDatos;
-import Controlador.*;
-import Modelo.Instructor;
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author marcosisaacarayaabarca
@@ -71,34 +63,32 @@ public class Coleccion_Instructor {
         return null;
     }
     
-    // Dentro de Coleccion_Instructor.java
+    
 public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
     List<Cliente> resultado = new ArrayList<>();
     
-    for (Instructor ins : Listar_Instructor()) { // suponiendo que tienes listarInstructores()
+    for (Instructor ins : Listar_Instructor()) { 
         if (ins.getNombre().equalsIgnoreCase(nombreInstructor)) {
-            resultado.addAll(ins.getListaClientes()); // agrega todos los clientes de ese instructor
+            resultado.addAll(ins.getListaClientes()); 
             break;
         }
     }
     
-    return resultado; // si no se encuentra el instructor, devuelve lista vacía
+    return resultado; 
 }
 
-//Metodo creado recientemente// Dentro de Coleccion_Instructor.java
+
 public List<Instructor> buscarPorSucursal(String sucursal) {
     List<Instructor> resultado = new ArrayList<>();
-    for (Instructor ins : lista) {  // usa "lista", no "instructores"
+    for (Instructor ins : lista) {  
         if (ins.getSucursal().equalsIgnoreCase(sucursal)) {
             resultado.add(ins);
         }
     }
     return resultado;
 }
-// Marcos
 
-//
-// Método para buscar instructores por especialidad
+
 public List<Instructor> buscarPorEspecialidad(String especialidad) {
     List<Instructor> resultado = new ArrayList<>();
     String especialidadBusqueda = especialidad.toLowerCase().trim();
@@ -112,9 +102,6 @@ public List<Instructor> buscarPorEspecialidad(String especialidad) {
     
     return resultado;
 }
-
-//
-
 
     // Listar Instructores
     public List<Instructor> Listar_Instructor(){

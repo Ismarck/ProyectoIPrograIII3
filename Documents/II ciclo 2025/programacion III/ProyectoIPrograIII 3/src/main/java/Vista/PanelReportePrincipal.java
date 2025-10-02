@@ -40,7 +40,7 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     }
     
     private void mostrarPanel(JPanel panel) {
-    panelContenedor.removeAll();           // Limpia lo que estaba
+    panelContenedor.removeAll();          
     panel.setSize(panelContenedor.getSize());
     panelContenedor.add(panel);
     panelContenedor.revalidate();

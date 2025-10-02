@@ -25,34 +25,22 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
    
     private DefaultTableModel modeloTabla; // El modelo de la tabla
 
-   
-
-    
     /**
      * Creates new form PanelMatricularClaseGrupal
      */
-    /*public PanelMatricularClaseGrupal(Controlador_ClaseGrupal controladorClase, Controlador_Cliente controladorCliente) {
-        this.controladorClase = controladorClase;
-        this.controladorCliente = controladorCliente;
-        initComponents();
-        cargarClases();
-        cargarClientes();
-        inicializarTabla();
-    }*/
+    
     public PanelMatricularClaseGrupal(Controlador_ClaseGrupal controladorClase,
                                   Controlador_Cliente controladorCliente,
                                   Controlador_Instructor controladorInstructor) {
     this.controladorClase = controladorClase;
     this.controladorCliente = controladorCliente;
-    this.controladorInstructor = controladorInstructor; // agregar atributo
+    this.controladorInstructor = controladorInstructor;
     initComponents();
     cargarClases();
     cargarClientes();
     inicializarTabla();
-   
 
-}
-    
+} 
      private void cargarClases() {
         CombxClase.removeAllItems();
         for (ClaseGrupal c : controladorClase.listarClases()) {
@@ -69,26 +57,11 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
 
     private void inicializarTabla() {
         modeloTabla = new DefaultTableModel(new String[]{"Nombre", "Correo", "Teléfono"}, 0);
-        Tabla.setModel(modeloTabla);  // Asignamos el modelo al JTable
+        Tabla.setModel(modeloTabla); 
     }
-
-    /*
-    private void actualizarTabla(ClaseGrupal clase) {
-    modeloTabla.setRowCount(0); // Limpiar datos anteriores
-    if (clase != null) {
-        for (Cliente c : clase.getMatriculados()) {
-            modeloTabla.addRow(new Object[]{
-                c.getNombre(),
-                c.getCorreo(),
-                c.getNumero_Celular()
-            });
-        }
-    }
-}*/
     
-    //borrar si nofuncionsa 
     private void actualizarTabla(ClaseGrupal clase) {
-        modeloTabla.setRowCount(0); // Limpiar datos anteriores
+        modeloTabla.setRowCount(0); 
         if (clase != null) {
             for (Cliente c : clase.getMatriculados()) {
                 modeloTabla.addRow(new Object[]{
@@ -106,7 +79,7 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Cupos disponibles: " + disponibles);
         }
     }
-    //hasta aqui
+   
 
 
     /**
@@ -265,16 +238,6 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnvervlienteenclaseActionPerformed
 
     private void btnclientemattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientemattActionPerformed
-        /*ClaseGrupal clase = (ClaseGrupal) CombxClase.getSelectedItem();
-        Cliente cliente = (Cliente) CombxCliente.getSelectedItem();
-        if (clase != null && cliente != null) {
-            if (controladorClase.matricularCliente(clase, cliente)) {
-                actualizarTabla(clase);
-                JOptionPane.showMessageDialog(this, "Cliente matriculado correctamente.");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se puede matricular (sin cupo o ya inscrito).");
-            }
-        }*/
         ClaseGrupal clase = (ClaseGrupal) CombxClase.getSelectedItem();
         Cliente cliente = (Cliente) CombxCliente.getSelectedItem();
 
@@ -282,7 +245,6 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
             return;
         }
 
-        // Verificar máximo 3 clases por cliente
         if (controladorCliente.cantidadClasesMatriculadas(cliente) >= 3) {
             JOptionPane.showMessageDialog(this, "Cliente ya tiene 3 clases matriculadas.");
             return;

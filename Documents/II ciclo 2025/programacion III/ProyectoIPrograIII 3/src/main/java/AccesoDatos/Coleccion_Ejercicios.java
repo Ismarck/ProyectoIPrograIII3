@@ -10,7 +10,6 @@ package AccesoDatos;
  */
 import java.util.ArrayList;
 import java.util.List;
-import Modelo.Rutina;
 import Modelo.Ejercicio;
 
 public class Coleccion_Ejercicios {

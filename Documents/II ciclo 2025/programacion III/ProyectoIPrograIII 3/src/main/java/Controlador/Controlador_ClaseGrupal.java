@@ -15,7 +15,7 @@ public class Controlador_ClaseGrupal {
         this.coleccion = coleccion;
     }
     
-    // ⭐ CAMBIO: nuevo constructor que recibe también los otros controladores
+    
     public Controlador_ClaseGrupal(Coleccion_ClaseGrupal coleccion, 
                                    Controlador_Instructor controladorInstructor, 
                                    Controlador_Cliente controladorCliente) {

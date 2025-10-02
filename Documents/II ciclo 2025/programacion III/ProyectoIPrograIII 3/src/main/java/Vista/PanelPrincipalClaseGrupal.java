@@ -37,13 +37,11 @@ public class PanelPrincipalClaseGrupal extends javax.swing.JPanel {
         p.setLocation(0, 0);
         MostrarClaseGrupal.removeAll();
         MostrarClaseGrupal.setLayout(new BorderLayout());
-        MostrarClaseGrupal.add(p, BorderLayout.CENTER); // << falta esto
+        MostrarClaseGrupal.add(p, BorderLayout.CENTER); 
         MostrarClaseGrupal.revalidate();
         MostrarClaseGrupal.repaint();
 
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

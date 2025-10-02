@@ -16,16 +16,18 @@ import javax.swing.table.DefaultTableModel;
  * @author porto
  */
 public class PanelReporteIMCSucursal extends javax.swing.JPanel {
- private Controlador_Sucursal controladorSucursal;
+
+    private Controlador_Sucursal controladorSucursal;
     private Controlador_Medicion controladorMedicion;
-    
+
     public PanelReporteIMCSucursal(Controlador_Sucursal controladorSucursal, Controlador_Medicion controladorMedicion) {
         initComponents();
-                this.controladorSucursal = controladorSucursal;
+        this.controladorSucursal = controladorSucursal;
         this.controladorMedicion = controladorMedicion;
         configurarTabla();
     }
-private void configurarTabla() {
+
+    private void configurarTabla() {
         String[] columnas = {"ID Cliente", "Nombre", "Sucursal", "Peso", "Estatura (m)", "IMC", "Clasificación IMC"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
         jTable1.setModel(modelo);
@@ -106,114 +108,66 @@ private void configurarTabla() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarSucuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSucuActionPerformed
-        // TODO add your handling code here:
-        
-//                try {
-//            int codigo = Integer.parseInt(txtCodigoSucu.getText().trim());
-//            Sucursal sucu = controladorSucursal.buscar(codigo);
-//
-//            if (sucu == null) {
-//                JOptionPane.showMessageDialog(this, "Sucursal no encontrada");
-//                return;
-//            }
-//
-//            List<Cliente> clientes = controladorSucursal.listarClientesPorSucursal(codigo);
-//
-//            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-//            modelo.setRowCount(0); // limpiar tabla
-//
-//            for (Cliente c : clientes) {
-//                // Traer todas las mediciones del cliente
-//                List<Medicion> mediciones = controladorMedicion.listar();
-//                Medicion ultima = null;
-//
-//                for (Medicion m : mediciones) {
-//                    if (m.getCliente() != null && m.getCliente().getCedula() == c.getCedula()) {
-//                        ultima = m; // suponemos la última que aparece
-//                    }
-//                }
-//
-//                if (ultima != null) {
-//                    double peso = ultima.getPeso();
-//                    double estatura = ultima.getEstatura();
-//                    if (estatura > 3) estatura = estatura / 100.0; // asegurar en metros
-//                    double imc = peso / (estatura * estatura);
-//
-//                    Object[] fila = {
-//                        c.getCedula(),
-//                        c.getNombre(),
-//                        sucu.getProvincia(),
-//                        peso,
-//                        String.format("%.2f", estatura),
-//                        String.format("%.2f", imc),
-//                        clasificarIMC(imc)
-//                    };
-//                    modelo.addRow(fila);
-//                }
-//            }
-//
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "Ingrese un código válido");
-//        }
+        try {
+            int codigo = Integer.parseInt(txtCodigoSucu.getText().trim());
+            Sucursal sucu = controladorSucursal.buscar(codigo);
 
-   try {
-        int codigo = Integer.parseInt(txtCodigoSucu.getText().trim());
-        Sucursal sucu = controladorSucursal.buscar(codigo);
+            if (sucu == null) {
+                JOptionPane.showMessageDialog(this, "Sucursal no encontrada");
+                return;
+            }
 
-        if (sucu == null) {
-            JOptionPane.showMessageDialog(this, "Sucursal no encontrada");
-            return;
-        }
+            List<Cliente> clientes = controladorSucursal.listarClientesPorSucursal(codigo);
 
-        List<Cliente> clientes = controladorSucursal.listarClientesPorSucursal(codigo);
+            if (clientes == null || clientes.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay clientes en esta sucursal");
+                return;
+            }
 
-        if (clientes == null || clientes.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No hay clientes en esta sucursal");
-            return;
-        }
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            modelo.setRowCount(0);
 
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        modelo.setRowCount(0); // limpiar tabla
+            List<Medicion> mediciones = controladorMedicion.listar();
 
-        List<Medicion> mediciones = controladorMedicion.listar();
+            for (Cliente c : clientes) {
+                Medicion ultima = null;
 
-        for (Cliente c : clientes) {
-            Medicion ultima = null;
+                for (Medicion m : mediciones) {
+                    if (m.getCliente() != null
+                            && String.valueOf(m.getCliente().getCedula())
+                                    .equals(String.valueOf(c.getCedula()))) {
+                        ultima = m;
+                    }
+                }
 
-            for (Medicion m : mediciones) {
-                if (m.getCliente() != null 
-                        && String.valueOf(m.getCliente().getCedula())
-                           .equals(String.valueOf(c.getCedula()))) {
-                    ultima = m; // aquí podrías comparar fechas si tu clase Medicion las tiene
+                if (ultima != null) {
+                    double peso = ultima.getPeso();
+                    double estatura = ultima.getEstatura();
+                    if (estatura > 3) {
+                        estatura = estatura / 100.0;
+                    }
+                    double imc = peso / (estatura * estatura);
+
+                    Object[] fila = {
+                        c.getCedula(),
+                        c.getNombre(),
+                        sucu.getProvincia(),
+                        peso,
+                        String.format("%.2f", estatura),
+                        String.format("%.2f", imc),
+                        clasificarIMC(imc)
+                    };
+                    modelo.addRow(fila);
                 }
             }
 
-            if (ultima != null) {
-                double peso = ultima.getPeso();
-                double estatura = ultima.getEstatura();
-                if (estatura > 3) estatura = estatura / 100.0; // pasar a metros si viene en cm
-                double imc = peso / (estatura * estatura);
-
-                Object[] fila = {
-                    c.getCedula(),
-                    c.getNombre(),
-                    sucu.getProvincia(),
-                    peso,
-                    String.format("%.2f", estatura),
-                    String.format("%.2f", imc),
-                    clasificarIMC(imc)
-                };
-                modelo.addRow(fila);
+            if (modelo.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "No se encontraron mediciones para los clientes de esta sucursal");
             }
-        }
 
-        if (modelo.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "No se encontraron mediciones para los clientes de esta sucursal");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un código válido");
         }
-
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Ingrese un código válido");
-    }
     }//GEN-LAST:event_btnBuscarSucuActionPerformed
 
         private String clasificarIMC(double imc) {

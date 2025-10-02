@@ -123,8 +123,6 @@ public class PanelRegistro extends JPanel {
     }//GEN-LAST:event_InstructorActionPerformed
 
     private void SucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SucursalActionPerformed
-        //RegistroSucursal p1 = new RegistroSucursal(this.coleccionSucursal);
-        //ShowPanel(p1);
         RegistroCliente regCliente = new RegistroCliente(this.coleccionCliente, this.coleccionSucursal);
         RegistroSucursal p1 = new RegistroSucursal(this.coleccionSucursal, regCliente);
         ShowPanel(p1);

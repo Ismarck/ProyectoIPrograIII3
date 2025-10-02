@@ -4,10 +4,8 @@
  */
 package Vista;
 
-import javax.swing.table.DefaultTableModel;
 import Controlador.Controlador_Cliente;
-import Modelo.Cliente;
-import java.util.List;
+
 
 
 /**

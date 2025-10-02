@@ -32,11 +32,6 @@ public class Instructor extends Persona {
         this.Especialidad = Especialidad;
     }
     
-    /*@Override
-    public String toString() {
-        return getNombre(); // o getNombre() + " " + getApellido() si existe
-    }*/
-    
     // Métodos para manejar clientes
     public List<Cliente> getListaClientes() {
         return listaClientes;
@@ -58,9 +53,8 @@ public class Instructor extends Persona {
 
     @Override
     public String toString() {
-        return getNombre(); // o como quieras mostrarlo
+        return getNombre();
     }
-
 
     @Override
     public String Datos() {
@@ -75,8 +69,6 @@ public class Instructor extends Persona {
                
            '}';
     }
-    
-    
     
     public static void main(String[] args) 
     {

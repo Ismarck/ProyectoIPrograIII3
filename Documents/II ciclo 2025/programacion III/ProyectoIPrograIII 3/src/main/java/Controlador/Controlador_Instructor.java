@@ -5,7 +5,6 @@
 package Controlador;
 import Modelo.Instructor;
 import AccesoDatos.Coleccion_Cliente;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,32 +61,6 @@ public class Controlador_Instructor {
         return listaClientes;
     }
     
-   
- 
-//    // Método clave: obtener clientes por instructor
-//    public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
-//        List<Cliente> resultado = new ArrayList<>();
-//        for (Instructor ins : listar()) {
-//          //  if (ins.getNombre().equalsIgnoreCase(nombreInstructor)) {
-//          if (ins.getNombre().toLowerCase().contains(nombreInstructor.toLowerCase())) {
-//                resultado.addAll(ins.getListaClientes());
-//                break;
-//            }
-//        }
-//        return resultado;
-//    }
-//public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
-//    List<Cliente> resultado = new ArrayList<>();
-//    for (Cliente cli : coleccionCliente.Listar()) {
-//        if (cli.getInstructorAsignado() != null &&
-//           // cli.getInstructorAsignado().getNombre().equalsIgnoreCase(nombreInstructor)) {
-//              cli.getInstructorAsignado().getNombre().toLowerCase().contains(nombreInstructor.toLowerCase())) {
-//
-//            resultado.add(cli);
-//        }
-//    }
-//    return resultado;
-//}
     public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
     List<Cliente> resultado = new ArrayList<>();
     String nombreBusqueda = nombreInstructor.toLowerCase().trim();
@@ -107,9 +80,9 @@ public class Controlador_Instructor {
     
     public DefaultTableModel obtenerTablaClientesPorInstructor(String nombreInstructor) {
     // Buscar clientes por instructor
-    List<Cliente> clientes = listarClientesPorInstructor(nombreInstructor); // Este método lo implementas en tu controlador
+    List<Cliente> clientes = listarClientesPorInstructor(nombreInstructor); 
 
-    // Definir columnas igual que en tu JTable
+    // Definir columnas en JTable
     String[] columnas = {"Cedula", "Nombre", "Sexo", "Nacimiento", "Instructor", "Sucursal", "Correo", "Celular", "Inscripcion"};
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
@@ -132,8 +105,6 @@ public class Controlador_Instructor {
     return modelo;
 }
 
-    
-    //
     // Método para obtener instructores por especialidad
     public List<Instructor> listarPorEspecialidad(String especialidad) {
         return coleccion.buscarPorEspecialidad(especialidad);
@@ -154,14 +125,11 @@ public class Controlador_Instructor {
                 ins.getCorreo(),
                 ins.getNumero_Celular(),
                 (ins.getSucursal() != null) ? ins.getSucursal() : "No asociada"
-                //(ins.getSucursal() != null) ? ins.getSucursal().getCodigo() + " - " + ins.getSucursal().getProvincia() : "No asociada"
             };
             modelo.addRow(fila);
         }
 
         return modelo;
     }
-    //
 
-    
 }

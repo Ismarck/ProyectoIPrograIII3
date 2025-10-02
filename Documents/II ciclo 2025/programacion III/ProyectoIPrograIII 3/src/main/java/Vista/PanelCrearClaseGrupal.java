@@ -9,7 +9,7 @@ import Modelo.Instructor;
 import Controlador.Controlador_ClaseGrupal;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
-import Modelo.Cliente;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +33,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     public PanelCrearClaseGrupal(Controlador_ClaseGrupal controlador,Controlador_Instructor controladorInstructor,Controlador_Cliente controladorCliente) {
     this.controlador = controlador;
     this.controladorInstructor = controladorInstructor;
-    this.controladorCliente = controladorCliente; // agregar atributo
+    this.controladorCliente = controladorCliente; 
     initComponents();
     cargarInstructores();
     inicializarTabla();
@@ -264,7 +264,6 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
             int cupo = Integer.parseInt(txtCupoMaximo.getText().trim());
             String sucursal = txtSucursal.getText().trim();
 
-            // Validar máximo 8 clases por sucursal
             if (controlador.contarClasesPorSucursal(sucursal) >= 8) {
                 JOptionPane.showMessageDialog(this, "Ya se alcanzó el máximo de 8 clases en esta sucursal.");
                 return;
@@ -292,7 +291,6 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
 
     private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
         try {
-            // Obtengo el nombre de la sucursal
             String sucursal = txtSucursal.getText().trim();
 
             if (sucursal.isEmpty()) {
@@ -300,17 +298,14 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
                 return;
             }
 
-            // Buscar instructores en esa sucursal
             java.util.List<Instructor> instructores = this.controladorInstructor.buscarPorSucursal(sucursal);
 
             if (instructores != null && !instructores.isEmpty()) {
-                // Limpiar el combo y volver a llenarlo
                 CombxInstructorclase.removeAllItems();
                 for (Instructor ins : instructores) {
                     CombxInstructorclase.addItem(ins);
                 }
 
-                // Mostrar la especialidad del primer instructor en un JTextField
                 Instructor primero = instructores.get(0);
                 txtTipoClase.setText(primero.getEspecialidad());
 

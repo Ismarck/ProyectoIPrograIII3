@@ -16,7 +16,7 @@ public class Coleccion_Medicion {
     // Insertar Medición
     public boolean insertar(Medicion m) {
         if (lista.size() >= MAX_MEDICIONES) {
-            return false; // límite alcanzado
+            return false; 
         }
         lista.add(m);
         return true;
@@ -54,12 +54,12 @@ public class Coleccion_Medicion {
         if (m != null && m.getEstatura() > 0) {
             return m.getPeso() / (m.getEstatura() * m.getEstatura());
         }
-        return -1; // devuelve -1 si la medición no existe o estatura inválida
+        return -1; 
     }
     
     // Listar todas las mediciones
     public List<Medicion> listar() {
-        return new ArrayList<>(lista); // devolvemos copia para seguridad
+        return new ArrayList<>(lista); 
     }
     
     // Buscar medicion de cliente 

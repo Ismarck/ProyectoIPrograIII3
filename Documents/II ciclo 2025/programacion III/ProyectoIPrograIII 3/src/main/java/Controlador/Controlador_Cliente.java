@@ -7,8 +7,6 @@ package Controlador;
 import AccesoDatos.Coleccion_Cliente;
 import AccesoDatos.Coleccion_Sucursal;
 import Modelo.Cliente;
-import Modelo.Instructor;
-import Modelo.Sucursal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -116,9 +114,6 @@ public class Controlador_Cliente {
         return modelo;
     }
 
-
-    
-    /**/
 }
 
 

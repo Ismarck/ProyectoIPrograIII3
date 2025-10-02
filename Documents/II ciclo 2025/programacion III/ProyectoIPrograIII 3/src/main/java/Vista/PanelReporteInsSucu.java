@@ -50,7 +50,7 @@ public class PanelReporteInsSucu extends javax.swing.JPanel {
 
             List<Instructor> instructores = sucursal.getListaInstructores();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0); // limpiar tabla
+            model.setRowCount(0); 
 
             for (Instructor ins : instructores) {
                 model.addRow(new Object[]{

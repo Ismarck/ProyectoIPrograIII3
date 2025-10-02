@@ -4,12 +4,7 @@
  */
 package Vista;
 
-import AccesoDatos.Coleccion_Cliente;
-import AccesoDatos.Coleccion_Sucursal;
-import javax.swing.table.DefaultTableModel;
 import Controlador.Controlador_Cliente;
-import Modelo.Cliente;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -23,15 +18,12 @@ public class PanelReporteSucursal extends javax.swing.JPanel {
     private Controlador_Cliente controlador_Cliente;
     private Controlador_Cliente controlador;
     private JTable tabla;
-    ///private JTextField txtSucursal;
-    //private JButton btnBuscar;
 
     /**
      * Creates new form PanelUsuario
      */
     public PanelReporteSucursal(Controlador_Cliente controlador) {
         initComponents();
-       // this.controlador_Cliente = controlador_Cliente;
         this.controlador_Cliente = controlador;
         
 
@@ -107,16 +99,12 @@ public class PanelReporteSucursal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnBusNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusNombreActionPerformed
-        //Tabla.setModel(controlador_Cliente.obtenerTablaClientes()); 
-        //String nombre = jTxtBusquedaporNombre.getText();
-        //Tabla.setModel(controlador_Cliente.obtenerTablaClientesPorNombre(nombre));
         try {
             int codigoSucursal = Integer.parseInt(jTxtBusquedaporNombre.getText());
             Tabla.setModel(controlador_Cliente.obtenerTablaClientesPorSucursal(codigoSucursal));
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un código de sucursal válido.");
         }
-        //Tabla.setModel(controlador_Cliente.obtenerTablaClientes());
 
     }//GEN-LAST:event_btnBusNombreActionPerformed
 
