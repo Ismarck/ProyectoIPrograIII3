@@ -78,7 +78,7 @@ public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
 }
 
 
-public List<Instructor> buscarPorSucursal(String sucursal) {
+/*public List<Instructor> buscarPorSucursal(String sucursal) {
     List<Instructor> resultado = new ArrayList<>();
     for (Instructor ins : lista) {  
         if (ins.getSucursal().equalsIgnoreCase(sucursal)) {
@@ -86,7 +86,18 @@ public List<Instructor> buscarPorSucursal(String sucursal) {
         }
     }
     return resultado;
+}*/
+public List<Instructor> buscarPorSucursal(String nombreSucursal) {
+    List<Instructor> resultado = new ArrayList<>();
+    for (Instructor ins : lista) {  
+        if (ins.getSucursal() != null &&
+            ins.getSucursal().getProvincia().equalsIgnoreCase(nombreSucursal)) {
+            resultado.add(ins);
+        }
+    }
+    return resultado;
 }
+
 
 
 public List<Instructor> buscarPorEspecialidad(String especialidad) {

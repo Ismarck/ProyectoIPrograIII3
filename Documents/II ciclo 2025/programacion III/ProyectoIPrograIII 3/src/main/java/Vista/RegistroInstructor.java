@@ -282,7 +282,8 @@ public class RegistroInstructor extends javax.swing.JPanel {
                     numeroCelular,
                     cedula,
                     sexo,
-                    sucursalSeleccionada.getProvincia()
+                    //sucursalSeleccionada.getProvincia()
+                    sucursalSeleccionada
             );
 
             if (sucursalSeleccionada == null) {

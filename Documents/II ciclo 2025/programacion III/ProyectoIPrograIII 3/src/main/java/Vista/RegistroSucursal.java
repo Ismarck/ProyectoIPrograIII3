@@ -186,10 +186,11 @@ public class RegistroSucursal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     try {
+     /*try {
             String Provincia = TextProvincia.getText();
             String Canton = TextCanton.getText();
             int Codigo = Integer.parseInt(Textcodigo.getText());
+            
 
             Instructor instructor1 = new Instructor(
                     "CrossFit",
@@ -215,6 +216,49 @@ public class RegistroSucursal extends javax.swing.JPanel {
                 if (registroCliente != null) {
             registroCliente.actualizarComboSucursales();
             }
+
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "La Sucursal ya existe");
+            }
+
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El Código de Sucursal debe ser numérico.");
+        } catch (Exception ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }*/
+        try {
+            String provincia = TextProvincia.getText();
+            String canton = TextCanton.getText();
+            int codigo = Integer.parseInt(Textcodigo.getText());
+
+            // Primero, crear la sucursal vacía (sin instructor aún)
+            Sucursal nuevaSucursal = new Sucursal();
+            nuevaSucursal.setProvincia(provincia);
+            nuevaSucursal.setCanton(canton);
+            nuevaSucursal.setCodigo(codigo);
+
+            // Luego, crear el instructor vinculando la sucursal
+            Instructor instructor1 = new Instructor(
+                    "CrossFit",
+                    "Benji",
+                    "2000-12-07",
+                    "benjacol@gmail.com",
+                    88776655,
+                    123456789,
+                    'M',
+                    nuevaSucursal // Pasamos el objeto Sucursal
+            );
+
+            // Vincular instructor a la sucursal (opcional si quieres mantener lista interna)
+            nuevaSucursal.agregarInstructor(instructor1);
+
+            // Insertar la sucursal
+            if (Coleccionsuc.Insertar_Sucursal(nuevaSucursal)) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Sucursal registrada con éxito");
+
+                if (registroCliente != null) {
+                    registroCliente.actualizarComboSucursales();
+                }
 
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "La Sucursal ya existe");

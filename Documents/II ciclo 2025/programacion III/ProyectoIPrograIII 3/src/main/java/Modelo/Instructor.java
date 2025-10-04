@@ -12,12 +12,13 @@ public class Instructor extends Persona {
     private String Especialidad;
     private List<Cliente> listaClientes;
     //Marcos llamado nuevo
-    private String sucursal;
+    //private String sucursal;
+    private Sucursal sucursal;
 
     public Instructor() {
     }
 
-    public Instructor(String Especialidad,String Nombre, String Fecha_Nacimiento, String Correo, int Numero_Celular, int Cedula, char Sexo, String sucursal) {
+    public Instructor(String Especialidad,String Nombre, String Fecha_Nacimiento, String Correo, int Numero_Celular, int Cedula, char Sexo, /*String*/ Sucursal sucursal) {
         super(Nombre,Fecha_Nacimiento, Correo, Numero_Celular, Cedula, Sexo);
         this.Especialidad = Especialidad;
         listaClientes = new ArrayList<>();
@@ -43,11 +44,11 @@ public class Instructor extends Persona {
         }
     }
     
-    public String getSucursal() {
+    public /*String*/ Sucursal getSucursal() {
         return sucursal;
     }
 
-    public void setSucursal(String sucursal) {
+    public void setSucursal(/*String*/ Sucursal sucursal) {
         this.sucursal = sucursal;
     }
 
@@ -70,7 +71,7 @@ public class Instructor extends Persona {
            '}';
     }
     
-    public static void main(String[] args) 
+    /*public static void main(String[] args) 
     {
         Instructor instructor1 = new Instructor(
         "CrossFit",
@@ -84,5 +85,27 @@ public class Instructor extends Persona {
         );
         
         System.out.println(instructor1.Datos());
+    }*/
+    public static void main(String[] args) {
+        // Crear la sucursal
+        Sucursal sucursal1 = new Sucursal();
+        sucursal1.setProvincia("Heredia");
+        sucursal1.setCanton("Heredia");
+        sucursal1.setCodigo(1); // Ejemplo de código
+
+        // Crear el instructor vinculándolo a la sucursal
+        Instructor instructor1 = new Instructor(
+                "CrossFit",
+                "Benji",
+                "2000-12-07",
+                "benjacol@gmail.com",
+                88776655,
+                123456789,
+                'M',
+                sucursal1 // Ahora es un objeto Sucursal
+        );
+
+        System.out.println(instructor1.Datos());
     }
+
 }

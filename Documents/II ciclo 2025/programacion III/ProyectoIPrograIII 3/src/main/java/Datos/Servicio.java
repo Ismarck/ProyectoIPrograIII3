@@ -26,6 +26,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class Servicio {
     
     protected Connection conexion= null;
@@ -51,8 +52,8 @@ public class Servicio {
     try {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
-        String username = "system";
-        String password = "123456789";
+        String username = "PROYECTO";
+        String password = "proyecto123";
         conexion = DriverManager.getConnection(url, username, password);
         System.out.println("¡Conexión exitosa a Oracle XE!");
     } catch (Exception e) {

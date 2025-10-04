@@ -14,7 +14,9 @@ public class Sucursal {
     private String Canton;
     private int Codigo;
     private Instructor instructor;
-    private List<Cliente> clientes;
+    //private List<Cliente> clientes;
+    private List<Cliente> clientes = new ArrayList<>();
+    private List<Instructor> listaInstructores = new ArrayList<>();
     
     public Sucursal() {
     }
@@ -24,7 +26,7 @@ public class Sucursal {
         this.Canton = Canton;
         this.Codigo = Codigo;
         this.instructor = instructor;
-        this.clientes = new ArrayList<>();
+        //this.clientes = new ArrayList<>();
     }
 
     public Instructor getInstructor() {
@@ -64,7 +66,7 @@ public class Sucursal {
     }
     
     // En la clase Sucursal
-private List<Instructor> listaInstructores = new ArrayList<>();
+//private List<Instructor> listaInstructores = new ArrayList<>();
 
     public void agregarInstructor(Instructor ins) {
         if (!listaInstructores.contains(ins)) {
