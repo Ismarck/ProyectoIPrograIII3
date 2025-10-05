@@ -9,6 +9,7 @@ import Modelo.Instructor;
 import Controlador.Controlador_ClaseGrupal;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
+import Modelo.Sucursal;
 
 
 import javax.swing.*;
@@ -87,6 +88,8 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
         Sucursal = new javax.swing.JLabel();
         txtSucursal = new javax.swing.JTextField();
         btnSucursal = new javax.swing.JButton();
+        TipoClase1 = new javax.swing.JLabel();
+        txtIDClase = new javax.swing.JTextField();
 
         ClaseGrupal.setFont(new java.awt.Font("Gurmukhi MN", 0, 18)); // NOI18N
         ClaseGrupal.setText("Lista De Clases en la Sucursal");
@@ -153,6 +156,15 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
             }
         });
 
+        TipoClase1.setText("ID Clase:");
+
+        txtIDClase.setText("jTextField1");
+        txtIDClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDClaseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,15 +199,23 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCupoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CombxInstructorclase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtTipoClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(55, 55, 55)
-                                                .addComponent(Sucursal)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(CombxInstructorclase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(TipoClase1))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                        .addComponent(txtTipoClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(55, 55, 55)
+                                                        .addComponent(Sucursal)))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnSucursal))))))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(btnSucursal))
+                                                    .addComponent(txtIDClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(133, 133, 133)
                                 .addComponent(ClaseGrupal1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -229,7 +249,10 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Instructor)
-                    .addComponent(CombxInstructorclase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CombxInstructorclase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TipoClase1)
+                        .addComponent(txtIDClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -257,7 +280,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        try {
+        /*try {
             String tipo = txtTipoClase.getText().trim();
             Instructor ins = (Instructor) CombxInstructorclase.getSelectedItem();
             String horario = txtHorario.getText().trim();
@@ -275,7 +298,36 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Clase creada con éxito.");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }*/
+        try {
+            String tipo = txtTipoClase.getText().trim();
+            Instructor ins = (Instructor) CombxInstructorclase.getSelectedItem();
+            String horario = txtHorario.getText().trim();
+            int cupo = Integer.parseInt(txtCupoMaximo.getText().trim());
+            String nombreSucursal = txtSucursal.getText().trim();
+            int id = Integer.parseInt(txtIDClase.getText().trim());
+
+            // Validar que no haya más de 8 clases por sucursal
+            if (controlador.contarClasesPorSucursal(nombreSucursal) >= 8) {
+                JOptionPane.showMessageDialog(this, "Ya se alcanzó el máximo de 8 clases en esta sucursal.");
+                return;
+            }
+
+            // Crear objeto Sucursal
+            Sucursal sucursal = new Sucursal();
+            sucursal.setProvincia(nombreSucursal); // o sucursal.setCodigo(xxx);
+
+            // Crear objeto ClaseGrupal correctamente
+            //int id = controlador.generarIdClase(); // o algún método tuyo para generar el ID
+            ClaseGrupal clase = new ClaseGrupal(id, tipo, ins, horario, cupo, sucursal);
+
+            controlador.crearClaseGrupal(clase);
+            actualizarTabla();
+            JOptionPane.showMessageDialog(this, "Clase creada con éxito.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
+
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -319,6 +371,10 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSucursalActionPerformed
 
+    private void txtIDClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDClaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDClaseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ClaseGrupal;
@@ -329,6 +385,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     private javax.swing.JLabel Instructor;
     private javax.swing.JLabel Sucursal;
     private javax.swing.JLabel TipoClase;
+    private javax.swing.JLabel TipoClase1;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSucursal;
@@ -338,6 +395,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtCupoMaximo;
     private javax.swing.JTextField txtHorario;
+    private javax.swing.JTextField txtIDClase;
     private javax.swing.JTextField txtSucursal;
     private javax.swing.JTextField txtTipoClase;
     // End of variables declaration//GEN-END:variables

@@ -51,11 +51,17 @@ public class Instructor extends Persona {
     public void setSucursal(/*String*/ Sucursal sucursal) {
         this.sucursal = sucursal;
     }
-
+    
+    public Instructor(int Cedula) {
+        super(Cedula);
+    }
+    
     @Override
     public String toString() {
         return getNombre();
     }
+    
+    
 
     @Override
     public String Datos() {

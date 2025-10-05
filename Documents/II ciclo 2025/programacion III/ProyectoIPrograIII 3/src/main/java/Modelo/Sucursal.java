@@ -28,6 +28,10 @@ public class Sucursal {
         this.instructor = instructor;
         //this.clientes = new ArrayList<>();
     }
+    
+    public Sucursal(int Codigo) {
+        this.Codigo = Codigo;
+    }
 
     public Instructor getInstructor() {
         return instructor;

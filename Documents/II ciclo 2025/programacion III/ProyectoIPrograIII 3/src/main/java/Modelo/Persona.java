@@ -24,6 +24,11 @@ public abstract class Persona {
         this.Cedula = Cedula;
         this.Sexo = Sexo;
     }
+    
+    public Persona(int Cedula) {
+        this.Cedula = Cedula;
+    }
+
 
     public String getNombre() {
         return Nombre;

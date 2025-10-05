@@ -9,16 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClaseGrupal {
+    private int idClase;
     private String tipoClase;
     private Instructor instructor;
     private String horario;
     private int cupoMaximo;
-    private String sucursal; 
+    private Sucursal sucursal; 
     private int cuposDisponibles;
     private List<Cliente> matriculados;
 
     
-    public ClaseGrupal(String tipoClase, Instructor instructor, String horario, int cupoMaximo, String sucursal) {
+    public ClaseGrupal(int idClase, String tipoClase, Instructor instructor, String horario, int cupoMaximo, Sucursal sucursal) {
+        this.idClase = idClase;
         this.tipoClase = tipoClase;
         this.instructor = instructor;
         this.horario = horario;
@@ -27,7 +29,20 @@ public class ClaseGrupal {
         this.sucursal = sucursal;
         this.matriculados = new ArrayList<>();
 }
+    
+    public ClaseGrupal() {
+    this.matriculados = new ArrayList<>();
+}
 
+
+    public int getIdClase() {
+        return idClase;
+    }
+
+    public void setIdClase(int idClase) {
+        this.idClase = idClase;
+    }
+    
     public String getTipoClase() {
         return tipoClase;
     }
@@ -69,18 +84,22 @@ public class ClaseGrupal {
     }
     
     // Getter que faltaba
-    public String getSucursal() {
+    public Sucursal getSucursal() {
         return sucursal;
     }
 
     // Opcional: setter si necesitas modificar la sucursal
-    public void setSucursal(String sucursal) {
+    public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
     }
 
-    @Override
+    /*@Override
     public String toString() {
     return tipoClase + " - " + horario + " (" + sucursal + ")";
+    }*/
+     @Override
+    public String toString() {
+        return idClase + " - " + tipoClase + " (" + horario + ") en " + sucursal.getProvincia();
     }
     
     public boolean matricularCliente(Cliente c) {

@@ -28,7 +28,7 @@ public class Coleccion_ClaseGrupal {
      public int contarClasesPorSucursal(String sucursal) {
         int contador = 0;
         for (ClaseGrupal c : clases) {
-            if (c.getSucursal().equalsIgnoreCase(sucursal)) {
+            if (c.getSucursal().getProvincia().equalsIgnoreCase(sucursal)) {
                 contador++;
             }
         }
