@@ -2,38 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controlador;
+package AccesoDatos;
+
+import Modelo.Cliente;
+import Modelo.Ejercicio;
+import Modelo.Rutina;
+import java.util.List;
+import java.util.Random;
+
+
 
 /**
  *
  * @author marcosisaacarayaabarca
  */
-import AccesoDatos.Coleccion_Ejercicios;
-import AccesoDatos.Coleccion_Rutina;
-import java.util.List;
-import java.util.Random;
-import Modelo.Ejercicio;
-import Modelo.Cliente;
-import Modelo.Rutina;
-
-public class Controlador_Rutina {
-    private Coleccion_Ejercicios coleccionEjercicios;
-    private Coleccion_Rutina  coleccionrutina;
-
-    public Controlador_Rutina(Coleccion_Ejercicios coleccion) {
-        this.coleccionEjercicios = coleccion;
-        this.coleccionrutina = new Coleccion_Rutina(coleccion); // se inicializa aquí
-    }
-
-    public void agregarEjercicio(String nombre, String area) throws Exception {
-        coleccionEjercicios.agregarEjercicio(new Ejercicio(nombre, area));
+public class Coleccion_Rutina {
+    
+     private Coleccion_Ejercicios coleccionEjercicios;
+     
+    public Coleccion_Rutina(Coleccion_Ejercicios coleccionEjercicios) {
+        this.coleccionEjercicios = coleccionEjercicios;
     }
     
     public Rutina generarRutina(Cliente cliente) throws Exception {
-        return coleccionrutina.generarRutina(cliente);
-    }
-
-    /*public Rutina generarRutina(Cliente cliente) throws Exception {
         if(cliente == null) throw new Exception("Cliente no puede ser nulo");
 
         Rutina rutina = new Rutina(cliente);
@@ -47,5 +38,5 @@ public class Controlador_Rutina {
             }
         }
         return rutina;
-    }*/
+    }
 }
