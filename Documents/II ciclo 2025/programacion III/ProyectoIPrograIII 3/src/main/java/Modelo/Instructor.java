@@ -58,8 +58,9 @@ public class Instructor extends Persona {
     
     @Override
     public String toString() {
-        return getNombre();
+        return this.getNombre(); // O "Cedula - Nombre"
     }
+
     
     
 

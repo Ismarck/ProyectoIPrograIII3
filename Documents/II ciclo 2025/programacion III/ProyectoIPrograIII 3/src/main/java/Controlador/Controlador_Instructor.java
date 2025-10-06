@@ -152,14 +152,22 @@ import java.util.List;
 
 public class Controlador_Instructor {
 
-     private InstructorDAO instructorDAO;
+    private InstructorDAO instructorDAO;
     private Coleccion_Cliente coleccionCliente;
+    private Controlador_Sucursal controladorSucursal;
+
 
     // Constructor con conexión y colección existente
-    public Controlador_Instructor(Connection conn, Coleccion_Cliente coleccionCliente) {
-        this.instructorDAO = new InstructorDAO(conn);
-        this.coleccionCliente = coleccionCliente;
-    }
+    public Controlador_Instructor(Connection conn, Coleccion_Cliente coleccionCliente, Controlador_Sucursal controladorSucursal) {
+    this.instructorDAO = new InstructorDAO(conn);
+    this.coleccionCliente = coleccionCliente;
+    this.controladorSucursal = controladorSucursal;
+}
+    /*public Controlador_Instructor(Connection conn, Coleccion_Cliente coleccionCliente, Controlador_Sucursal controladorSucursal) {
+    this.instructorDAO = new InstructorDAO(conn, controladorSucursal);
+    this.coleccionCliente = coleccionCliente;
+    this.controladorSucursal = controladorSucursal;*/
+
     
     // Constructor solo con conexión - CORREGIDO
     public Controlador_Instructor(Connection conn) {
@@ -167,6 +175,11 @@ public class Controlador_Instructor {
         // Crear colección vacía o buscar otra solución
         this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
     }
+    
+    public List<Instructor> buscarPorSucursal(int codigoSucursal) throws Exception {
+    return instructorDAO.listarPorSucursal(codigoSucursal);
+}
+
 
     // Registrar instructor
     public boolean registrarInstructor(Instructor ins) {
@@ -241,14 +254,14 @@ public class Controlador_Instructor {
         return resultado;
     }
     
-    public List<Instructor> buscarPorSucursal(int codigoSucursal) {
+    /*public List<Instructor> buscarPorSucursal(int codigoSucursal) {
         try {
             return instructorDAO.listarPorSucursal(codigoSucursal);
         } catch (SQLException e) {
             e.printStackTrace();
             return new ArrayList<>();
         }
-    }
+    }*/
 
     
    

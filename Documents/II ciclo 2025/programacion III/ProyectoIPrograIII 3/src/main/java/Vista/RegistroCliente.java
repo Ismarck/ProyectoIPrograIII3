@@ -86,10 +86,9 @@ public class RegistroCliente extends javax.swing.JPanel {
             return;
         }
 
-        // ✅ Usar el código de la sucursal, no el String
         int codigoSucursal = sucursalSeleccionada.getCodigo();
 
-        // Obtenemos instructores desde la colección en memoria
+        // ✅ Aquí se llama al controlador que va a la BD
         List<Instructor> instructores = controladorInstructor.buscarPorSucursal(codigoSucursal);
 
         CombxInstructor.removeAllItems();

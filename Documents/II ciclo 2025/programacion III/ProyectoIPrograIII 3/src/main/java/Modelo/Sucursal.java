@@ -20,6 +20,12 @@ public class Sucursal {
     
     public Sucursal() {
     }
+    
+    public Sucursal(int codigo, String provincia, String canton) {
+        this.Codigo = codigo;
+        this.Provincia = provincia;
+        this.Canton = canton;
+    }
 
     public Sucursal(String Provincia, String Canton, int Codigo, Instructor instructor) {
         this.Provincia = Provincia;

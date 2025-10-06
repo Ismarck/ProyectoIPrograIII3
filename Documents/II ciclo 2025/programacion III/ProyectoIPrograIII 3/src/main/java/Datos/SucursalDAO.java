@@ -94,7 +94,26 @@ public class SucursalDAO {
         cs.close();
         return lista;
     }
-    
+    //
+    public List<Sucursal> listarSucursales() throws SQLException {
+        List<Sucursal> lista = new ArrayList<>();
+        String sql = "SELECT CODIGO, PROVINCIA, CANTON FROM SUCURSAL";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Sucursal s = new Sucursal(
+                    rs.getInt("CODIGO"),
+                    rs.getString("PROVINCIA"),
+                    rs.getString("CANTON")
+            );
+            lista.add(s);
+        }
+
+        return lista;
+    }
+
+    //
     public List<Cliente> listarClientesPorSucursal(int codigoSucursal) throws SQLException {
     CallableStatement cs = conn.prepareCall("{? = call listarClientesPorSucursal(?)}");
     cs.registerOutParameter(1, OracleTypes.CURSOR);

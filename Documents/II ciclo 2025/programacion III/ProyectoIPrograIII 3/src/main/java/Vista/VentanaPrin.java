@@ -59,19 +59,25 @@ public class VentanaPrin extends javax.swing.JFrame {
         SetDate();
         initContent();
         
-        this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
+        /*this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
         this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
         this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
-        this.coleccionMedicion = new Coleccion_Medicion(new ArrayList<>());
+        this.coleccionMedicion = new Coleccion_Medicion(new ArrayList<>());*/
         this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
         this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
         //this.controladorInstructor = new Controlador_Instructor(this.coleccionInstructor, this.coleccionCliente);
         //this.controladorSucursal = new Controlador_Sucursal(this.connSucursal);
-        Servicio servicio = new Servicio();
+        /*Servicio servicio = new Servicio();
         controladorSucursal = new Controlador_Sucursal(servicio.getConexion());
         controladorCliente = new Controlador_Cliente(servicio.getConexion());
         controladorInstructor = new Controlador_Instructor(servicio.getConexion());
-        this.coleccionEjercicios = new Coleccion_Ejercicios();
+        this.coleccionEjercicios = new Coleccion_Ejercicios();*/
+        Servicio servicio = new Servicio();
+        Connection conn = servicio.getConexion();
+        this.controladorInstructor = new Controlador_Instructor(conn);
+        this.controladorCliente = new Controlador_Cliente(conn);
+        this.controladorSucursal = new Controlador_Sucursal(conn);
+
         
         
        // this.controladorCliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal);

@@ -116,14 +116,24 @@ public class Controlador_Sucursal {
     }
 
     // Listar todas las sucursales
-    public List<Sucursal> listar() {
+    /*public List<Sucursal> listar() {
         try {
             return sucursalDAO.listar();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
+    }*/
+    
+    public List<Sucursal> listar() {
+    try {
+        return sucursalDAO.listar(); // Debe consultar la BD
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return new ArrayList<>();
     }
+}
+
     
     public java.util.List<Cliente> listarClientesPorSucursal(int codigoSucursal) {
     try {

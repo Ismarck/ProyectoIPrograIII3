@@ -23,8 +23,10 @@ public class InstructorDAO {
 
     public InstructorDAO(Connection conn) {
         this.conn = conn;
-        this.controladorSucursal = controladorSucursal;
+        this.controladorSucursal = new Controlador_Sucursal(conn);
     }
+    
+
 
     // INSERTAR INSTRUCTOR
     public void insertarInstructor(Instructor i) throws SQLException {
@@ -144,7 +146,7 @@ public class InstructorDAO {
     }*/
    public List<Instructor> listarPorSucursal(int codigoSucursal) throws SQLException {
     List<Instructor> resultado = new ArrayList<>();
-    String sql = "{ ? = call buscarInstructorPorSucursal(?) }"; // tu SP debe recibir un número
+    String sql = "{ ? = call buscarInstructorPorSucursalCod(?) }"; // tu SP debe recibir un número
 
     try (CallableStatement cs = conn.prepareCall(sql)) {
         cs.registerOutParameter(1, OracleTypes.CURSOR);
