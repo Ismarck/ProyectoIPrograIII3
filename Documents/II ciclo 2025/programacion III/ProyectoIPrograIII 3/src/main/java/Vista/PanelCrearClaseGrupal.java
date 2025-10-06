@@ -9,6 +9,7 @@ import Modelo.Instructor;
 import Controlador.Controlador_ClaseGrupal;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
+import Controlador.Controlador_Sucursal;
 import Modelo.Sucursal;
 
 
@@ -25,6 +26,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     private Controlador_ClaseGrupal controlador;
     private Controlador_Instructor controladorInstructor;
     private Controlador_Cliente controladorCliente;
+    private Controlador_Sucursal controladorSucursal;
     private DefaultTableModel modeloTabla;
     
     /**
@@ -342,14 +344,14 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSucursalActionPerformed
 
     private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
-        try {
+        /*try {
             String sucursal = txtSucursal.getText().trim();
 
             if (sucursal.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Ingrese el nombre de la sucursal.");
                 return;
             }
-
+            
             java.util.List<Instructor> instructores = this.controladorInstructor.buscarPorSucursal(sucursal);
 
             if (instructores != null && !instructores.isEmpty()) {
@@ -368,7 +370,56 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al buscar instructores: " + e.getMessage());
+        }*/
+     
+        try {
+            String nombreSucursal = txtSucursal.getText().trim();
+
+            if (nombreSucursal.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese el nombre de la sucursal.");
+                return;
+            }
+
+            // Buscar la sucursal en la colección
+            Sucursal suc = null;
+            for (Sucursal s : controladorSucursal.listar()) {
+                String clave = s.getProvincia() + " - " + s.getCanton();
+                if (clave.equalsIgnoreCase(nombreSucursal)) {
+                    suc = s;
+                    break;
+                }
+            }
+
+            if (suc == null) {
+                JOptionPane.showMessageDialog(this, "Sucursal no encontrada.");
+                return;
+            }
+
+            // ✅ Usar el código de la sucursal (int)
+            int codigoSucursal = suc.getCodigo();
+
+            // Obtener instructores por código
+            java.util.List<Instructor> instructores = controladorInstructor.buscarPorSucursal(codigoSucursal);
+
+            if (instructores != null && !instructores.isEmpty()) {
+                CombxInstructorclase.removeAllItems();
+                for (Instructor ins : instructores) {
+                    CombxInstructorclase.addItem(ins);
+                }
+
+                Instructor primero = instructores.get(0);
+                txtTipoClase.setText(primero.getEspecialidad());
+
+                JOptionPane.showMessageDialog(this, "Instructores encontrados para la sucursal " + nombreSucursal);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontraron instructores para esta sucursal.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar instructores: " + e.getMessage());
+            e.printStackTrace();
         }
+
     }//GEN-LAST:event_btnSucursalActionPerformed
 
     private void txtIDClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDClaseActionPerformed

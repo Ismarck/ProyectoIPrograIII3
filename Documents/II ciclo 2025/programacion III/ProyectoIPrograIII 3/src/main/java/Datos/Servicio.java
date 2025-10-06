@@ -55,6 +55,7 @@ public class Servicio {
         String username = "PROYECTO";
         String password = "proyecto123";
         conexion = DriverManager.getConnection(url, username, password);
+        conexion.setAutoCommit(true);
         System.out.println("¡Conexión exitosa a Oracle XE!");
     } catch (Exception e) {
         e.printStackTrace();
@@ -76,4 +77,13 @@ public class Servicio {
             Logger.getLogger(Servicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public Connection getConexion() {
+    if (conexion == null) {
+        conectar();
+    }
+    return conexion;
+}
+
+    
 }

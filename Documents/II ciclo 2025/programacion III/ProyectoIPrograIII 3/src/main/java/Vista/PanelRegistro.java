@@ -4,9 +4,10 @@
  */
 package Vista;
 
-import AccesoDatos.Coleccion_Cliente;
-import AccesoDatos.Coleccion_Instructor;
-import AccesoDatos.Coleccion_Sucursal;
+import Controlador.Controlador_Cliente;
+import Controlador.Controlador_Instructor;
+import Controlador.Controlador_Sucursal;
+//import Controlador.Controlador_Sucursal;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -15,15 +16,17 @@ import javax.swing.JPanel;
  * @author marcosisaacarayaabarca
 */ 
 public class PanelRegistro extends JPanel {
-    private Coleccion_Cliente coleccionCliente;
-    private Coleccion_Instructor coleccionInstructor;
-    private Coleccion_Sucursal coleccionSucursal;
+    private Controlador_Cliente controladorCliente;
+    private Controlador_Instructor controladorInstructor;
+    //private Coleccion_Sucursal coleccionSucursal;
+    private Controlador_Sucursal controladorSucursal;
 
-    public PanelRegistro(Coleccion_Cliente coleccionCliente, Coleccion_Instructor coleccionInstructor, Coleccion_Sucursal coleccionSucursal) {
+    public PanelRegistro(Controlador_Cliente controladorCliente, Controlador_Instructor controladorInstructor, Controlador_Sucursal controladorSucursal) {
         initComponents();
-        this.coleccionCliente = coleccionCliente;
-        this.coleccionInstructor = coleccionInstructor;
-        this.coleccionSucursal = coleccionSucursal;
+        this.controladorCliente = controladorCliente;
+        this.controladorInstructor = controladorInstructor;
+        //this.coleccionSucursal = coleccionSucursal;
+        this.controladorSucursal = controladorSucursal;
     }
 
 
@@ -118,18 +121,18 @@ public class PanelRegistro extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void InstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstructorActionPerformed
-        RegistroInstructor p1 = new RegistroInstructor(this.coleccionInstructor, this.coleccionSucursal);
+        RegistroInstructor p1 = new RegistroInstructor(this.controladorInstructor, this.controladorSucursal);
         ShowPanel(p1);;
     }//GEN-LAST:event_InstructorActionPerformed
 
     private void SucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SucursalActionPerformed
-        RegistroCliente regCliente = new RegistroCliente(this.coleccionCliente, this.coleccionSucursal);
-        RegistroSucursal p1 = new RegistroSucursal(this.coleccionSucursal, regCliente);
+        RegistroCliente regCliente = new RegistroCliente(this.controladorCliente, this.controladorSucursal, this.controladorInstructor);
+        RegistroSucursal p1 = new RegistroSucursal(this.controladorSucursal, regCliente);
         ShowPanel(p1);
     }//GEN-LAST:event_SucursalActionPerformed
 
     private void ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteActionPerformed
-        RegistroCliente p1 = new RegistroCliente(coleccionCliente, coleccionSucursal);
+        RegistroCliente p1 = new RegistroCliente(controladorCliente, controladorSucursal, this.controladorInstructor);
         ShowPanel(p1);
     }//GEN-LAST:event_ClienteActionPerformed
 

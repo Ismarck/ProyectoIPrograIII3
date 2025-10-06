@@ -15,6 +15,12 @@ import Controlador.Controlador_Medicion;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
 import Controlador.Controlador_Sucursal;
+
+import Datos.Servicio;
+import Datos.SucursalDAO;
+import java.sql.Connection;
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
@@ -41,9 +47,11 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Controlador_Instructor controladorInstructor;
     private Controlador_Sucursal controladorSucursal;
     private Controlador_ClaseGrupal controladorClaseGrupal;
-private Coleccion_Ejercicios coleccionEjercicios;
-
-
+    private Coleccion_Ejercicios coleccionEjercicios;
+    private Connection connSucursal;
+   
+   
+   
     
     public VentanaPrin() {
         initComponents();
@@ -57,10 +65,16 @@ private Coleccion_Ejercicios coleccionEjercicios;
         this.coleccionMedicion = new Coleccion_Medicion(new ArrayList<>());
         this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
         this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
-        this.controladorInstructor = new Controlador_Instructor(this.coleccionInstructor, this.coleccionCliente);
-        this.controladorSucursal = new Controlador_Sucursal(coleccionSucursal);
+        //this.controladorInstructor = new Controlador_Instructor(this.coleccionInstructor, this.coleccionCliente);
+        //this.controladorSucursal = new Controlador_Sucursal(this.connSucursal);
+        Servicio servicio = new Servicio();
+        controladorSucursal = new Controlador_Sucursal(servicio.getConexion());
+        controladorCliente = new Controlador_Cliente(servicio.getConexion());
+        controladorInstructor = new Controlador_Instructor(servicio.getConexion());
         this.coleccionEjercicios = new Coleccion_Ejercicios();
-        this.controladorCliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal);
+        
+        
+       // this.controladorCliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal);
         this.controladorClaseGrupal = new Controlador_ClaseGrupal(new Coleccion_ClaseGrupal(),this.controladorInstructor,this.controladorCliente);
         
         PanelBienvenida p1 = new PanelBienvenida();
@@ -390,7 +404,9 @@ private Coleccion_Ejercicios coleccionEjercicios;
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed
-        PanelRegistro p1 = new PanelRegistro(this.coleccionCliente, this.coleccionInstructor, this.coleccionSucursal);
+        //PanelRegistro p1 = new PanelRegistro(this.coleccionCliente, this.coleccionInstructor, this.coleccionSucursal);
+        PanelRegistro p1 = new PanelRegistro(this.controladorCliente, this.controladorInstructor, this.controladorSucursal);
+
         ShowPanel(p1);
     }//GEN-LAST:event_RegistroActionPerformed
         
@@ -415,8 +431,8 @@ private Coleccion_Ejercicios coleccionEjercicios;
 
     private void RutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RutinaActionPerformed
         PanelRutina p1 = new PanelRutina(this.coleccionEjercicios, 
-        this.coleccionCliente,
-        this.coleccionSucursal);
+        this.controladorCliente,
+        this.controladorSucursal);
         ShowPanel(p1);
     }//GEN-LAST:event_RutinaActionPerformed
      

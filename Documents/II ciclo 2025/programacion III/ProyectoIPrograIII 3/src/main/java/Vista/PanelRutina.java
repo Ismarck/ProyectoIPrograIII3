@@ -11,7 +11,9 @@ import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Rutina;
 import AccesoDatos.Coleccion_Ejercicios;
 import AccesoDatos.Coleccion_Cliente;
-import AccesoDatos.Coleccion_Sucursal;
+import Controlador.Controlador_Sucursal;
+import Datos.ClienteDAO;
+
 /*
 import java.util.*;
 import javax.swing.*;
@@ -29,18 +31,20 @@ public class PanelRutina extends javax.swing.JPanel {
     private Controlador_Cliente controladorCliente; 
     private Coleccion_Ejercicios coleccion;
     private Coleccion_Cliente coleccionCliente;
-    private Coleccion_Sucursal coleccionSucursal;
+    private Controlador_Sucursal controladorSucursal;
+    private ClienteDAO clientedao;
 
     public PanelRutina(Coleccion_Ejercicios coleccionEjercicios,
-            Coleccion_Cliente coleccionCliente,
-            Coleccion_Sucursal coleccionSucursal) {
+            Controlador_Cliente controladorCliente,
+            Controlador_Sucursal controladorSucursal) {
         initComponents();
 
         this.coleccion = coleccionEjercicios;
         this.coleccionCliente = coleccionCliente;
-        this.coleccionSucursal = coleccionSucursal;
+        this.controladorSucursal = controladorSucursal;
         this.controlador = new Controlador_Rutina(coleccion);
-        this.controladorCliente = new Controlador_Cliente(coleccionCliente, coleccionSucursal);
+        
+        //this.controladorCliente = new Controlador_Cliente(controladorCliente, controladorSucursal);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
@@ -235,7 +239,7 @@ public class PanelRutina extends javax.swing.JPanel {
                 return;
             }
 
-            Cliente cliente = controladorCliente.buscarpornombreunico(nombreCliente);
+            Cliente cliente = controladorCliente.buscarPorNombreUnico(nombreCliente);
 
             if (cliente == null) {
                 JOptionPane.showMessageDialog(null, "No se encontró un cliente con ese nombre");

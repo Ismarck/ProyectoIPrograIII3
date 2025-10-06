@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vista;
-import AccesoDatos.Coleccion_Sucursal;
+import Controlador.Controlador_Sucursal;
 import Modelo.Instructor;
 import Modelo.Sucursal;
 
@@ -14,7 +14,7 @@ import Modelo.Sucursal;
  */
 public class RegistroSucursal extends javax.swing.JPanel {
 
-    private Coleccion_Sucursal Coleccionsuc;
+    private Controlador_Sucursal controladorsucursal;
     private RegistroCliente registroCliente;
     private javax.swing.JComboBox<String> comboSucursales;
  
@@ -22,9 +22,9 @@ public class RegistroSucursal extends javax.swing.JPanel {
     /**
      * Creates new form RegistroInstructor
      */
-    public RegistroSucursal(Coleccion_Sucursal coleccionsuc,RegistroCliente registroCliente) {
+    public RegistroSucursal(Controlador_Sucursal controladorsucursal,RegistroCliente registroCliente) {
         initComponents();
-        this.Coleccionsuc = coleccionsuc;
+        this.controladorsucursal = controladorsucursal;
         //
         this.registroCliente = registroCliente;
     }
@@ -253,7 +253,7 @@ public class RegistroSucursal extends javax.swing.JPanel {
             nuevaSucursal.agregarInstructor(instructor1);
 
             // Insertar la sucursal
-            if (Coleccionsuc.Insertar_Sucursal(nuevaSucursal)) {
+            if (controladorsucursal.registrar(nuevaSucursal)) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Sucursal registrada con éxito");
 
                 if (registroCliente != null) {

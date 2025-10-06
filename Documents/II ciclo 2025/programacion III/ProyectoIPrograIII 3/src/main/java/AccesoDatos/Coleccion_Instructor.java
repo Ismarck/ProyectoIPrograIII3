@@ -87,6 +87,7 @@ public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
     }
     return resultado;
 }*/
+
 public List<Instructor> buscarPorSucursal(String nombreSucursal) {
     List<Instructor> resultado = new ArrayList<>();
     for (Instructor ins : lista) {  

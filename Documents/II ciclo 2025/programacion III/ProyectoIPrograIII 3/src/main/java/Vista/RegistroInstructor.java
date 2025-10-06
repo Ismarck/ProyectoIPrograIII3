@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vista;
-import AccesoDatos.Coleccion_Instructor;
-import AccesoDatos.Coleccion_Sucursal;
+import Controlador.Controlador_Instructor;
+import Controlador.Controlador_Sucursal;
 import Modelo.Instructor;
 import Modelo.Sucursal;
 import java.util.HashMap;
@@ -22,15 +22,15 @@ public class RegistroInstructor extends javax.swing.JPanel {
      * Creates new form RegistroInstructor
      */
     
-    private Coleccion_Instructor Coleccionins;
-    private Coleccion_Sucursal coleccionSucursales;
+    private Controlador_Instructor controladorins;
+    private Controlador_Sucursal controladorSucursal;
     private Map<String, Sucursal> mapaSucursales = new HashMap<>();
     
-    public RegistroInstructor(Coleccion_Instructor Coleccionins, Coleccion_Sucursal coleccionSucursales) {
+    public RegistroInstructor(Controlador_Instructor controladorins, Controlador_Sucursal controladorSucursal) {
         initComponents();
-         this.Coleccionins = Coleccionins;
+         this.controladorins = controladorins;
          
-         this.coleccionSucursales = coleccionSucursales;
+         this.controladorSucursal = controladorSucursal;
          actualizarComboSucursales(); 
     }
 
@@ -38,7 +38,7 @@ public class RegistroInstructor extends javax.swing.JPanel {
         CombxSucursal.removeAllItems();
         mapaSucursales.clear();
 
-        for (Sucursal s : coleccionSucursales.Listar_Sucursal()) {
+        for (Sucursal s : controladorSucursal.listar()) {
             String clave = s.getProvincia() + " - " + s.getCanton();
             CombxSucursal.addItem(clave);
             mapaSucursales.put(clave, s);
@@ -291,7 +291,7 @@ public class RegistroInstructor extends javax.swing.JPanel {
                 return;
             }
 
-            if (Coleccionins.Insertar_Instructor(nuevo)) {
+            if (controladorins.registrarInstructor(nuevo)) {
                 sucursalSeleccionada.agregarInstructor(nuevo);
                 JOptionPane.showMessageDialog(this, "Instructor registrado y asociado a sucursal.");
                 actualizarComboInstructoresPorSucursal(sucursalSeleccionada);

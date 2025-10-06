@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author marcosisaacarayaabarca
  */
-public class Controlador_Cliente {
+/*public class Controlador_Cliente {
     
     private Coleccion_Cliente coleccionCliente;
     private Coleccion_Sucursal coleccionSucursal;
@@ -114,6 +114,168 @@ public class Controlador_Cliente {
         return modelo;
     }
 
+}*/
+
+
+import Datos.ClienteDAO;
+import Modelo.Cliente;
+import Modelo.Instructor;
+import Modelo.Sucursal;
+import java.sql.Connection;
+
+import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Controlador_Cliente {
+
+    private ClienteDAO clienteDAO;
+
+    /*public Controlador_Cliente(ClienteDAO clienteDAO) {
+        this.clienteDAO = clienteDAO;
+    }*/
+    
+    public Controlador_Cliente(Connection conn) {
+        this.clienteDAO = new ClienteDAO(conn);
+    }
+
+    // Registrar Cliente
+    public boolean registrar(Cliente c) {
+        try {
+            clienteDAO.insertarCliente(c);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Modificar Cliente
+    public boolean modificar(Cliente c) {
+        try {
+            clienteDAO.modificarCliente(c);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Eliminar Cliente
+    public boolean eliminar(long cedula) {
+        try {
+            clienteDAO.eliminarCliente(cedula);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Listar Clientes
+    public List<Cliente> listar() {
+        try {
+            return clienteDAO.listarClientes();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    
+    // Cantidad de clases matriculadas
+    public int cantidadClasesMatriculadas(Cliente c) {
+        if (c == null || c.getClasesMatriculadas() == null) return 0;
+        return c.getClasesMatriculadas().size();
+    }
+
+    // Obtener tabla de clientes (para JTable)
+    public DefaultTableModel obtenerTablaClientesPorNombre(String nombre) {
+        List<Cliente> clientes = buscarPorNombre(nombre);
+
+        DefaultTableModel modelo = new DefaultTableModel(
+                new Object[]{"Cedula", "Nombre", "Sexo", "Nacimiento", "Correo", "Celular", "Inscripcion", "Instructor", "Sucursal"}, 0
+        );
+
+        for (Cliente c : clientes) {
+            modelo.addRow(new Object[]{
+                    c.getCedula(),
+                    c.getNombre(),
+                    c.getSexo(),
+                    c.getFecha_Nacimiento(),
+                    c.getCorreo(),
+                    c.getNumero_Celular(),
+                    c.getFecha_Inscripcion(),
+                    (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+                    (c.getSucursal() != null) ? c.getSucursal().getCodigo() + " - " + c.getSucursal().getProvincia() : "No asociada",
+            });
+        }
+
+        return modelo;
+    }
+    
+    public List<Cliente> buscarClientesPorSucursal(int codigoSucursal) {
+        try {
+            return clienteDAO.buscarClientesPorSucursal(codigoSucursal);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    
+    public DefaultTableModel obtenerTablaClientesPorSucursal(int codigoSucursal) {
+        List<Cliente> clientes = buscarClientesPorSucursal(codigoSucursal);
+
+        String[] columnas = {"Sucursal", "Nombre", "Sexo", "Nacimiento", "Instructor", "Cedula", "Correo", "Celular", "Inscripcion"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+        for (Cliente c : clientes) {
+            modelo.addRow(new Object[]{
+                    (c.getSucursal() != null) ? c.getSucursal().getCodigo() + " - " + c.getSucursal().getProvincia() : "No asociada",
+                    c.getNombre(),
+                    c.getSexo(),
+                    c.getFecha_Nacimiento(),
+                    (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+                    c.getCedula(),
+                    c.getCorreo(),
+                    c.getNumero_Celular(),
+                    c.getFecha_Inscripcion(),
+            });
+        }
+
+        return modelo;
+    }
+
+
+    // Buscar cliente por cédula
+    public Cliente buscar(long cedula) {
+        List<Cliente> lista = listar();
+        for (Cliente c : lista) {
+            if (c.getCedula() == cedula) return c;
+        }
+        return null;
+    }
+
+    public List<Cliente> buscarPorNombre(String nombre) {
+        try {
+            return clienteDAO.buscarClientesPorNombre(nombre);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public Cliente buscarPorNombreUnico(String nombre) {
+        try {
+            return clienteDAO.buscarClientePorNombreUnico(nombre);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
+
+
 
 

@@ -453,7 +453,7 @@ public class PanelPruebaMedicion extends javax.swing.JPanel {
                 return;
             }
             
-            cliente = controladorCliente.buscarpornombreunico(nombre);
+            cliente = controladorCliente.buscarPorNombreUnico(nombre);
 
             if (cliente != null) {
                 txtIDCL.setText(String.valueOf(cliente.getCedula()));

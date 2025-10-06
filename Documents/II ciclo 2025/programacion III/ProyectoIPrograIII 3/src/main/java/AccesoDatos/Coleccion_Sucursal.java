@@ -95,6 +95,8 @@ public class Coleccion_Sucursal {
         return new ArrayList<>(); 
     }
     
+    
+    
     public List<Sucursal> getListaSucursales() {
     return lista;
 }

@@ -25,7 +25,8 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     
     Coleccion_Cliente coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
     Coleccion_Sucursal coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
-    Controlador_Cliente controlador = new Controlador_Cliente(coleccionCliente, coleccionSucursal);
+    //Controlador_Cliente controlador = new Controlador_Cliente(controlador_Cliente, controlador_Sucursal);
+    //this.Controlador_Cliente = new Controlador_Cliente(servicio.getConexion());
 
     
     /**

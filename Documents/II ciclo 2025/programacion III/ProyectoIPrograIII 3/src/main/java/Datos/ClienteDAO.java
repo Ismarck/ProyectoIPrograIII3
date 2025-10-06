@@ -61,6 +61,41 @@ public class ClienteDAO {
         cs.execute();
         cs.close();
     }
+    
+    // BUSCAR CLIENTES POR SUCURSAL
+    public List<Cliente> buscarClientesPorSucursal(int codigoSucursal) throws SQLException {
+        List<Cliente> lista = new ArrayList<>();
+        CallableStatement cs = conn.prepareCall("{call buscarClientesPorSucursal(?, ?)}");
+        cs.setInt(1, codigoSucursal);
+        cs.registerOutParameter(2, OracleTypes.CURSOR);
+        cs.execute();
+
+        ResultSet rs = (ResultSet) cs.getObject(2);
+        while (rs.next()) {
+            Instructor instructor = new Instructor();
+            instructor.setCedula(rs.getInt("INSTRUCTOR_ASIGNADO"));
+
+            Sucursal sucursal = new Sucursal();
+            sucursal.setCodigo(rs.getInt("SUCURSAL_COD"));
+            sucursal.setProvincia(rs.getString("SUCURSAL_PROVINCIA")); // si tienes más info, agregar
+
+            Cliente c = new Cliente(
+                    rs.getString("FECHA_INSCRIPCION"),
+                    rs.getString("NOMBRE"),
+                    rs.getString("FECHA_NACIMIENTO"),
+                    rs.getString("CORREO"),
+                    rs.getInt("NUMERO_CELULAR"),
+                    rs.getInt("CEDULA"),
+                    rs.getString("SEXO").charAt(0),
+                    instructor,
+                    sucursal
+            );
+            lista.add(c);
+        }
+        rs.close();
+        cs.close();
+        return lista;
+    }
 
     // ELIMINAR CLIENTE
     public void eliminarCliente(long cedula) throws SQLException {
@@ -84,7 +119,6 @@ public class ClienteDAO {
             //instructor.setCedula(rs.getLong("INSTRUCTOR_ASIGNADO"));
             instructor.setCedula((int) rs.getLong("INSTRUCTOR_ASIGNADO"));
 
-
             Sucursal sucursal = new Sucursal();
             sucursal.setCodigo(rs.getInt("SUCURSAL_COD"));
 
@@ -92,15 +126,15 @@ public class ClienteDAO {
             String fechaStr = rs.getDate("FECHA_INSCRIPCION").toString();
 
             Cliente c = new Cliente(
-                fechaStr,
-                rs.getString("NOMBRE"),
-                rs.getString("FECHA_NACIMIENTO"),
-                rs.getString("CORREO"),
-                rs.getInt("NUMERO_CELULAR"),
-                rs.getInt("CEDULA"),
-                rs.getString("SEXO").charAt(0),
-                instructor,
-                sucursal
+                    fechaStr,
+                    rs.getString("NOMBRE"),
+                    rs.getString("FECHA_NACIMIENTO"),
+                    rs.getString("CORREO"),
+                    rs.getInt("NUMERO_CELULAR"),
+                    rs.getInt("CEDULA"),
+                    rs.getString("SEXO").charAt(0),
+                    instructor,
+                    sucursal
             );
 
             lista.add(c);
@@ -108,6 +142,44 @@ public class ClienteDAO {
         rs.close();
         cs.close();
         return lista;
+    }
+
+    public List<Cliente> buscarClientesPorNombre(String nombre) throws SQLException {
+        List<Cliente> lista = new ArrayList<>();
+        CallableStatement cs = conn.prepareCall("{call buscarClientesPorNombre(?, ?)}");
+        cs.setString(1, nombre);
+        cs.registerOutParameter(2, OracleTypes.CURSOR);
+        cs.execute();
+
+        ResultSet rs = (ResultSet) cs.getObject(2);
+        while (rs.next()) {
+            Instructor instructor = new Instructor();
+            instructor.setCedula(rs.getInt("INSTRUCTOR_ASIGNADO"));
+
+            Sucursal sucursal = new Sucursal();
+            sucursal.setCodigo(rs.getInt("SUCURSAL_COD"));
+
+            Cliente c = new Cliente(
+                    rs.getString("FECHA_INSCRIPCION"),
+                    rs.getString("NOMBRE"),
+                    rs.getString("FECHA_NAC"),
+                    rs.getString("CORREO"),
+                    rs.getInt("TELEFONO"),
+                    rs.getInt("CEDULA"),
+                    rs.getString("SEXO").charAt(0),
+                    instructor,
+                    sucursal
+            );
+            lista.add(c);
+        }
+        rs.close();
+        cs.close();
+        return lista;
+    }
+
+    public Cliente buscarClientePorNombreUnico(String nombre) throws SQLException {
+        List<Cliente> encontrados = buscarClientesPorNombre(nombre);
+        return !encontrados.isEmpty() ? encontrados.get(0) : null;
     }
 
     // Método auxiliar para convertir String a java.sql.Date
