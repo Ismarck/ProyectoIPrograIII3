@@ -239,7 +239,6 @@ public class Controlador_Instructor {
         }
     }
 
-    // Listar instructores por especialidad
     public List<Instructor> listarPorEspecialidad(String especialidad) {
 
     try {
@@ -255,16 +254,6 @@ public class Controlador_Instructor {
     }
 
 }
-    
-    /*public List<Instructor> buscarPorSucursal(int codigoSucursal) {
-        try {
-            return instructorDAO.listarPorSucursal(codigoSucursal);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }*/
-
     
     public DefaultTableModel obtenerTablaInstructoresPorEspecialidad(String especialidad) {
         List<Instructor> instructores = listarPorEspecialidad(especialidad);
@@ -333,29 +322,6 @@ public class Controlador_Instructor {
 
     return modelo;
 }
-    /*public DefaultTableModel obtenerTablaClientesPorInstructor(String nombreInstructor) {
-        List<Cliente> clientes = listarClientesPorInstructor(nombreInstructor);
-
-        String[] columnas = {"Cedula", "Nombre", "Sexo", "Nacimiento", "Instructor", "Sucursal", "Correo", "Celular", "Inscripcion"};
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-
-        for (Cliente c : clientes) {
-            Object[] fila = {
-                c.getCedula(),
-                c.getNombre(),
-                c.getSexo(),
-                c.getFecha_Nacimiento(),
-                (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
-                (c.getSucursal() != null) ? c.getSucursal().getCodigo() + " - " + c.getSucursal().getProvincia() : "No asociada",
-                c.getCorreo(),
-                c.getNumero_Celular(),
-                c.getFecha_Inscripcion()
-            };
-            modelo.addRow(fila);
-        }
-
-        return modelo;
-    }*/
     
     public List<Instructor> getListaInstructores() {
         try {
