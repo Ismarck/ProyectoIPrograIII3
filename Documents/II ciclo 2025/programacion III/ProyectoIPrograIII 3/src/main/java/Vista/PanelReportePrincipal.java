@@ -146,8 +146,9 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSucursalActionPerformed
 
     private void btnInsSucuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsSucuActionPerformed
-    PanelReporteInsSucu panelInsSucu = new PanelReporteInsSucu(this.controlador_Sucursal);
-    mostrarPanel(panelInsSucu);
+    //PanelReporteInsSucu panelInsSucu = new PanelReporteInsSucu(this.controlador_Sucursal);
+    PanelReporteInsSucu panel = new PanelReporteInsSucu(this.controlador_Sucursal, this.controlador_Instructor);
+    mostrarPanel(panel);
     }//GEN-LAST:event_btnInsSucuActionPerformed
 
     private void btninstructorxespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninstructorxespActionPerformed

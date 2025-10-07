@@ -241,18 +241,20 @@ public class Controlador_Instructor {
 
     // Listar instructores por especialidad
     public List<Instructor> listarPorEspecialidad(String especialidad) {
-        List<Instructor> resultado = new ArrayList<>();
-        try {
-            for (Instructor i : instructorDAO.listarInstructores()) {
-                if (i.getEspecialidad().equalsIgnoreCase(especialidad)) {
-                    resultado.add(i);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return resultado;
+
+    try {
+
+        return instructorDAO.listarPorEspecialidad(especialidad);
+
+    } catch (SQLException e) {
+
+        e.printStackTrace();
+
+        return new ArrayList<>();
+
     }
+
+}
     
     /*public List<Instructor> buscarPorSucursal(int codigoSucursal) {
         try {
@@ -264,9 +266,6 @@ public class Controlador_Instructor {
     }*/
 
     
-   
-
-    // Obtener tabla de instructores por especialidad
     public DefaultTableModel obtenerTablaInstructoresPorEspecialidad(String especialidad) {
         List<Instructor> instructores = listarPorEspecialidad(especialidad);
 
@@ -288,7 +287,7 @@ public class Controlador_Instructor {
         return modelo;
     }
 
-    // Listar clientes por instructor
+    
     public List<Cliente> listarClientesPorInstructor(String nombreInstructor) {
         List<Cliente> resultado = new ArrayList<>();
         String nombreBusqueda = nombreInstructor.toLowerCase().trim();
@@ -305,8 +304,36 @@ public class Controlador_Instructor {
         return resultado;
     }
 
-    // Obtener tabla de clientes por instructor
+    
     public DefaultTableModel obtenerTablaClientesPorInstructor(String nombreInstructor) {
+    List<Cliente> clientes = new ArrayList<>();
+    try {
+        clientes = instructorDAO.listarClientesPorInstructorDB(nombreInstructor);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    String[] columnas = {"Cedula", "Nombre", "Sexo", "Instructor", "Sucursal", "Correo", "Celular", "Inscripcion"};
+    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+    for (Cliente c : clientes) {
+        Object[] fila = {
+            c.getCedula(),
+            c.getNombre(),
+            c.getSexo(),
+            //c.getFecha_Nacimiento(),
+            (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+            (c.getSucursal() != null) ? c.getSucursal().getCodigo() + " - " + c.getSucursal().getProvincia() : "No asociada",
+            c.getCorreo(),
+            c.getNumero_Celular(),
+            c.getFecha_Inscripcion()
+        };
+        modelo.addRow(fila);
+    }
+
+    return modelo;
+}
+    /*public DefaultTableModel obtenerTablaClientesPorInstructor(String nombreInstructor) {
         List<Cliente> clientes = listarClientesPorInstructor(nombreInstructor);
 
         String[] columnas = {"Cedula", "Nombre", "Sexo", "Nacimiento", "Instructor", "Sucursal", "Correo", "Celular", "Inscripcion"};
@@ -328,16 +355,14 @@ public class Controlador_Instructor {
         }
 
         return modelo;
-    }
+    }*/
     
-    // En Controlador_Instructor
     public List<Instructor> getListaInstructores() {
         try {
-            // Llamamos al DAO que hace la consulta a la base de datos
             return instructorDAO.listarInstructores();
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<>(); // Retornamos lista vacía si hay error
+            return new ArrayList<>(); 
         }
     }
 

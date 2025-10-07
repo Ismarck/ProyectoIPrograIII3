@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import Modelo.Instructor;
 import Modelo.Sucursal;
+import Modelo.Cliente;
 import oracle.jdbc.OracleTypes;
 import Controlador.Controlador_Sucursal;
 
@@ -78,36 +79,91 @@ public class InstructorDAO {
 
     // LISTAR TODOS LOS INSTRUCTORES
     public List<Instructor> listarInstructores() throws SQLException {
-        List<Instructor> lista = new ArrayList<>();
-        CallableStatement cs = conn.prepareCall("{call listarInstructores(?)}");
-        cs.registerOutParameter(1, OracleTypes.CURSOR);
-        cs.execute();
+    List<Instructor> lista = new ArrayList<>();
+    CallableStatement cs = conn.prepareCall("{ ? = call listarInstructores() }");
+    cs.registerOutParameter(1, OracleTypes.CURSOR);
+    cs.execute();
 
-        ResultSet rs = (ResultSet) cs.getObject(1);
-        while(rs.next()) {
-            Sucursal sucursal = new Sucursal();
-            sucursal.setCodigo(rs.getInt("SUCURSAL_COD"));
-            sucursal.setProvincia(rs.getString("PROVINCIA"));
+    ResultSet rs = (ResultSet) cs.getObject(1);
+    while (rs.next()) {
+        // ⚠️ Verifica que tu función listarInstructores también devuelva la provincia (JOIN con SUCURSAL)
+        Sucursal sucursal = new Sucursal();
+        sucursal.setCodigo(rs.getInt("SUCURSAL_COD"));
 
-            String fechaStr = rs.getDate("FECHA_NACIMIENTO").toString();
-
-            Instructor i = new Instructor(
-                rs.getString("ESPECIALIDAD"),
-                rs.getString("NOMBRE"),
-                fechaStr,
-                rs.getString("CORREO"),
-                rs.getInt("NUMERO_CELULAR"),
-                rs.getInt("CEDULA"),
-                rs.getString("SEXO").charAt(0),
-                sucursal
-            );
-            lista.add(i);
+        // Si tu función de Oracle no trae PROVINCIA, puedes obtenerla con el controlador:
+        Sucursal sucCompleta = controladorSucursal.buscarPorCodigo(sucursal.getCodigo());
+        if (sucCompleta != null) {
+            sucursal.setProvincia(sucCompleta.getProvincia());
         }
-        rs.close();
-        cs.close();
-        return lista;
+
+        java.sql.Date fecha = rs.getDate("FECHA_NACIMIENTO");
+
+        Instructor i = new Instructor(
+            rs.getString("ESPECIALIDAD"),
+            rs.getString("NOMBRE"),
+            (fecha != null) ? fecha.toString() : "",
+            rs.getString("CORREO"),
+            rs.getInt("NUMERO_CELULAR"),
+            rs.getInt("CEDULA"),
+            rs.getString("SEXO").charAt(0),
+            sucursal
+        );
+        lista.add(i);
     }
-    
+
+    rs.close();
+    cs.close();
+    return lista;
+}
+    //
+    public List<Cliente> listarClientesPorInstructorDB(String nombreInstructor) throws SQLException {
+        List<Cliente> resultado = new ArrayList<>();
+        String sql = "{ ? = call listarClientesPorInstructor(?) }";
+
+        try (CallableStatement cs = conn.prepareCall(sql)) {
+            cs.registerOutParameter(1, OracleTypes.CURSOR);
+            cs.setString(2, nombreInstructor);
+            cs.execute();
+
+            try (ResultSet rs = (ResultSet) cs.getObject(1)) {
+                while (rs.next()) {
+                    Cliente c = new Cliente();
+                    c.setCedula(rs.getInt("CEDULA"));
+                    c.setNombre(rs.getString("NOMBRE_CLIENTE"));
+                    c.setSexo(rs.getString("SEXO").charAt(0));
+                    java.sql.Date fecha = rs.getDate("FECHA_NACIMIENTO");
+                    c.setFecha_Nacimiento(fecha != null ? fecha.toString() : "");
+                    c.setCorreo(rs.getString("CORREO"));
+                    c.setNumero_Celular(rs.getInt("NUMERO_CELULAR"));
+
+                    java.sql.Date fechains = rs.getDate("FECHA_NACIMIENTO");
+                    c.setFecha_Inscripcion(fechains != null ? fechains.toString() : "");
+
+                    // Instructor asignado
+                    String nombreIns = rs.getString("NOMBRE_INSTRUCTOR");
+                    if (nombreIns != null) {
+                        Instructor ins = new Instructor();
+                        ins.setNombre(nombreIns);
+                        c.setInstructorAsignado(ins);
+                    }
+
+                    // Sucursal
+                    int codSuc = rs.getInt("COD_SUCURSAL");
+                    String provincia = rs.getString("PROVINCIA");
+                    Sucursal suc = new Sucursal();
+                    suc.setCodigo(codSuc);
+                    suc.setProvincia(provincia);
+                    c.setSucursal(suc);
+
+                    resultado.add(c);
+                }
+            }
+        }
+
+        return resultado;
+    }
+
+    //
     
     /*public List<Instructor> listarPorSucursal(String provincia) throws SQLException {
         List<Instructor> resultado = new ArrayList<>();
@@ -144,6 +200,8 @@ public class InstructorDAO {
 
         return resultado;
     }*/
+    
+   
    public List<Instructor> listarPorSucursal(int codigoSucursal) throws SQLException {
     List<Instructor> resultado = new ArrayList<>();
     String sql = "{ ? = call buscarInstructorPorSucursalCod(?) }"; // tu SP debe recibir un número
@@ -193,14 +251,37 @@ public class InstructorDAO {
 
     // LISTAR POR ESPECIALIDAD
     public List<Instructor> listarPorEspecialidad(String especialidad) throws SQLException {
-        List<Instructor> resultado = new ArrayList<>();
-        for (Instructor i : listarInstructores()) {
-            if (i.getEspecialidad().equalsIgnoreCase(especialidad)) {
-                resultado.add(i);
+    List<Instructor> resultado = new ArrayList<>();
+    String sql = "{ ? = call buscarInstructorPorEspecialidad(?) }";
+
+    try (CallableStatement cs = conn.prepareCall(sql)) {
+        cs.registerOutParameter(1, OracleTypes.CURSOR);
+        cs.setString(2, especialidad);
+        cs.execute();
+
+        try (ResultSet rs = (ResultSet) cs.getObject(1)) {
+            while (rs.next()) {
+                Instructor ins = new Instructor();
+                ins.setCedula(rs.getInt("CEDULA"));
+                ins.setEspecialidad(rs.getString("ESPECIALIDAD"));
+                ins.setCorreo(rs.getString("CORREO"));
+                ins.setNumero_Celular(rs.getInt("NUMERO_CELULAR"));
+                ins.setNombre(rs.getString("NOMBRE"));
+
+                java.sql.Date fecha = rs.getDate("FECHA_NACIMIENTO");
+                ins.setFecha_Nacimiento(fecha != null ? fecha.toString() : "");
+                ins.setSexo(rs.getString("SEXO").charAt(0));
+
+                // Obtener sucursal desde controlador
+                Sucursal suc = controladorSucursal.buscarPorCodigo(rs.getInt("SUCURSAL_COD"));
+                ins.setSucursal(suc);
+
+                resultado.add(ins);
             }
         }
-        return resultado;
     }
+    return resultado;
+}
 
     // Convertir String a java.sql.Date
     private java.sql.Date convertirFecha(String fechaStr) {

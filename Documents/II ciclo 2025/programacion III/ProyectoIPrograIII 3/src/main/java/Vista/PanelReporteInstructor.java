@@ -6,8 +6,6 @@ package Vista;
 
 import Controlador.Controlador_Instructor;
 
-
-
 /**
  *
  * @author marcosisaacarayaabarca

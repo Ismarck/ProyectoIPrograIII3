@@ -194,7 +194,7 @@ public class Controlador_Cliente {
         List<Cliente> clientes = buscarPorNombre(nombre);
 
         DefaultTableModel modelo = new DefaultTableModel(
-                new Object[]{"Cedula", "Nombre", "Sexo", "Nacimiento", "Correo", "Celular", "Inscripcion", "Instructor", "Sucursal"}, 0
+                new Object[]{"Cedula", "Nombre", "Sexo", "Correo", "Celular", "Inscripcion", "Instructor", "Sucursal"}, 0
         );
 
         for (Cliente c : clientes) {
@@ -202,12 +202,12 @@ public class Controlador_Cliente {
                     c.getCedula(),
                     c.getNombre(),
                     c.getSexo(),
-                    c.getFecha_Nacimiento(),
+                    //c.getFecha_Nacimiento(),
                     c.getCorreo(),
                     c.getNumero_Celular(),
                     c.getFecha_Inscripcion(),
                     (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
-                    (c.getSucursal() != null) ? c.getSucursal().getCodigo() + " - " + c.getSucursal().getProvincia() : "No asociada",
+                    (c.getSucursal() != null) ? c.getSucursal().getCodigo() : "No asociada",
             });
         }
 
@@ -223,8 +223,63 @@ public class Controlador_Cliente {
         }
     }
     
-    public DefaultTableModel obtenerTablaClientesPorSucursal(int codigoSucursal) {
-        List<Cliente> clientes = buscarClientesPorSucursal(codigoSucursal);
+    /*public DefaultTableModel obtenerTablaClientesPorSucursal(int codigoSucursal) {
+        DefaultTableModel modelo = null;
+
+        try {
+            List<Cliente> clientes = clienteDAO.buscarClientesPorSucursal(codigoSucursal);
+
+            String[] columnas = {"Sucursal", "Nombre", "Sexo", "Nacimiento", "Instructor", "Cedula", "Correo", "Celular", "Inscripcion"};
+            modelo = new DefaultTableModel(columnas, 0);
+
+            for (Cliente c : clientes) {
+                modelo.addRow(new Object[]{
+                        (c.getSucursal() != null) ? c.getSucursal().getCodigo() + " - " + c.getSucursal().getProvincia() : "No asociada",
+                        c.getNombre(),
+                        c.getSexo(),
+                        c.getFecha_Nacimiento(),
+                        (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+                        c.getCedula(),
+                        c.getCorreo(),
+                        c.getNumero_Celular(),
+                        c.getFecha_Inscripcion(),
+                });
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Opcional: mostrar mensaje de error con JOptionPane
+        }return modelo;
+    }*/
+       public DefaultTableModel obtenerTablaClientesPorSucursal(int codigoSucursal) {
+        String[] columnas = {"Sucursal", "Cedula", "Nombre", "Sexo", "Instructor", "Correo", "Celular", "Inscripcion"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+        try {
+            List<Cliente> clientes = clienteDAO.buscarClientesPorSucursal(codigoSucursal);
+
+            for (Cliente c : clientes) {
+                modelo.addRow(new Object[]{
+                    (c.getSucursal() != null) ? c.getSucursal().getCodigo() : "No asociada",
+                    c.getCedula(),
+                    c.getNombre(),
+                    c.getSexo(),
+                    //c.getFecha_Nacimiento(),
+                    (c.getInstructorAsignado() != null) ? c.getInstructorAsignado().getNombre() : "No asignado",
+                    c.getCorreo(),
+                    c.getNumero_Celular(),
+                    c.getFecha_Inscripcion()
+                });
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return modelo;
+    }
+
+    
+        /*try {
+         List<Cliente> clientes = clienteDAO.buscarClientesPorSucursal(codigoSucursal);
 
         String[] columnas = {"Sucursal", "Nombre", "Sexo", "Nacimiento", "Instructor", "Cedula", "Correo", "Celular", "Inscripcion"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
@@ -243,8 +298,13 @@ public class Controlador_Cliente {
             });
         }
 
+        
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            // Opcional: mostrar mensaje de error con JOptionPane
+        }
         return modelo;
-    }
+    }*/
 
 
     // Buscar cliente por cédula
@@ -258,7 +318,7 @@ public class Controlador_Cliente {
 
     public List<Cliente> buscarPorNombre(String nombre) {
         try {
-            return clienteDAO.buscarClientesPorNombre(nombre);
+            return clienteDAO.buscarClientesPorNombreLista(nombre);
         } catch (SQLException e) {
             e.printStackTrace();
             return new ArrayList<>();

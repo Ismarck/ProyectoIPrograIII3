@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controlador.Controlador_Instructor;
 import Controlador.Controlador_Sucursal;
 import Modelo.Sucursal;
 import Modelo.Instructor;
@@ -18,11 +19,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PanelReporteInsSucu extends javax.swing.JPanel {
     private Controlador_Sucursal controladorSucursal;
+    private Controlador_Instructor controladorInstructor;
+
 
     /**
      * Creates new form PanelReporteInsSucu
      */
-    public PanelReporteInsSucu(Controlador_Sucursal controladorSucursal) {
+    /*public PanelReporteInsSucu(Controlador_Sucursal controladorSucursal) {
         initComponents();
         
          this.controladorSucursal = controladorSucursal;
@@ -36,9 +39,19 @@ public class PanelReporteInsSucu extends javax.swing.JPanel {
                 buscarInstructores();
             }
         });
+    }*/
+    public PanelReporteInsSucu(Controlador_Sucursal controladorSucursal, Controlador_Instructor controladorInstructor) {
+        initComponents();
+        this.controladorSucursal = controladorSucursal;
+        this.controladorInstructor = controladorInstructor;
+        configurarEventos();
+    }
+
+    private void configurarEventos() {
+        btnBuscar.addActionListener(evt -> buscarInstructores());
     }
         
-         private void buscarInstructores() {
+         /*private void buscarInstructores() {
         try {
             int codigo = Integer.parseInt(txtcodigosu.getText().trim());
             Sucursal sucursal = controladorSucursal.buscar(codigo);
@@ -69,7 +82,43 @@ public class PanelReporteInsSucu extends javax.swing.JPanel {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un código numérico válido");
         }
+    }*/
+        private void buscarInstructores() {
+        try {
+            int codigo = Integer.parseInt(txtcodigosu.getText().trim());
+            Sucursal sucursal = controladorSucursal.buscar(codigo);
+
+            if (sucursal == null) {
+                JOptionPane.showMessageDialog(this, "Sucursal no encontrada");
+                return;
+            }
+
+            List<Instructor> instructores = controladorInstructor.buscarPorSucursal(codigo);
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (Instructor ins : instructores) {
+                model.addRow(new Object[]{
+                    ins.getCedula(),
+                    ins.getNombre(),
+                    ins.getEspecialidad(),
+                    ins.getCorreo(),
+                    ins.getNumero_Celular()
+                });
+            }
+
+            if (instructores.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay instructores en esta sucursal");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un código numérico válido");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al buscar instructores: " + e.getMessage());
+        }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
