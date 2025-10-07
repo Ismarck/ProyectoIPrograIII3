@@ -32,13 +32,13 @@ public class RegistroCliente extends javax.swing.JPanel {
         initComponents();
         this.Controlador = Controlador;
         this.controladorSucursal = controladorSucursal;
-        this.controladorInstructor = controladorInstructor; // ✅ CORREGIDO
+        this.controladorInstructor = controladorInstructor; 
 
         actualizarComboSucursales();
 
         CombxSucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargarInstructoresPorSucursal(); // ✅ CORREGIDO: usa el que va a la BD
+                cargarInstructoresPorSucursal(); 
             }
         });
     }

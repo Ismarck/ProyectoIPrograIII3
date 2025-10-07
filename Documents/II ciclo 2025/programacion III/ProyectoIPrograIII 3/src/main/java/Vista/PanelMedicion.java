@@ -6,13 +6,11 @@ package Vista;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import AccesoDatos.Coleccion_Medicion;
-import AccesoDatos.Coleccion_Sucursal;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Medicion;
 import Controlador.Controlador_Sucursal;
 
-import Vista.PanelPruebaMedicion;
+//import Vista.PanelPruebaMedicion;
 
 
 /**
