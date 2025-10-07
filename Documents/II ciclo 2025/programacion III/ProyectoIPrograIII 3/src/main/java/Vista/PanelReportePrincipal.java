@@ -17,38 +17,31 @@ import javax.swing.JPanel;
  * @author marcosisaacarayaabarca
  */
 public class PanelReportePrincipal extends javax.swing.JPanel {
-    
+
     private JPanel panelContenedor;
     private Controlador_Cliente controlador_Cliente;
     private Controlador_Instructor controlador_Instructor;
     private Controlador_Sucursal controlador_Sucursal;
-    
+
     Coleccion_Cliente coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
     Coleccion_Sucursal coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
-    //Controlador_Cliente controlador = new Controlador_Cliente(controlador_Cliente, controlador_Sucursal);
-    //this.Controlador_Cliente = new Controlador_Cliente(servicio.getConexion());
 
-    
-    /**
-     * Creates new form PanelREportePrincipal
-     */
-    public PanelReportePrincipal(JPanel panelContenedor, Controlador_Cliente controlador, Controlador_Instructor controlador_Instructor,Controlador_Sucursal controlador_Sucursal) {
+    public PanelReportePrincipal(JPanel panelContenedor, Controlador_Cliente controlador, Controlador_Instructor controlador_Instructor, Controlador_Sucursal controlador_Sucursal) {
         this.panelContenedor = panelContenedor;
         this.controlador_Cliente = controlador;
         this.controlador_Instructor = controlador_Instructor;
         this.controlador_Sucursal = controlador_Sucursal;
         initComponents();
     }
-    
-    private void mostrarPanel(JPanel panel) {
-    panelContenedor.removeAll();          
-    panel.setSize(panelContenedor.getSize());
-    panelContenedor.add(panel);
-    panelContenedor.revalidate();
-    panelContenedor.repaint();
-}
 
-        
+    private void mostrarPanel(JPanel panel) {
+        panelContenedor.removeAll();
+        panel.setSize(panelContenedor.getSize());
+        panelContenedor.add(panel);
+        panelContenedor.revalidate();
+        panelContenedor.repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,19 +134,18 @@ public class PanelReportePrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnClienteinfActionPerformed
 
     private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
-       PanelReporteSucursal panelSucursal = new PanelReporteSucursal(this.controlador_Cliente);
-       mostrarPanel(panelSucursal);
+        PanelReporteSucursal panelSucursal = new PanelReporteSucursal(this.controlador_Cliente);
+        mostrarPanel(panelSucursal);
     }//GEN-LAST:event_btnSucursalActionPerformed
 
     private void btnInsSucuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsSucuActionPerformed
-    //PanelReporteInsSucu panelInsSucu = new PanelReporteInsSucu(this.controlador_Sucursal);
-    PanelReporteInsSucu panel = new PanelReporteInsSucu(this.controlador_Sucursal, this.controlador_Instructor);
-    mostrarPanel(panel);
+        PanelReporteInsSucu panel = new PanelReporteInsSucu(this.controlador_Sucursal, this.controlador_Instructor);
+        mostrarPanel(panel);
     }//GEN-LAST:event_btnInsSucuActionPerformed
 
     private void btninstructorxespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninstructorxespActionPerformed
-    PanelReporteInsxEsp PanelReporteInsxEsp = new PanelReporteInsxEsp(this.controlador_Instructor);
-    mostrarPanel(PanelReporteInsxEsp);
+        PanelReporteInsxEsp PanelReporteInsxEsp = new PanelReporteInsxEsp(this.controlador_Instructor);
+        mostrarPanel(PanelReporteInsxEsp);
     }//GEN-LAST:event_btninstructorxespActionPerformed
 
 

@@ -8,12 +8,9 @@ package AccesoDatos;
  *
  * @author marcosisaacarayaabarca
  */
-import Modelo.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 import Modelo.Ejercicio;
-import Modelo.Rutina;
-import java.util.Random;
 
 public class Coleccion_Ejercicios {
     private List<Ejercicio> ejercicios;

@@ -8,7 +8,6 @@ import Modelo.Cliente;
 import Modelo.Instructor;
 import Modelo.Medicion;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import oracle.jdbc.OracleTypes;
@@ -25,9 +24,6 @@ public class MedicionDAO {
         this.conn = conn;
     }
 
-    // ---------------------------
-    // INSERTAR MEDICION
-    // ---------------------------
     public void insertarMedicion(Medicion m, int idMedicion, int cedulaCliente, int cedulaInstructor) throws SQLException {
         CallableStatement cs = null;
         try {
@@ -45,13 +41,12 @@ public class MedicionDAO {
             cs.setDouble(11, m.getMuslo());
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // MODIFICAR MEDICION
-    // ---------------------------
     public void modificarMedicion(Medicion m, int idMedicion, int cedulaCliente, int cedulaInstructor) throws SQLException {
         CallableStatement cs = null;
         try {
@@ -69,13 +64,12 @@ public class MedicionDAO {
             cs.setDouble(11, m.getMuslo());
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // ELIMINAR MEDICION
-    // ---------------------------
     public void eliminarMedicion(int idMedicion) throws SQLException {
         CallableStatement cs = null;
         try {
@@ -83,13 +77,12 @@ public class MedicionDAO {
             cs.setInt(1, idMedicion);
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // BUSCAR MEDICION POR ID
-    // ---------------------------
     public Medicion buscarMedicion(int idMedicion, Cliente cliente, Instructor instructor) throws SQLException {
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -117,14 +110,15 @@ public class MedicionDAO {
                 return null;
             }
         } finally {
-            if (rs != null) rs.close();
-            if (cs != null) cs.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // LISTAR TODAS LAS MEDICIONES
-    // ---------------------------
     public List<Medicion> listarMediciones(List<Cliente> clientes, List<Instructor> instructores) throws SQLException {
         List<Medicion> lista = new ArrayList<>();
         CallableStatement cs = null;
@@ -158,11 +152,13 @@ public class MedicionDAO {
                 }
             }
         } finally {
-            if (rs != null) rs.close();
-            if (cs != null) cs.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (cs != null) {
+                cs.close();
+            }
         }
         return lista;
     }
 }
-
-

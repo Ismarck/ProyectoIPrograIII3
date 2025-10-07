@@ -22,26 +22,26 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
     private Controlador_ClaseGrupal controladorClase;
     private Controlador_Cliente controladorCliente;
     private Controlador_Instructor controladorInstructor;
-   
-    private DefaultTableModel modeloTabla; // El modelo de la tabla
+
+    private DefaultTableModel modeloTabla;
 
     /**
      * Creates new form PanelMatricularClaseGrupal
      */
-    
     public PanelMatricularClaseGrupal(Controlador_ClaseGrupal controladorClase,
-                                  Controlador_Cliente controladorCliente,
-                                  Controlador_Instructor controladorInstructor) {
-    this.controladorClase = controladorClase;
-    this.controladorCliente = controladorCliente;
-    this.controladorInstructor = controladorInstructor;
-    initComponents();
-    cargarClases();
-    cargarClientes();
-    inicializarTabla();
+            Controlador_Cliente controladorCliente,
+            Controlador_Instructor controladorInstructor) {
+        this.controladorClase = controladorClase;
+        this.controladorCliente = controladorCliente;
+        this.controladorInstructor = controladorInstructor;
+        initComponents();
+        cargarClases();
+        cargarClientes();
+        inicializarTabla();
 
-} 
-     private void cargarClases() {
+    }
+
+    private void cargarClases() {
         CombxClase.removeAllItems();
         for (ClaseGrupal c : controladorClase.listarClases()) {
             CombxClase.addItem(c);
@@ -57,11 +57,11 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
 
     private void inicializarTabla() {
         modeloTabla = new DefaultTableModel(new String[]{"Nombre", "Correo", "Teléfono"}, 0);
-        Tabla.setModel(modeloTabla); 
+        Tabla.setModel(modeloTabla);
     }
-    
+
     private void actualizarTabla(ClaseGrupal clase) {
-        modeloTabla.setRowCount(0); 
+        modeloTabla.setRowCount(0);
         if (clase != null) {
             for (Cliente c : clase.getMatriculados()) {
                 modeloTabla.addRow(new Object[]{
@@ -79,8 +79,6 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Cupos disponibles: " + disponibles);
         }
     }
-   
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -233,7 +231,7 @@ public class PanelMatricularClaseGrupal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnvervlienteenclaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvervlienteenclaseActionPerformed
-         ClaseGrupal clase = (ClaseGrupal) CombxClase.getSelectedItem();
+        ClaseGrupal clase = (ClaseGrupal) CombxClase.getSelectedItem();
         actualizarTabla(clase);
     }//GEN-LAST:event_btnvervlienteenclaseActionPerformed
 

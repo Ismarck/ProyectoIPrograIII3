@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vista;
+
 import Controlador.Controlador_Instructor;
 import Controlador.Controlador_Sucursal;
 import Modelo.Instructor;
@@ -11,30 +12,25 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author marcosisaacarayaabarca
  */
 public class RegistroInstructor extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RegistroInstructor
-     */
-    
     private Controlador_Instructor controladorins;
     private Controlador_Sucursal controladorSucursal;
     private Map<String, Sucursal> mapaSucursales = new HashMap<>();
-    
+
     public RegistroInstructor(Controlador_Instructor controladorins, Controlador_Sucursal controladorSucursal) {
         initComponents();
-         this.controladorins = controladorins;
-         
-         this.controladorSucursal = controladorSucursal;
-         actualizarComboSucursales(); 
+        this.controladorins = controladorins;
+
+        this.controladorSucursal = controladorSucursal;
+        actualizarComboSucursales();
     }
 
-     public void actualizarComboSucursales() {
+    public void actualizarComboSucursales() {
         CombxSucursal.removeAllItems();
         mapaSucursales.clear();
 
@@ -44,14 +40,13 @@ public class RegistroInstructor extends javax.swing.JPanel {
             mapaSucursales.put(clave, s);
         }
     }
-     
-     public void actualizarComboInstructoresPorSucursal(Sucursal sucursal) {
+
+    public void actualizarComboInstructoresPorSucursal(Sucursal sucursal) {
         CombxSucursal.removeAllItems();
         for (Instructor ins : sucursal.getListaInstructores()) {
             CombxSucursal.addItem(ins.getNombre());
         }
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -262,7 +257,7 @@ public class RegistroInstructor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           try {
+        try {
             String nombre = Nombreins.getText().trim();
             String especialidad = jComboBoxExpecialidad.getSelectedItem().toString();
             String fechaNacimiento = FechaNacIns.getText().trim();
@@ -273,7 +268,7 @@ public class RegistroInstructor extends javax.swing.JPanel {
 
             String claveSucursal = CombxSucursal.getSelectedItem().toString();
             Sucursal sucursalSeleccionada = mapaSucursales.get(claveSucursal);
- 
+
             Instructor nuevo = new Instructor(
                     especialidad,
                     nombre,
@@ -282,7 +277,6 @@ public class RegistroInstructor extends javax.swing.JPanel {
                     numeroCelular,
                     cedula,
                     sexo,
-                    //sucursalSeleccionada.getProvincia()
                     sucursalSeleccionada
             );
 

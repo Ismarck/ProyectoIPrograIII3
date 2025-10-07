@@ -1,4 +1,5 @@
 package Modelo;
+
 import Modelo.Instructor;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,20 +8,18 @@ import java.util.List;
  *
  * @author marcosisaacarayaabarca
  */
-
 public class Sucursal {
 
     private String Provincia;
     private String Canton;
     private int Codigo;
     private Instructor instructor;
-    //private List<Cliente> clientes;
     private List<Cliente> clientes = new ArrayList<>();
     private List<Instructor> listaInstructores = new ArrayList<>();
-    
+
     public Sucursal() {
     }
-    
+
     public Sucursal(int codigo, String provincia, String canton) {
         this.Codigo = codigo;
         this.Provincia = provincia;
@@ -32,9 +31,8 @@ public class Sucursal {
         this.Canton = Canton;
         this.Codigo = Codigo;
         this.instructor = instructor;
-        //this.clientes = new ArrayList<>();
     }
-    
+
     public Sucursal(int Codigo) {
         this.Codigo = Codigo;
     }
@@ -46,7 +44,7 @@ public class Sucursal {
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
-    
+
     public String getProvincia() {
         return Provincia;
     }
@@ -70,13 +68,10 @@ public class Sucursal {
     public void setCodigo(int Codigo) {
         this.Codigo = Codigo;
     }
-    
+
     public List<Cliente> getClientes() {
         return clientes;
     }
-    
-    // En la clase Sucursal
-//private List<Instructor> listaInstructores = new ArrayList<>();
 
     public void agregarInstructor(Instructor ins) {
         if (!listaInstructores.contains(ins)) {
@@ -92,5 +87,5 @@ public class Sucursal {
     public String toString() {
         return Provincia + " - " + Canton + " (" + Codigo + ")";
     }
-   
+
 }

@@ -7,7 +7,6 @@ package Vista;
 import Controlador.Controlador_Cliente;
 import Controlador.Controlador_Instructor;
 import Controlador.Controlador_Sucursal;
-//import Controlador.Controlador_Sucursal;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -18,14 +17,12 @@ import javax.swing.JPanel;
 public class PanelRegistro extends JPanel {
     private Controlador_Cliente controladorCliente;
     private Controlador_Instructor controladorInstructor;
-    //private Coleccion_Sucursal coleccionSucursal;
     private Controlador_Sucursal controladorSucursal;
 
     public PanelRegistro(Controlador_Cliente controladorCliente, Controlador_Instructor controladorInstructor, Controlador_Sucursal controladorSucursal) {
         initComponents();
         this.controladorCliente = controladorCliente;
         this.controladorInstructor = controladorInstructor;
-        //this.coleccionSucursal = coleccionSucursal;
         this.controladorSucursal = controladorSucursal;
     }
 

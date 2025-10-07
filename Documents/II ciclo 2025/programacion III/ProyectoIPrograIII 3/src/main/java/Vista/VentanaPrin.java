@@ -17,16 +17,13 @@ import Controlador.Controlador_Instructor;
 import Controlador.Controlador_Sucursal;
 
 import Datos.Servicio;
-import Datos.SucursalDAO;
 import java.sql.Connection;
-
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-
 
 /**
  *
@@ -49,72 +46,56 @@ public class VentanaPrin extends javax.swing.JFrame {
     private Controlador_ClaseGrupal controladorClaseGrupal;
     private Coleccion_Ejercicios coleccionEjercicios;
     private Connection connSucursal;
-   
-   
-   
-    
+
     public VentanaPrin() {
         initComponents();
         initStyles();
         SetDate();
         initContent();
-        
-        /*this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
-        this.coleccionCliente = new Coleccion_Cliente(new ArrayList<>());
-        this.coleccionSucursal = new Coleccion_Sucursal(new ArrayList<>());
-        this.coleccionMedicion = new Coleccion_Medicion(new ArrayList<>());*/
+
         this.controladorMedicion = new Controlador_Medicion(this.coleccionMedicion);
         this.coleccionInstructor = new Coleccion_Instructor(new ArrayList<>());
-        //this.controladorInstructor = new Controlador_Instructor(this.coleccionInstructor, this.coleccionCliente);
-        //this.controladorSucursal = new Controlador_Sucursal(this.connSucursal);
-        /*Servicio servicio = new Servicio();
-        controladorSucursal = new Controlador_Sucursal(servicio.getConexion());
-        controladorCliente = new Controlador_Cliente(servicio.getConexion());
-        controladorInstructor = new Controlador_Instructor(servicio.getConexion());
-        this.coleccionEjercicios = new Coleccion_Ejercicios();*/
+
         Servicio servicio = new Servicio();
         Connection conn = servicio.getConexion();
         this.controladorInstructor = new Controlador_Instructor(conn);
         this.controladorCliente = new Controlador_Cliente(conn);
         this.controladorSucursal = new Controlador_Sucursal(conn);
 
-        
-        
-       // this.controladorCliente = new Controlador_Cliente(this.coleccionCliente, this.coleccionSucursal);
-        this.controladorClaseGrupal = new Controlador_ClaseGrupal(new Coleccion_ClaseGrupal(),this.controladorInstructor,this.controladorCliente);
-        
+        this.controladorClaseGrupal = new Controlador_ClaseGrupal(new Coleccion_ClaseGrupal(), this.controladorInstructor, this.controladorCliente);
+
         PanelBienvenida p1 = new PanelBienvenida();
         ShowPanel(p1);
 
     }
-    
+
     public void SetDate() {
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int dia = now.getDayOfMonth();
         int month = now.getMonthValue();
-        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
-                  "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
+            "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
         String fecha = "Hoy es: " + dia + " de " + meses[month - 1] + " de " + year;
         Fecha1.setText(fecha);
     }
-    
-    public void initContent(){
+
+    public void initContent() {
     }
-   
-     private void ShowPanel(JPanel p){
+
+    private void ShowPanel(JPanel p) {
         p.setSize(1200, 722);
         p.setLocation(0, 0);
         Desarrollo.removeAll();
-        Desarrollo.add(p, BorderLayout.CENTER );
+        Desarrollo.add(p, BorderLayout.CENTER);
         Desarrollo.revalidate();
         Desarrollo.repaint();
- }
+    }
 
-    private void initStyles(){
+    private void initStyles() {
         Mensaje_Bienvenida.putClientProperty("FlatLaf.style", "font: 200% $light.font");
         Mensaje_Bienvenida.setForeground(Color.DARK_GRAY);
-        mensaje1.putClientProperty( "FlatLaf.style", "font: bold $h00.regular.font" );
+        mensaje1.putClientProperty("FlatLaf.style", "font: bold $h00.regular.font");
         mensaje1.setForeground(Color.white);
         mensaje2.putClientProperty("FlatLaf.style", "font: bold $h0.regular.font");
         mensaje2.setForeground(Color.white);
@@ -405,17 +386,16 @@ public class VentanaPrin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
-        PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, this.controladorCliente, this.controladorInstructor,  this.controladorSucursal);
+        PanelReportePrincipal p1 = new PanelReportePrincipal(Desarrollo, this.controladorCliente, this.controladorInstructor, this.controladorSucursal);
         ShowPanel(p1);
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed
-        //PanelRegistro p1 = new PanelRegistro(this.coleccionCliente, this.coleccionInstructor, this.coleccionSucursal);
         PanelRegistro p1 = new PanelRegistro(this.controladorCliente, this.controladorInstructor, this.controladorSucursal);
 
         ShowPanel(p1);
     }//GEN-LAST:event_RegistroActionPerformed
-        
+
     private void ClasesGrupalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClasesGrupalesActionPerformed
         PanelPrincipalClaseGrupal p1 = new PanelPrincipalClaseGrupal(this.controladorClaseGrupal, this.controladorInstructor, this.controladorCliente);
         ShowPanel(p1);
@@ -426,7 +406,7 @@ public class VentanaPrin extends javax.swing.JFrame {
     }//GEN-LAST:event_SalidaActionPerformed
 
     private void MedicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedicionActionPerformed
-        PanelMedicion p1 = new PanelMedicion(this.controladorMedicion, this.controladorCliente,this.controladorSucursal);
+        PanelMedicion p1 = new PanelMedicion(this.controladorMedicion, this.controladorCliente, this.controladorSucursal);
         ShowPanel(p1);
     }//GEN-LAST:event_MedicionActionPerformed
 
@@ -436,12 +416,12 @@ public class VentanaPrin extends javax.swing.JFrame {
     }//GEN-LAST:event_PrincipalActionPerformed
 
     private void RutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RutinaActionPerformed
-        PanelRutina p1 = new PanelRutina(this.coleccionEjercicios, 
-        this.controladorCliente,
-        this.controladorSucursal);
+        PanelRutina p1 = new PanelRutina(this.coleccionEjercicios,
+                this.controladorCliente,
+                this.controladorSucursal);
         ShowPanel(p1);
     }//GEN-LAST:event_RutinaActionPerformed
-     
+
     /**
      * @param args the command line arguments
      */

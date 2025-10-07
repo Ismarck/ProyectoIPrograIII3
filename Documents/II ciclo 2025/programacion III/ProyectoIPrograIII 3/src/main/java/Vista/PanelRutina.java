@@ -14,10 +14,7 @@ import AccesoDatos.Coleccion_Cliente;
 import Controlador.Controlador_Sucursal;
 import Datos.ClienteDAO;
 
-/*
-import java.util.*;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;*/
+
 import javax.swing.JOptionPane;
 
 /**
@@ -44,7 +41,6 @@ public class PanelRutina extends javax.swing.JPanel {
         this.controladorSucursal = controladorSucursal;
         this.controlador = new Controlador_Rutina(coleccion);
         
-        //this.controladorCliente = new Controlador_Cliente(controladorCliente, controladorSucursal);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
@@ -231,7 +227,6 @@ public class PanelRutina extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarRutinaActionPerformed
-        // TODO add your handling code here:   
         try {
             String nombreCliente = jTextField2.getText().trim();
             if (nombreCliente.isEmpty()) {

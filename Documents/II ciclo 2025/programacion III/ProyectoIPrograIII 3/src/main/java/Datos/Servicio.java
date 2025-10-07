@@ -34,20 +34,7 @@ public class Servicio {
     public Servicio() {
         
     }
-    /*
-    protected void conectar()
-    {
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            String url = "jdbc:oracle:thin:@//localhost:1521/xe";
-    String username = "system";
-    String password = "123456789";
-            conexion = DriverManager.getConnection(url,username,password);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Servicio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }*/
+
     protected void conectar() {
     try {
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -68,15 +55,7 @@ public class Servicio {
             conexion.close();
         }
     }
-    public static void main(String[] args) {
-       Servicio s = new Servicio();
-        try {
-           s.conectar();
-           s.desconectar();
-        } catch (SQLException ex) {
-            Logger.getLogger(Servicio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
     
     public Connection getConexion() {
     if (conexion == null) {

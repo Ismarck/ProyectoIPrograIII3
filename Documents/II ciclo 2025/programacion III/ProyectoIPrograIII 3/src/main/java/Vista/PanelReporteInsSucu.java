@@ -8,38 +8,23 @@ import Controlador.Controlador_Instructor;
 import Controlador.Controlador_Sucursal;
 import Modelo.Sucursal;
 import Modelo.Instructor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author porto
  */
 public class PanelReporteInsSucu extends javax.swing.JPanel {
+
     private Controlador_Sucursal controladorSucursal;
     private Controlador_Instructor controladorInstructor;
-
 
     /**
      * Creates new form PanelReporteInsSucu
      */
-    /*public PanelReporteInsSucu(Controlador_Sucursal controladorSucursal) {
-        initComponents();
-        
-         this.controladorSucursal = controladorSucursal;
-        configurarEventos();
-    }
-
-        private void configurarEventos() {
-        btnBuscar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                buscarInstructores();
-            }
-        });
-    }*/
     public PanelReporteInsSucu(Controlador_Sucursal controladorSucursal, Controlador_Instructor controladorInstructor) {
         initComponents();
         this.controladorSucursal = controladorSucursal;
@@ -50,40 +35,8 @@ public class PanelReporteInsSucu extends javax.swing.JPanel {
     private void configurarEventos() {
         btnBuscar.addActionListener(evt -> buscarInstructores());
     }
-        
-         /*private void buscarInstructores() {
-        try {
-            int codigo = Integer.parseInt(txtcodigosu.getText().trim());
-            Sucursal sucursal = controladorSucursal.buscar(codigo);
 
-            if (sucursal == null) {
-                JOptionPane.showMessageDialog(this, "Sucursal no encontrada");
-                return;
-            }
-
-            List<Instructor> instructores = sucursal.getListaInstructores();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0); 
-
-            for (Instructor ins : instructores) {
-                model.addRow(new Object[]{
-                    ins.getCedula(),
-                    ins.getNombre(),
-                    ins.getEspecialidad(),
-                    ins.getCorreo(),
-                    ins.getNumero_Celular()
-                });
-            }
-
-            if (instructores.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No hay instructores en esta sucursal");
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar un código numérico válido");
-        }
-    }*/
-        private void buscarInstructores() {
+    private void buscarInstructores() {
         try {
             int codigo = Integer.parseInt(txtcodigosu.getText().trim());
             Sucursal sucursal = controladorSucursal.buscar(codigo);

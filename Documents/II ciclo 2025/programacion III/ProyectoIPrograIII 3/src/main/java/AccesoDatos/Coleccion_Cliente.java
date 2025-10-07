@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import Modelo.ClaseGrupal;
 
-/**
- *
- * @author marcosisaacarayaabarca
- */
 
 public class Coleccion_Cliente {
     private List<Cliente> lista;
@@ -24,7 +20,6 @@ public class Coleccion_Cliente {
         this.lista = lista;
     }
 
-    // Insertar Cliente
     public boolean Insertar(Cliente c) {
         if (buscar(c.getCedula()) != null) {
             return false;
@@ -33,7 +28,6 @@ public class Coleccion_Cliente {
         return true;
     }
 
-    // Modificar Cliente por ID
     public boolean Modificar(Cliente nuevo) {
         for (int i = 0; i < lista.size(); i++) {
             Cliente actual = lista.get(i);
@@ -45,7 +39,6 @@ public class Coleccion_Cliente {
         return false;
     }
 
-    // Eliminar Cliente por cédula
     public boolean Eliminar(int cedula) {
         for (Cliente cli : lista) {
             if (cli.getCedula() == cedula) {
@@ -95,7 +88,6 @@ public class Coleccion_Cliente {
         return c.getClasesMatriculadas().size();
     }
 
-    // Listar Clientes
     public List<Cliente> Listar() {
         return new ArrayList<>(lista);
     }

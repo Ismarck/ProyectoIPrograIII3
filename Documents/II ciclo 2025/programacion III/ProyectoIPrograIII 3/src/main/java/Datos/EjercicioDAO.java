@@ -14,7 +14,6 @@ import oracle.jdbc.OracleTypes;
  *
  * @author marcosisaacarayaabarca
  */
-
 public class EjercicioDAO {
 
     private Connection conn;
@@ -23,9 +22,6 @@ public class EjercicioDAO {
         this.conn = conn;
     }
 
-    // ---------------------------
-    // INSERTAR EJERCICIO
-    // ---------------------------
     public void insertarEjercicio(Ejercicio e) throws SQLException {
         CallableStatement cs = null;
         try {
@@ -34,13 +30,12 @@ public class EjercicioDAO {
             cs.setString(2, e.getArea());
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // MODIFICAR EJERCICIO
-    // ---------------------------
     public void modificarEjercicio(Ejercicio e) throws SQLException {
         CallableStatement cs = null;
         try {
@@ -49,13 +44,12 @@ public class EjercicioDAO {
             cs.setString(2, e.getArea());
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // ELIMINAR EJERCICIO
-    // ---------------------------
     public void eliminarEjercicio(String nombre) throws SQLException {
         CallableStatement cs = null;
         try {
@@ -63,13 +57,12 @@ public class EjercicioDAO {
             cs.setString(1, nombre);
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // BUSCAR EJERCICIO POR NOMBRE
-    // ---------------------------
     public Ejercicio buscarEjercicio(String nombre) throws SQLException {
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -89,14 +82,15 @@ public class EjercicioDAO {
                 return null;
             }
         } finally {
-            if (rs != null) rs.close();
-            if (cs != null) cs.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // LISTAR TODOS LOS EJERCICIOS
-    // ---------------------------
     public List<Ejercicio> listarEjercicios() throws SQLException {
         List<Ejercicio> lista = new ArrayList<>();
         CallableStatement cs = null;
@@ -115,8 +109,12 @@ public class EjercicioDAO {
                 lista.add(e);
             }
         } finally {
-            if (rs != null) rs.close();
-            if (cs != null) cs.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (cs != null) {
+                cs.close();
+            }
         }
         return lista;
     }

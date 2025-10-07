@@ -5,7 +5,6 @@
 package Datos;
 
 import Modelo.Cliente;
-import Modelo.Ejercicio;
 import Modelo.Rutina;
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,26 +23,22 @@ public class RutinaDAO {
         this.conn = conn;
     }
 
-    // ---------------------------
-    // INSERTAR RUTINA
-    // ---------------------------
     public void insertarRutina(Rutina r, int idRutina, int cedulaCliente) throws SQLException {
         CallableStatement cs = null;
         try {
             cs = conn.prepareCall("{call insertarRutina(?, ?, ?, ?)}");
             cs.setInt(1, idRutina);
             cs.setInt(2, cedulaCliente);
-            cs.setString(3, r.getCliente().getNombre()); // nombre de la rutina
-            cs.setString(4, r.toString()); // descripción: ejercicios incluidos
+            cs.setString(3, r.getCliente().getNombre());
+            cs.setString(4, r.toString());
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // MODIFICAR RUTINA
-    // ---------------------------
     public void modificarRutina(Rutina r, int idRutina, int cedulaCliente) throws SQLException {
         CallableStatement cs = null;
         try {
@@ -54,13 +49,12 @@ public class RutinaDAO {
             cs.setString(4, r.toString());
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // ELIMINAR RUTINA
-    // ---------------------------
     public void eliminarRutina(int idRutina) throws SQLException {
         CallableStatement cs = null;
         try {
@@ -68,13 +62,12 @@ public class RutinaDAO {
             cs.setInt(1, idRutina);
             cs.executeUpdate();
         } finally {
-            if (cs != null) cs.close();
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // BUSCAR RUTINA POR ID
-    // ---------------------------
     public Rutina buscarRutina(int idRutina, Cliente cliente) throws SQLException {
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -87,20 +80,20 @@ public class RutinaDAO {
             rs = (ResultSet) cs.getObject(1);
             if (rs.next()) {
                 Rutina r = new Rutina(cliente);
-                // Puedes agregar la lógica para recuperar los ejercicios si los guardas en otra tabla
                 return r;
             } else {
                 return null;
             }
         } finally {
-            if (rs != null) rs.close();
-            if (cs != null) cs.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (cs != null) {
+                cs.close();
+            }
         }
     }
 
-    // ---------------------------
-    // LISTAR TODAS LAS RUTINAS
-    // ---------------------------
     public List<Rutina> listarRutinas(List<Cliente> clientes) throws SQLException {
         List<Rutina> lista = new ArrayList<>();
         CallableStatement cs = null;
@@ -123,8 +116,12 @@ public class RutinaDAO {
                 }
             }
         } finally {
-            if (rs != null) rs.close();
-            if (cs != null) cs.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (cs != null) {
+                cs.close();
+            }
         }
         return lista;
     }

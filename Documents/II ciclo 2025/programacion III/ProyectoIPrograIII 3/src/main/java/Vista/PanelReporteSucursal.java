@@ -19,9 +19,7 @@ public class PanelReporteSucursal extends javax.swing.JPanel {
     private Controlador_Cliente controlador;
     private JTable tabla;
 
-    /**
-     * Creates new form PanelUsuario
-     */
+    
     public PanelReporteSucursal(Controlador_Cliente controlador) {
         initComponents();
         this.controlador_Cliente = controlador;

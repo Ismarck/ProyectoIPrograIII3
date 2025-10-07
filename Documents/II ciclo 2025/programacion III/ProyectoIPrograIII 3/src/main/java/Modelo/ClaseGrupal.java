@@ -83,20 +83,15 @@ public class ClaseGrupal {
         this.cuposDisponibles = cuposDisponibles;
     }
     
-    // Getter que faltaba
     public Sucursal getSucursal() {
         return sucursal;
     }
 
-    // Opcional: setter si necesitas modificar la sucursal
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
     }
 
-    /*@Override
-    public String toString() {
-    return tipoClase + " - " + horario + " (" + sucursal + ")";
-    }*/
+  
      @Override
     public String toString() {
         return idClase + " - " + tipoClase + " (" + horario + ") en " + sucursal.getProvincia();

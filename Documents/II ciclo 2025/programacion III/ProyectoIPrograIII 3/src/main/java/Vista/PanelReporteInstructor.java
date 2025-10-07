@@ -6,21 +6,13 @@ package Vista;
 
 import Controlador.Controlador_Instructor;
 
-/**
- *
- * @author marcosisaacarayaabarca
- */
 public class PanelReporteInstructor extends javax.swing.JPanel {
-    
+
     private Controlador_Instructor controlador_Instructor;
 
-    /**
-     * Creates new form PanelUsuario
-     */
     public PanelReporteInstructor(Controlador_Instructor controlador_Instructor) {
         initComponents();
-        this.controlador_Instructor = controlador_Instructor; // conectar el panel con el controlador
-        //initComponents();
+        this.controlador_Instructor = controlador_Instructor;
     }
 
     @SuppressWarnings("unchecked")
@@ -88,13 +80,13 @@ public class PanelReporteInstructor extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void btnBusNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusNombreActionPerformed
         String nombreInstructor = jTxtBusquedaporNombre.getText().trim();
         if (!nombreInstructor.isEmpty()) {
             Tabla.setModel(this.controlador_Instructor.obtenerTablaClientesPorInstructor(nombreInstructor));
         }
-       
+
     }//GEN-LAST:event_btnBusNombreActionPerformed
 
 

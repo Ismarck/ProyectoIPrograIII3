@@ -12,10 +12,8 @@ import Controlador.Controlador_Instructor;
 import Controlador.Controlador_Sucursal;
 import Modelo.Sucursal;
 
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -28,45 +26,45 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     private Controlador_Cliente controladorCliente;
     private Controlador_Sucursal controladorSucursal;
     private DefaultTableModel modeloTabla;
-    
+
     /**
      * Creates new form PanelCrearClaseGrupal
      */
-    
-    public PanelCrearClaseGrupal(Controlador_ClaseGrupal controlador,Controlador_Instructor controladorInstructor,Controlador_Cliente controladorCliente) {
-    this.controlador = controlador;
-    this.controladorInstructor = controladorInstructor;
-    this.controladorCliente = controladorCliente; 
-    initComponents();
-    cargarInstructores();
-    inicializarTabla();
-}
+    public PanelCrearClaseGrupal(Controlador_ClaseGrupal controlador, Controlador_Instructor controladorInstructor, Controlador_Cliente controladorCliente) {
+        this.controlador = controlador;
+        this.controladorInstructor = controladorInstructor;
+        this.controladorCliente = controladorCliente;
+        initComponents();
+        cargarInstructores();
+        inicializarTabla();
+    }
+
     private void cargarInstructores() {
         CombxInstructorclase.removeAllItems();
         for (Instructor ins : controladorInstructor.listar()) {
             CombxInstructorclase.addItem(ins);
         }
     }
-    
+
     private void inicializarTabla() {
         modeloTabla = new DefaultTableModel(new String[]{"Tipo", "Instructor", "Horario", "Cupo Max", "Disponibles"}, 0);
         jTable2.setModel(modeloTabla);
         actualizarTabla();
     }
-    
+
     private void actualizarTabla() {
         modeloTabla.setRowCount(0);
         for (ClaseGrupal c : controlador.listarClases()) {
             modeloTabla.addRow(new Object[]{
-                    c.getTipoClase(),
-                    c.getInstructor().getNombre(),
-                    c.getHorario(),
-                    c.getCupoMaximo(),
-                    c.getCuposDisponibles()
+                c.getTipoClase(),
+                c.getInstructor().getNombre(),
+                c.getHorario(),
+                c.getCupoMaximo(),
+                c.getCuposDisponibles()
             });
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -282,25 +280,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        /*try {
-            String tipo = txtTipoClase.getText().trim();
-            Instructor ins = (Instructor) CombxInstructorclase.getSelectedItem();
-            String horario = txtHorario.getText().trim();
-            int cupo = Integer.parseInt(txtCupoMaximo.getText().trim());
-            String sucursal = txtSucursal.getText().trim();
 
-            if (controlador.contarClasesPorSucursal(sucursal) >= 8) {
-                JOptionPane.showMessageDialog(this, "Ya se alcanzó el máximo de 8 clases en esta sucursal.");
-                return;
-            }
-
-            ClaseGrupal clase = new ClaseGrupal(tipo, ins, horario, cupo, sucursal);
-            controlador.crearClaseGrupal(clase);
-            actualizarTabla();
-            JOptionPane.showMessageDialog(this, "Clase creada con éxito.");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }*/
         try {
             String tipo = txtTipoClase.getText().trim();
             Instructor ins = (Instructor) CombxInstructorclase.getSelectedItem();
@@ -309,18 +289,14 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
             String nombreSucursal = txtSucursal.getText().trim();
             int id = Integer.parseInt(txtIDClase.getText().trim());
 
-            // Validar que no haya más de 8 clases por sucursal
             if (controlador.contarClasesPorSucursal(nombreSucursal) >= 8) {
                 JOptionPane.showMessageDialog(this, "Ya se alcanzó el máximo de 8 clases en esta sucursal.");
                 return;
             }
 
-            // Crear objeto Sucursal
             Sucursal sucursal = new Sucursal();
-            sucursal.setProvincia(nombreSucursal); // o sucursal.setCodigo(xxx);
+            sucursal.setProvincia(nombreSucursal);
 
-            // Crear objeto ClaseGrupal correctamente
-            //int id = controlador.generarIdClase(); // o algún método tuyo para generar el ID
             ClaseGrupal clase = new ClaseGrupal(id, tipo, ins, horario, cupo, sucursal);
 
             controlador.crearClaseGrupal(clase);
@@ -344,34 +320,7 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSucursalActionPerformed
 
     private void btnSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalActionPerformed
-        /*try {
-            String sucursal = txtSucursal.getText().trim();
 
-            if (sucursal.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ingrese el nombre de la sucursal.");
-                return;
-            }
-            
-            java.util.List<Instructor> instructores = this.controladorInstructor.buscarPorSucursal(sucursal);
-
-            if (instructores != null && !instructores.isEmpty()) {
-                CombxInstructorclase.removeAllItems();
-                for (Instructor ins : instructores) {
-                    CombxInstructorclase.addItem(ins);
-                }
-
-                Instructor primero = instructores.get(0);
-                txtTipoClase.setText(primero.getEspecialidad());
-
-                JOptionPane.showMessageDialog(this, "Instructores encontrados para la sucursal " + sucursal);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se encontraron instructores para esta sucursal.");
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al buscar instructores: " + e.getMessage());
-        }*/
-     
         try {
             String nombreSucursal = txtSucursal.getText().trim();
 
@@ -380,7 +329,6 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
                 return;
             }
 
-            // Buscar la sucursal en la colección
             Sucursal suc = null;
             for (Sucursal s : controladorSucursal.listar()) {
                 String clave = s.getProvincia() + " - " + s.getCanton();
@@ -395,10 +343,8 @@ public class PanelCrearClaseGrupal extends javax.swing.JPanel {
                 return;
             }
 
-            // ✅ Usar el código de la sucursal (int)
             int codigoSucursal = suc.getCodigo();
 
-            // Obtener instructores por código
             java.util.List<Instructor> instructores = controladorInstructor.buscarPorSucursal(codigoSucursal);
 
             if (instructores != null && !instructores.isEmpty()) {

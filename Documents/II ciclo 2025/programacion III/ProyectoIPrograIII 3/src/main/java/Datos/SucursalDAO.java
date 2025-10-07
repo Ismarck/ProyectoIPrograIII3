@@ -23,7 +23,6 @@ public class SucursalDAO {
         this.conn = conn;
     }
 
-    
     public void insertar(Sucursal sucursal) throws SQLException {
         CallableStatement cs = conn.prepareCall("{call insertarSucursal(?, ?, ?)}");
         cs.setInt(1, sucursal.getCodigo());
@@ -33,7 +32,6 @@ public class SucursalDAO {
         cs.close();
     }
 
-    
     public void modificar(Sucursal sucursal) throws SQLException {
         CallableStatement cs = conn.prepareCall("{call modificarSucursal(?, ?, ?)}");
         cs.setInt(1, sucursal.getCodigo());
@@ -43,7 +41,6 @@ public class SucursalDAO {
         cs.close();
     }
 
-    
     public void eliminar(int codigo) throws SQLException {
         CallableStatement cs = conn.prepareCall("{call eliminarSucursal(?)}");
         cs.setInt(1, codigo);
@@ -51,7 +48,6 @@ public class SucursalDAO {
         cs.close();
     }
 
-    
     public Sucursal buscar(int codigo) throws SQLException {
         CallableStatement cs = conn.prepareCall("{? = call buscarSucursal(?)}");
         cs.registerOutParameter(1, OracleTypes.CURSOR);
@@ -73,7 +69,6 @@ public class SucursalDAO {
         return sucursal;
     }
 
-
     public List<Sucursal> listar() throws SQLException {
         CallableStatement cs = conn.prepareCall("{? = call listarSucursal()}");
         cs.registerOutParameter(1, OracleTypes.CURSOR);
@@ -94,7 +89,7 @@ public class SucursalDAO {
         cs.close();
         return lista;
     }
-    //
+
     public List<Sucursal> listarSucursales() throws SQLException {
         List<Sucursal> lista = new ArrayList<>();
         String sql = "SELECT CODIGO, PROVINCIA, CANTON FROM SUCURSAL";
@@ -113,33 +108,30 @@ public class SucursalDAO {
         return lista;
     }
 
-    //
     public List<Cliente> listarClientesPorSucursal(int codigoSucursal) throws SQLException {
-    CallableStatement cs = conn.prepareCall("{? = call listarClientesPorSucursal(?)}");
-    cs.registerOutParameter(1, OracleTypes.CURSOR);
-    cs.setInt(2, codigoSucursal);
-    cs.execute();
+        CallableStatement cs = conn.prepareCall("{? = call listarClientesPorSucursal(?)}");
+        cs.registerOutParameter(1, OracleTypes.CURSOR);
+        cs.setInt(2, codigoSucursal);
+        cs.execute();
 
-    ResultSet rs = (ResultSet) cs.getObject(1);
-    List<Cliente> listaClientes = new ArrayList<>();
+        ResultSet rs = (ResultSet) cs.getObject(1);
+        List<Cliente> listaClientes = new ArrayList<>();
 
-    while (rs.next()) {
-        Cliente cliente = new Cliente();
-        cliente.setCedula(rs.getInt("CEDULA"));
-        cliente.setNombre(rs.getString("NOMBRE"));
-        cliente.setFecha_Inscripcion(rs.getString("FECHA_INSCRIPCION"));
+        while (rs.next()) {
+            Cliente cliente = new Cliente();
+            cliente.setCedula(rs.getInt("CEDULA"));
+            cliente.setNombre(rs.getString("NOMBRE"));
+            cliente.setFecha_Inscripcion(rs.getString("FECHA_INSCRIPCION"));
 
-        // Si tu clase Cliente tiene una referencia a la sucursal:
-        Sucursal sucursal = buscar(codigoSucursal);
-        cliente.setSucursal(sucursal);
+            Sucursal sucursal = buscar(codigoSucursal);
+            cliente.setSucursal(sucursal);
 
-        listaClientes.add(cliente);
+            listaClientes.add(cliente);
+        }
+
+        rs.close();
+        cs.close();
+        return listaClientes;
     }
 
-    rs.close();
-    cs.close();
-    return listaClientes;
-}
-
-    
 }

@@ -149,7 +149,5 @@ public class Medicion {
     public String toString() {
         return "Medicion{" + "cliente=" + cliente + ", instructor=" + instructor + ", fecha=" + fecha + ", peso=" + peso + ", estatura=" + estatura + ", porcentajeGrasa=" + porcentajeGrasa + ", porcentajeMusculo=" + porcentajeMusculo + ", edadMetabolica=" + edadMetabolica + ", grasaVisceral=" + grasaVisceral + ", cintura=" + cintura + ", cadera=" + cadera + ", pecho=" + pecho + ", muslo=" + muslo + '}';
     }
-    
-    
-    
+
 }
